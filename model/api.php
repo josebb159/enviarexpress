@@ -186,6 +186,32 @@ class api{
          }
                          
      }
+
+
+     
+    public function get_user_client($uid){
+        //tipo= 1 entrega, 2 recogida
+         $conexion = new Conexion();
+      
+ 
+         $sql = "SELECT * FROM usuarios usu where usu.uid='".$uid."' ;";
+       // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+         $reg = $conexion->prepare($sql);
+ 
+         $reg->execute();
+         $consulta =$reg->fetchAll();
+         
+       
+         if ($consulta) {
+          
+             echo json_encode($consulta);
+             //echo json_encode($consulta);
+           
+         }else{
+             return http_response_code(404);
+         }
+                         
+     }
  
 
     public function get_direcciones($uid, $tipo){
@@ -766,6 +792,37 @@ class api{
 
 
 
+    public function registrar_mandado($id_cliente,  $descripcion,  $direccion, $telefono, $id_recogida,$id_entrega, $tipo_servicio,  $metodo_pago, $distancia,  $valor, $total)  {
+   
+        $conexion = new Conexion();
+        $estado_defaul = 1;
+        
+
+        $sql = "SELECT id FROM usuarios where  uid='".$id_cliente."' ;";
+        // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+          $reg = $conexion->prepare($sql);
+  
+          $reg->execute();
+          $consulta =$reg->fetchAll();
+
+
+          if ($consulta) {
+             
+        
+ 
+                                                
+                $sql2 = "INSERT INTO `mandado`( `id_cliente`,  `descripcion`,  `telefono`,  `direccion`,    `id_entrega `,   `id_recogida`,   `tipo_servicio`,   `metodo_pago`, `distancia`, `valor`, `total`) VALUES 
+                                                ( :id_cliente,  :descripcion,  :telefono,   :direccion,     :id_entrega,    :id_recogida, :tipo_servicio, :metodo_pago, :distancia:,  :valor, :total)";
+                $reg2 = $conexion->prepare($sql2);
+            
+                $reg2->execute(array(':id_cliente' => $consulta[0]['id'], ':descripcion' => $descripcion ,':direccion' => $direccion,':telefono' => $telefono,    ':id_recogida' => $id_recogida,':id_entrega' => $id_entrega,':tipo_servicio' => $tipo_servicio,':metodo_pago' => $metodo_pago,':distancia' => $distancia,':valor' => $valor, ':total' => $total));
+                $lastInsertId = $conexion->lastInsertId();
+
+          
+    
+      }
+
+}
 
 
 

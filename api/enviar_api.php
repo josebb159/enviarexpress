@@ -43,6 +43,13 @@ if(isset($_GET['data'])){
          echo $resultado;
          
       break;
+        case 'get_comerce_from_category':
+ 
+         $n_api  = new api();
+         $resultado = $n_api -> get_comerce_from_category($_POST['id_category']);
+         echo $resultado;
+         
+      break;
       case 'get_category':
  
          $n_api  = new api();
@@ -91,6 +98,12 @@ if(isset($_GET['data'])){
          echo $resultado;
          
       break;
+      case 'get_mandado_pending':
+         $n_api  = new api();
+         $resultado = $n_api -> get_mandado_pending($_POST['uid']);
+         echo $resultado;
+         
+      break;
       case 'get_mandados_map':
 
          $n_api  = new api();
@@ -102,6 +115,13 @@ if(isset($_GET['data'])){
  
          $n_api  = new api();
          $resultado = $n_api -> cancelado($_POST['uid'],$_POST['id_mandado']);
+         echo $resultado;
+         
+      break;
+      case 'cancelado_mandado':
+ 
+         $n_api  = new api();
+         $resultado = $n_api -> cancelado_mandado($_POST['uid'],$_POST['id_mandado']);
          echo $resultado;
          
       break;
@@ -126,6 +146,14 @@ if(isset($_GET['data'])){
          echo $resultado;
          
       break;
+      case 'get_user_client':
+     
+         $n_api  = new api();
+         $resultado = $n_api -> get_user_client($_POST['uid']);
+         echo $resultado;
+         
+      break;
+
 
       case 'get_orden_mandado':
     
@@ -272,6 +300,13 @@ if(isset($_GET['data'])){
          echo $resultado;
          
       break;
+      case 'obtener_domiciliario':
+ 
+         $n_api  = new api();
+         $resultado = $n_api -> obtener_domiciliario($_POST['id_domiciliario']);
+         echo $resultado;
+         
+      break;
       case 'entregado_orden':
  
          $n_api  = new api();
@@ -279,7 +314,6 @@ if(isset($_GET['data'])){
          echo $resultado;
          
       break;
-
       case 'registrar_orden':
          $id_cliente=$_POST['uid'];
       
@@ -298,6 +332,27 @@ if(isset($_GET['data'])){
 
          $n_api  = new api();
          $resultado = $n_api -> registrar_orden($id_cliente,  $descripcion, $telefono, $direccion, $latitude,$longitude,  $id_entrega, $id_recogida, $metodo_pago, $tipo_servicio,$distancia,  $valor, $total);
+         echo $resultado;
+         
+      break;
+
+
+      case 'registrar_mandado':
+         $id_cliente=$_POST['uid'];
+      
+         $descripcion=$_POST['mandado'];
+         $direccion=$_POST['direccion'];
+         $telefono= $_POST['telefono']; //$_POST[''];
+         $id_entrega=$_POST['id_entrega'];
+         $id_recogida=$_POST['id_recodida'];
+         $metodo_pago=$_POST['metodo_pago'];
+         $tipo_servicio=$_POST['tipo_servicio'];
+         $distancia=$_POST['distancia'];
+         $valor=$_POST['valor'];
+         $total=$_POST['total'];
+
+         $n_api  = new api();
+         $resultado = $n_api -> registrar_mandado($id_cliente,  $descripcion,  $direccion, $telefono, $id_recogida,$id_entrega, $tipo_servicio,  $metodo_pago, $distancia,  $valor, $total);
          echo $resultado;
          
       break;
