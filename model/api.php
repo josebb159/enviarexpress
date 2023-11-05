@@ -811,14 +811,52 @@ class api{
         
  
                                                 
-                $sql2 = "INSERT INTO `mandado`( `id_cliente`,  `descripcion`,  `telefono`,  `direccion`,    `id_entrega `,   `id_recogida`,   `tipo_servicio`,   `metodo_pago`, `distancia`, `valor`, `total`) VALUES 
-                                                ( :id_cliente,  :descripcion,  :telefono,   :direccion,     :id_entrega,    :id_recogida, :tipo_servicio, :metodo_pago, :distancia:,  :valor, :total)";
-                $reg2 = $conexion->prepare($sql2);
+            $sql2 = "INSERT INTO `mandado`(
+                `id_cliente`,  
+                `descripcion`,  
+                `telefono`,  
+                `direccion`,  
+                `id_entrega`,   
+                `id_recogida`,   
+                `tipo_servicio`,   
+                `metodo_pago`, 
+                `distancia`, 
+                `valor`, 
+                `total`
+            ) 
+            VALUES (
+                :id_cliente,  
+                :descripcion,  
+                :telefono,   
+                :direccion,     
+                :id_entrega,    
+                :id_recogida, 
+                :tipo_servicio, 
+                :metodo_pago, 
+                :distancia,  /* Corregido: se eliminó el segundo dos puntos */
+                :valor, 
+                :total
+            )";
             
-                $reg2->execute(array(':id_cliente' => $consulta[0]['id'], ':descripcion' => $descripcion ,':direccion' => $direccion,':telefono' => $telefono,    ':id_recogida' => $id_recogida,':id_entrega' => $id_entrega,':tipo_servicio' => $tipo_servicio,':metodo_pago' => $metodo_pago,':distancia' => $distancia,':valor' => $valor, ':total' => $total));
+            $reg2 = $conexion->prepare($sql2);
+            
+            $reg2->execute(array(
+                ':id_cliente' => $consulta[0]['id'], 
+                ':descripcion' => $descripcion,
+                ':direccion' => $direccion,
+                ':telefono' => $telefono,
+                ':id_recogida' => $id_recogida,
+                ':id_entrega' => $id_entrega,
+                ':tipo_servicio' => $tipo_servicio,
+                ':metodo_pago' => $metodo_pago,
+                ':distancia' => $distancia,  /* Corregido: se eliminó el segundo dos puntos */
+                ':valor' => $valor,
+                ':total' => $total
+            ));
+            
                 $lastInsertId = $conexion->lastInsertId();
 
-          
+            
     
       }
 
