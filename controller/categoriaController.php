@@ -10,9 +10,6 @@ if(isset($_POST['descripcion'])){
 	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $descripcion)) { die('error descripcion');}
 }
 
-
-
-
 if(isset($_POST['estado'])){
 	$estado =  $_POST['estado'];
 }
