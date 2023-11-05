@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        @@include("partials/title-meta.html", {"title": "Dark Version"})
+
+        @@include("partials/head-css.html")
+
+    </head>
+
+    <body data-topbar="dark">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            @@include("partials/topbar.html")
+
+            @@include("partials/sidebar.html")
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="p-lg-1">
+                                            <h4 class="mt-0 mb-4">Dark Version</h4>
+
+                                            <p>
+                                                In order to have Dark mode enabled, update below line in function <code>initSettings</code> in file <code>assets/js/app.js</code>.
+                                                <br>
+                                                <code>
+                                                    alreadyVisited = "dark-mode-switch";
+                                                </code> at line number 182. <br> 
+                                                and replace the reference of <code>bootstrap.min.css</code> stylesheet file to <code>bootstrap-dark.min.css</code> and <code>app.min.css</code> to <code>app-dark.min.css</code> in the <code>Admin/index.html</code> file.
+                                            </p>
+                                            
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                @@include("partials/footer.html")
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+
+        @@include("partials/vendor-scripts.html")
+
+        <script src="assets/js/app.js"></script>
+
+    </body>
+</html>

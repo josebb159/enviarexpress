@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    @@include("partials/title-meta.html", {"title": "Changelog"})
+
+    @@include("partials/head-css.html")
+
+</head>
+
+<body data-topbar="dark" data-spy="scroll" data-target=".right-side-nav" data-offset="175">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        @@include("partials/topbar.html")
+
+        @@include("partials/sidebar.html")
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="p-lg-1">
+
+                                        <div class="d-xl-flex">
+                                            <div class="w-100">
+                                               
+                                                <div id="v-1-0">
+                                                    <h4 class="mb-3">
+                                                        <span class="text-primary">v1.0.0</span>
+                                                        <small class="text-muted font-size-14"> - 2 Octomber 2021 </small>
+                                                    </h4>
+                                                    <ul>
+                                                        <li>
+                                                            Initial released.
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Start right-side-nav -->
+                                            <div class="d-none d-xl-block">
+                                                <div class="right-side-nav">
+                                                    <ul class="nav nav-pills flex-column">
+                                                        
+                                                        <li class="nav-item">
+                                                            <a href="#v-1-0" class="nav-link">v1.0.0</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <!-- End right-side-nav -->
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- end card -->
+
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+
+            @@include("partials/footer.html")
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+    @@include("partials/vendor-scripts.html")
+
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
