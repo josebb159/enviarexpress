@@ -7,7 +7,7 @@ class Conexion extends PDO
     private $nombre_de_base = 'enviar';
     private $usuario = 'root';
     private $contrasena = '';
-
+    //test
 
     public function __construct()
     {
