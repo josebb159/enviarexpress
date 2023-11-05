@@ -350,7 +350,6 @@ if(isset($_GET['data'])){
          $distancia="200";//$_POST['distancia'];
          $valor="11";//$_POST['valor'];
          $total="111";//$_POST['total'];
-
          $n_api  = new api();
          $resultado = $n_api -> registrar_mandado($id_cliente,  $descripcion,  $direccion, $telefono, $id_recogida,$id_entrega, $tipo_servicio,  $metodo_pago, $distancia,  $valor, $total);
          echo $resultado;
