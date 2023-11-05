@@ -794,6 +794,7 @@ class api{
 
     public function registrar_mandado($id_cliente,  $descripcion,  $direccion, $telefono, $id_recogida,$id_entrega, $tipo_servicio,  $metodo_pago, $distancia,  $valor, $total)  {
    
+        die();
         $conexion = new Conexion();
         $estado_defaul = 1;
         
