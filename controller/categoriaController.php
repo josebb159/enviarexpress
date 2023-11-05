@@ -9,7 +9,6 @@ if(isset($_POST['descripcion'])){
 	$descripcion =  $_POST['descripcion'];
 	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $descripcion)) { die('error descripcion');}
 }
-
 if(isset($_POST['estado'])){
 	$estado =  $_POST['estado'];
 }
@@ -17,7 +16,6 @@ if(isset($_POST['estado'])){
 if(isset($_POST['op'])){
 	$op =  $_POST['op'];
 }
-
 switch ($op) {
 	case 'registrar':
 		$n_categoria  = new categoria();
