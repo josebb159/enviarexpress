@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/enviarex/public_html/
-    - /bin/cp * $DEPLOYPATH
+    - /bin/cp -r api assets controller model view $DEPLOYPATH
