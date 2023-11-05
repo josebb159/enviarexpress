@@ -338,18 +338,18 @@ if(isset($_GET['data'])){
 
 
       case 'registrar_mandado':
-         $id_cliente=$_POST['uid'];
+         $id_cliente="zfAeDqNslzQ6UjMjOTXWbfscQzi2";//$_POST['uid'];
       
-         $descripcion=$_POST['mandado'];
-         $direccion=$_POST['direccion'];
-         $telefono= $_POST['telefono']; //$_POST[''];
-         $id_entrega=$_POST['id_entrega'];
-         $id_recogida=$_POST['id_recodida'];
-         $metodo_pago=$_POST['metodo_pago'];
-         $tipo_servicio=$_POST['tipo_servicio'];
-         $distancia=$_POST['distancia'];
-         $valor=$_POST['valor'];
-         $total=$_POST['total'];
+         $descripcion= "1";//$_POST['mandado'];
+         $direccion= "ee";//$_POST['direccion'];
+         $telefono= "111";//$_POST['telefono']; //$_POST[''];
+         $id_entrega="1"; //$_POST['id_entrega'];
+         $id_recogida="2"; //$_POST['id_recodida'];
+         $metodo_pago="aa";//$_POST['metodo_pago'];
+         $tipo_servicio="1";//$_POST['tipo_servicio'];
+         $distancia="200";//$_POST['distancia'];
+         $valor="11";//$_POST['valor'];
+         $total="111";//$_POST['total'];
 
          $n_api  = new api();
          $resultado = $n_api -> registrar_mandado($id_cliente,  $descripcion,  $direccion, $telefono, $id_recogida,$id_entrega, $tipo_servicio,  $metodo_pago, $distancia,  $valor, $total);
