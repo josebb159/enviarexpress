@@ -808,9 +808,7 @@ class api{
 
 
           if ($consulta) {
-             
-        
- 
+  
                                                 
             $sql2 = "INSERT INTO `mandado`(
                 `id_cliente`,  
