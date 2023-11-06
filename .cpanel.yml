@@ -2,5 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/enviarex/public_html/
-    - /bin/cp -r api assets controller model view $DEPLOYPATH
-  
+    -/bin/rsync -av --exclude='.git/' --exclude='.gitignore' --exclude='model/db.php' --exclude='admin/config.php' -r api assets controller model view $DEPLOYPATH
