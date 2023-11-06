@@ -1,3 +1,4 @@
+---
 deployment:
   tasks:
     - /usr/bin/rsync -avz --exclude 'db.php' api assets controller model view /home/enviarex/public_html/
