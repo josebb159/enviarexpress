@@ -808,7 +808,7 @@ class api{
 
 
           if ($consulta) {
-  
+            
                                                 
             $sql2 = "INSERT INTO `mandado`(
                 `id_cliente`,  
@@ -852,6 +852,7 @@ class api{
                 ':valor' => $valor,
                 ':total' => $total
             ));
+            echo "entro";
             
                 $lastInsertId = $conexion->lastInsertId();
 
