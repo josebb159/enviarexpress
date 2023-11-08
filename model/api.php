@@ -851,8 +851,7 @@ class api{
                 ':valor' => $valor,
                 ':total' => $total
             ));
-            echo "entro";
-            
+    
                 $lastInsertId = $conexion->lastInsertId();
 
             
