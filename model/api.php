@@ -383,7 +383,7 @@ class api{
          $conexion = new Conexion();
       
  
-         $sql = "SELECT * FROM `mandado` where mandado.id_mandado=".$id." and mandado.estado=1;";
+         $sql = "SELECT *, 'test' as nombre FROM `mandado` where mandado.id_mandado=".$id." and mandado.estado=1;";
        // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
          $reg = $conexion->prepare($sql);
          $reg->execute();
