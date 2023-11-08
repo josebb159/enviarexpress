@@ -927,6 +927,31 @@ class api{
     }
 
 }
+
+public function obtener_domiciliario($uid){
+    //tipo= 1 entrega, 2 recogida
+     $conexion = new Conexion();
+  
+
+     $sql = "SELECT 'test' as nombre, '12345678' as telefono";
+   // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+     $reg = $conexion->prepare($sql);
+
+     $reg->execute();
+     $consulta =$reg->fetchAll();
+     
+   
+     if ($consulta) {
+      
+         echo json_encode($consulta);
+         //echo json_encode($consulta);
+       
+     }else{
+         return http_response_code(404);
+     }
+                     
+ }
+
         public function get_orden_mandado($uid){
         //tipo= 1 entrega, 2 recogida
          $conexion = new Conexion();
