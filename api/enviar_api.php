@@ -197,6 +197,13 @@ if(isset($_GET['data'])){
 
          
       break;
+      case 'update_uid':
+       
+         $n_api  = new api();
+         $resultado = $n_api -> update_uid($_POST['uid'],$_POST['email']);
+
+         
+      break;
       case 'send_notification_delivey':
        
          $n_api  = new api();

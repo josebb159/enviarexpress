@@ -70,6 +70,19 @@ class api{
                         
     }
 
+        public function update_uid($uid,$email){
+
+        $conexion = new Conexion();
+     
+
+        $sql = "UPDATE usuarios SET uid='".$uid."' where  email='".$email."' ";
+        $reg = $conexion->prepare($sql);
+
+        $reg->execute();
+   
+
+                        
+    }
 
 
     public function registrar_usuario($uid, $nombre,  $correo, $contrasena, $telefono, $fecha ){
