@@ -44,10 +44,9 @@
                     
                                                     <div class="mb-3 auth-form-group-custom mb-4">
                                                         <i class="ri-user-2-line auti-custom-input-icon"></i>
-                                                        <label for="username">Usuarios</label>
+                                                        <label for="username">Usuario</label>
                                                         <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario">
                                                     </div>
-                            
                                                     <div class="mb-3 auth-form-group-custom mb-4">
                                                         <i class="ri-lock-2-line auti-custom-input-icon"></i>
                                                         <label for="userpassword">Contraseña</label>
