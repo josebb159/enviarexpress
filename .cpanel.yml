@@ -3,5 +3,6 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/enviarex/public_html/
     - /bin/cp -r api assets controller model view $DEPLOYPATH
-    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp recuperar_contrasena.php $DEPLOYPATH
  
