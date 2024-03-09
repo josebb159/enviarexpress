@@ -19,7 +19,7 @@ class orden {
 	$reg->execute(array(':estado' => $estado_defaul,':descripcion' => $descripcion,':cantidad' => $cantidad,':valor' => $valor));
 	return 1;
 	}
-	public function buscar_orden(){$sql = "SELECT  * FROM orden ";
+	public function buscar_orden(){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden`;";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();
 	$consulta =$reg->fetchAll();

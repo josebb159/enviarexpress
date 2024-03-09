@@ -138,6 +138,55 @@ if(isset($_POST['correo'])){
            }
                
           break;
+          case 'buscar_cliente':
+
+            $n_usuario  = new usuario();
+            $resultado = $n_usuario -> buscar_usuarios_cliente();
+        
+   
+            foreach ($resultado as $key) {
+               if($key['estado']=="1"){
+                  $st = " checked";
+               }else{
+                  $st = "";
+               }
+   
+               ?>
+                   <tr>
+                                               <td><?php echo $key['id']; ?></td>
+                                               <td><?php echo $key['nombre']; ?></td>
+                                               <td><img class="img-thumbnail preview-image2" src="../assets/upload/user/<?= $key['img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/user/<?= $key['img']; ?>')"></td>
+                                     
+                                           
+                                               <td><?php echo $key['rol']; ?></td>
+                                               <td><?php echo $key['fecha_registro']; ?></td>
+                                               <td>   
+                                                     <?php include '../view/static/bt_estado.php';  ?>
+                                               </td>
+                                               <td>
+                                               <div class="dropdown">
+                                                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      Acciones
+                                                         <i class="mdi mdi-chevron-down"></i>
+                                                      </button>
+                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
+                                                         <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos( '<?php echo $key['id']."','".$key['nombre']."','".$key['rol_id']."','".$key['telefono']."','".$key['email']."','".$key['img']."'"; ?>)">Modificar</a>
+                                                         <a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id']; ?>)">Eliminar</a>
+                                                      </div>
+                                                </div>
+                                               </td>
+                                  
+                   </tr>
+   
+   
+               <?php
+   
+    
+         
+   
+           }
+               
+          break;
           case 'buscar_asignados':
 
             $n_usuario  = new usuario();

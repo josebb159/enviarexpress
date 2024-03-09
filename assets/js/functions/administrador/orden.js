@@ -37,15 +37,18 @@ function ver_registros(){
 }
 
 
-function ver_lista($id_orden){
+function ver_lista(id_orden,cliente, repartidor){
 	$("#id_orden_list").html(id_orden);
 	var table = $('#datatable-buttons2').DataTable();
 	table.destroy();
 	var result = function_ajax({
 		'op':'buscar_list_orden',
-		'id_orden':$id_orden
+		'id_orden':id_orden
 }	,'../controller/lista_ordenController.php').then(function(result){
 	$("#datos2").html(result);
+	$("#id_orden_list").html(id_orden);
+	$("#cliente").html(cliente);
+	$("#repartidor").html(repartidor);
 	$('#datatable-buttons2').DataTable( {
 		dom: 'Bfrtip',
 		buttons: [

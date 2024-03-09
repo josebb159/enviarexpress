@@ -7,6 +7,10 @@ if(isset($_GET['view'])){
         include 'dinamic/administrador/usuario.php';
     }
 
+	if($_GET['view']=="usuarios_cliente"){
+        include 'dinamic/administrador/usuario_cliente.php';
+    }
+
 	elseif($_GET['view']=="colores"){
 		include 'dinamic/administrador/colores.php';
 	}

@@ -10,6 +10,9 @@ if(isset($_GET['view'])){
 	if($_GET['view']=="usuarios"){
 		echo "<script src='../assets/js/functions/administrador/usuario.js'></script>";
 	}
+	if($_GET['view']=="usuarios_cliente"){
+		echo "<script src='../assets/js/functions/administrador/usuario_cliente.js'></script>";
+	}
 
 	if($_GET['view']=="categoria"){
 		echo "<script src='../assets/js/functions/administrador/categoria.js'></script>";
@@ -69,6 +72,7 @@ if(isset($_GET['view'])){
 	if($_GET['view']=="monedero"){
 		echo "<script src='../assets/js/functions/administrador/monedero.js'></script>";
 	}
+	
 /*construir*/
     
     

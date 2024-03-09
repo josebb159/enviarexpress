@@ -3,7 +3,46 @@
 <link href="../assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="../assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="../assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
+	  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+		.modal-dialog {
+            max-width: 800px;
+        }
+		#map2 {
+            height: 400px;
+            width: 100%;
+        }
+		.modal-dialog {
+            max-width: 800px;
+        }
+
+
+		#preview-image {
+            max-width: 100px !important;
+            max-height: 100px !important;
+	
+        }
+		#image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px; /* Establece la altura deseada del contenedor */
+            border: 1px solid #ccc; /* Para visualizar el contenedor */
+        }
+
+		#preview-image2 {
+            max-width: 100px !important;
+            max-height: 100px !important;
+	
+        }
+    </style>
 <div class="page-content">
 	<div class="container-fluid">
 		<div class="row">
@@ -30,15 +69,14 @@
 								<th>descripcion</th>
 								<th>telefono</th>
 								<th>direccion</th>
-								<th>latitude</th>
-								<th>longitude</th>
+					
 								<th>Estado</th>
 								<th>Opciones</th>
 							<thead>
 							<tbody id="datos">
 							</tbody>
 						</table>
-						<button type="button"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Agregar mandado</button>
+						<button type="button" onclick="renderizemap()"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Agregar mandado</button>
 					</div>
 				</div>
 			</div>
@@ -129,19 +167,11 @@
 									<input type="text" class="form-control" id="direccionagg" placeholder="direccion" value="" required>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">latitude</label>
-									<input type="text" class="form-control" id="latitudeagg" placeholder="latitude" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">longitude</label>
-									<input type="text" class="form-control" id="longitudeagg" placeholder="longitude" value="" required>
-								</div>
-							</div>
+							<input type="hidden" class="form-control" id="latitudeagg" placeholder="Latitude" value="" >
+							<input type="hidden" class="form-control" id="longitudeagg" placeholder="Latitude" value="" >
+							<div id="map"></div>
 						</div>
+					
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cerrar</button>
@@ -175,3 +205,87 @@ $aditionals_js='
 <script src="../assets/js/pages/datatables.init.js"></script>
 ';
 ?>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<script>
+
+function miFuncion() {
+	setTimeout(function() {
+    map.invalidateSize();
+
+  }, 10);
+
+  
+        }
+
+
+
+
+	
+
+function renderizemap(){
+	setTimeout(miFuncion, 2000);
+
+}
+
+
+
+
+        // Inicializar el mapa de Leaflet
+        var map = L.map('map').setView([7.8939, -72.5079], 13); // Establece la ubicación inicial en Cúcuta, Colombia
+
+        // Agrega la capa de mapa de Leaflet (puedes cambiar el proveedor de mapas si lo deseas)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Agrega un marcador en el mapa al hacer clic en una ubicación
+        var marker;
+        map.on('click', function(event) {
+            if (marker) {
+                map.removeLayer(marker); // Elimina el marcador anterior, si existe
+            }
+            marker = L.marker(event.latlng).addTo(map);
+            document.getElementById('latitudeagg').value = event.latlng.lat;
+            document.getElementById('longitudeagg').value = event.latlng.lng;
+        });
+
+        // Enviar el formulario y guardar la ubicación
+        document.getElementById('locationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            var name = document.getElementById('name').value;
+            var latitude = document.getElementById('latitudeagg').value;
+            var longitude = document.getElementById('longitudeagg').value;
+
+            // Aquí puedes realizar la lógica para guardar los datos en tu base de datos o hacer lo que necesites con ellos
+
+            // Ejemplo de salida de los datos en la consola
+            console.log('Nombre:', name);
+            console.log('Latitud:', latitude);
+            console.log('Longitud:', longitude);
+
+            // Limpia los campos del formulario después de guardar los datos
+            document.getElementById('name').value = '';
+            document.getElementById('latitudeagg').value = '';
+            document.getElementById('longitudeagg').value = '';
+
+            // Cierra la modal
+            $('#locationModal').modal('hide');
+        });
+
+
+
+
+
+
+
+
+
+    </script>
+
+

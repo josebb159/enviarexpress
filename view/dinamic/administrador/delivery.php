@@ -52,6 +52,15 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img id="modalImage" src="" alt="Imagen Ampliada" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <div class="col-sm-6 col-md-4 col-xl-3">
@@ -68,79 +77,92 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">nombre</label>
+									<label for="validationCustom01" class="form-label">Nombre</label>
 									<input type="text" class="form-control" id="nombre" placeholder="nombre" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">cedula</label>
+									<label for="validationCustom01" class="form-label">Contraseña</label>
+									<input type="text" class="form-control" id="contrasena" placeholder="contraseña" value="" required>
+								</div>
+							</div
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Correo</label>
+									<input type="text" class="form-control" id="correo" placeholder="correo" value="" required>
+								</div>
+							</div
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Cédula</label>
 									<input type="text" class="form-control" id="cedula" placeholder="cedula" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_cedula</label>
-									<input type="text" class="form-control" id="foto_cedula" placeholder="foto_cedula" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Cédula</label>
+									<input type="file" class="form-control" id="foto_cedula" placeholder="imagen" value="" required>
+									
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_licencia</label>
-									<input type="text" class="form-control" id="foto_licencia" placeholder="foto_licencia" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Licencia</label>
+									<input type="file" class="form-control" id="foto_licencia" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_soat</label>
-									<input type="text" class="form-control" id="foto_soat" placeholder="foto_soat" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Soat</label>
+									<input type="file" class="form-control" id="foto_soat" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_tecnomecanica</label>
-									<input type="text" class="form-control" id="foto_tecnomecanica" placeholder="foto_tecnomecanica" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Tecnomecanica</label>
+									<input type="file" class="form-control" id="foto_tecnomecanica" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_tarjeta</label>
-									<input type="text" class="form-control" id="foto_tarjeta" placeholder="foto_tarjeta" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Tarjeta</label>
+									<input type="file" class="form-control" id="foto_tarjeta" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">propiedad</label>
-									<input type="text" class="form-control" id="propiedad" placeholder="propiedad" value="" required>
+									<label for="validationCustom01" class="form-label">Propiedad</label>
+									<input type="file" class="form-control" id="propiedad" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_facial</label>
-									<input type="text" class="form-control" id="foto_facial" placeholder="foto_facial" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Facial</label>
+									<input type="file" class="form-control" id="foto_facial" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">direccion</label>
+									<label for="validationCustom01" class="form-label">Dirección</label>
 									<input type="text" class="form-control" id="direccion" placeholder="direccion" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">numero</label>
+									<label for="validationCustom01" class="form-label">Número</label>
 									<input type="text" class="form-control" id="numero" placeholder="numero" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">numero_emergencia</label>
+									<label for="validationCustom01" class="form-label">Número Emergencia</label>
 									<input type="text" class="form-control" id="numero_emergencia" placeholder="numero_emergencia" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">usuario</label>
+									<label for="validationCustom01" class="form-label">Usuario</label>
 									<input type="text" class="form-control" id="id_usuario" placeholder="usuario" value="" required>
 								</div>
 							</div>
@@ -168,79 +190,91 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">nombre</label>
+									<label for="validationCustom01" class="form-label">Nombre</label>
 									<input type="text" class="form-control" id="nombreagg" placeholder="nombre" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">cedula</label>
+									<label for="validationCustom01" class="form-label">Correo</label>
+									<input type="text" class="form-control" id="correoagg" placeholder="Correo" value="" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Contraseña</label>
+									<input type="text" class="form-control" id="contrasenaagg" placeholder="Contraseña" value="" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Cédula</label>
 									<input type="text" class="form-control" id="cedulaagg" placeholder="cedula" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_cedula</label>
-									<input type="text" class="form-control" id="foto_cedulaagg" placeholder="foto_cedula" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Cedula</label>
+									<input type="file" class="form-control" id="foto_cedulaagg" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_licencia</label>
-									<input type="text" class="form-control" id="foto_licenciaagg" placeholder="foto_licencia" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Licencia</label>
+									<input type="file" class="form-control" id="foto_licenciaagg" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_soat</label>
-									<input type="text" class="form-control" id="foto_soatagg" placeholder="foto_soat" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Soat</label>
+									<input type="file" class="form-control" id="foto_soatagg" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_tecnomecanica</label>
-									<input type="text" class="form-control" id="foto_tecnomecanicaagg" placeholder="foto_tecnomecanica" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Tecnomecanica</label>
+									<input type="file" class="form-control" id="foto_tecnomecanicaagg" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_tarjeta</label>
-									<input type="text" class="form-control" id="foto_tarjetaagg" placeholder="foto_tarjeta" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Tarjeta</label>
+									<input type="file" class="form-control" id="foto_tarjetaagg" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">propiedad</label>
-									<input type="text" class="form-control" id="propiedadagg" placeholder="propiedad" value="" required>
+									<label for="validationCustom01" class="form-label">Propiedad</label>
+									<input type="file" class="form-control" id="propiedadagg" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">foto_facial</label>
-									<input type="text" class="form-control" id="foto_facialagg" placeholder="foto_facial" value="" required>
+									<label for="validationCustom01" class="form-label">Foto Facial</label>
+									<input type="file" class="form-control" id="foto_facialagg" placeholder="imagen" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">direccion</label>
+									<label for="validationCustom01" class="form-label">Dirección</label>
 									<input type="text" class="form-control" id="direccionagg" placeholder="direccion" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">numero</label>
+									<label for="validationCustom01" class="form-label">Número</label>
 									<input type="text" class="form-control" id="numeroagg" placeholder="numero" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">numero_emergencia</label>
+									<label for="validationCustom01" class="form-label">Número Emergencia</label>
 									<input type="text" class="form-control" id="numero_emergenciaagg" placeholder="numero_emergencia" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">usuario</label>
+									<label for="validationCustom01" class="form-label">Usuario</label>
 									<input type="text" class="form-control" id="id_usuarioagg" placeholder="usuario" value="" required>
 								</div>
 							</div>
@@ -278,3 +312,13 @@ $aditionals_js='
 <script src="../assets/js/pages/datatables.init.js"></script>
 ';
 ?>
+
+<script>
+    function openModal(imageUrl) {
+      var modalImage = document.getElementById("modalImage");
+      modalImage.src = imageUrl;
+      
+      $('#imageModal').modal('show');
+    }
+  </script>
+

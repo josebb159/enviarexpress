@@ -5,7 +5,7 @@ $(document).ready(function(){
 function registrar(){
 	var result = function_ajax({
 		'op':'registrar',
-		'id_delivery': $("#id_deliveryagg").val(),
+
 		'nombre': $("#nombreagg").val(),
 		'sector': $("#sectoragg").val(),
 		'estado':'1'
@@ -15,7 +15,7 @@ function registrar(){
 		ver_registros();
 		$("#nombreagg").val("");
 		$("#sectoragg").val("");
-		$("#id_deliveryagg").val("");
+
 	}
 	}).catch(function(error) {console.log('Error:', error);});
 }
@@ -78,16 +78,16 @@ function eliminar( id ){
 	});
 }
 
-function cargar_datos(id_jefe_zona,id_delivery,nombre,sector){
+function cargar_datos(id_jefe_zona,nombre,sector){
 	$("#id").val(id_jefe_zona);
 	$("#nombre").val(nombre);
 	$("#sector").val(sector);
-	$("#id_delivery").val(id_delivery);
+
 }
 
 function modificar(){
 	var id =  $("#id_jefe_zona").val();
-	var delivery =  $("#id_delivery").val();
+
 	var nombre =  $("#nombre").val();
 	var sector =  $("#sector").val();
 	Swal.fire({
@@ -104,7 +104,7 @@ function modificar(){
 			var result = function_ajax({
 				'op':'modificar',
 				'id': id,
-				'delivery': id_delivery,
+
 				'nombre': nombre,
 				'sector':  sector,
 			},'../controller/jefe_zonaController.php').then(function(result){

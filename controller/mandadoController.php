@@ -22,12 +22,12 @@ if(isset($_POST['direccion'])){
 
 if(isset($_POST['latitude'])){
 	$latitude =  $_POST['latitude'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $latitude)) { die('error latitude');}
+
 }
 
 if(isset($_POST['longitude'])){
 	$longitude =  $_POST['longitude'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $longitude)) { die('error longitude');}
+
 }
 
 
@@ -41,6 +41,7 @@ if(isset($_POST['op'])){
 
 switch ($op) {
 	case 'registrar':
+	
 		$n_mandado  = new mandado();
 		$resultado = $n_mandado  -> registrar_mandado('',$descripcion,$telefono,$direccion,$latitude,$longitude,'');
 		echo $resultado;
@@ -57,15 +58,14 @@ switch ($op) {
 			}else{
 				$st = '';
 			}
-		$key['id']=$key['id_categoria'];
+		$key['id']=$key['id_mandado'];
 		?>
 		<tr>
 			<td><?= $key['id_mandado']; ?></td>
 			<td><?= $key['descripcion']; ?></td>
 			<td><?= $key['telefono']; ?></td>
 			<td><?= $key['direccion']; ?></td>
-			<td><?= $key['latitude']; ?></td>
-			<td><?= $key['longitude']; ?></td>
+
 			<td><?php include '../view/static/bt_estado.php';  ?></td>
 			<td>
 				<div class="dropdown">
@@ -74,7 +74,7 @@ switch ($op) {
 						<i class="mdi mdi-chevron-down"></i>
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_mandado']."','".$key['descripcion']."','".$key['telefono']."','".$key['direccion']."','".$key['latitude']."','".$key['longitude']."'"; ?>)">Modificar</a>
+							<!--<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_mandado']."','".$key['descripcion']."','".$key['telefono']."','".$key['direccion']."','".$key['latitude']."','".$key['longitude']."'"; ?>)">Modificar</a> -->
 							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_mandado']; ?>)">Eliminar</a>
 						</div>
 					</div>
@@ -109,12 +109,12 @@ switch ($op) {
 	break;
 	case 'modificar':
 		$n_mandado  = new mandado();
-		$resultado = $n_mandado  -> modificar_mandado($id,$descripcion,$telefono,$direccion,$latitude,$longitude);
+	//	$resultado = $n_mandado  -> modificar_mandado($id,$descripcion,$telefono,$direccion,$latitude,$longitude);
 		echo 1;
 	break;
-	case '':
+	case 'test':
 		$n_mandado  = new mandado();
-		$resultado = $n_mandado  -> ($id,$descripcion,$telefono,$direccion,$latitude,$longitude,$estado);
+		//$resultado = $n_mandado  -> ($id,$descripcion,$telefono,$direccion,$latitude,$longitude,$estado);
 	break;
 	default:
 	break;

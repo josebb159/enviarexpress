@@ -44,6 +44,23 @@ class usuario {
     
     }
 
+    public function registrar_usuario_delivery($rol, $nombre,  $contrasena,$correo,$telefono,$img ){
+   
+        $conexion = new Conexion();
+        $estado_defaul = 1;
+        //se condiciona para que el domiciliario se le cree el uid automaticamente en el registro
+       
+            $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,   `contrasena`, `estado`, `email`,`telefono`,`img`) VALUES (:rol,:nombre,:contrasena,:estado,:correo,:telefono,:img)";
+            $reg = $conexion->prepare($sql);
+    
+            $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,   ':contrasena' => $contrasena, ':estado' => $estado_defaul, ':correo' => $correo, ':telefono' => $telefono,':img' => $img));
+           return $conexion->lastInsertId();
+  
+
+    
+    }
+
+
 
     public function buscar_usuarios(){
    
@@ -63,6 +80,26 @@ class usuario {
             return 0;
         }
     }
+
+    public function buscar_usuarios_cliente(){
+   
+        $conexion = new Conexion();
+    
+        $sql = "SELECT usuarios.id as id, rol.descripcion as rol, usuarios.nombre,  rol.id as rol_id,  `contrasena`, usuarios.estado as estado, usuarios.fecha_registro, usuarios.img, usuarios.email, usuarios.telefono FROM usuarios, rol WHERE rol.id=usuarios.id_rol and rol.id=4; ";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+      
+        if ($consulta) {
+    
+            return $consulta;
+    
+        }else{
+            return 0;
+        }
+    }
+    
     
 
     

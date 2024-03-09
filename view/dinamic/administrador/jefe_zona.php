@@ -58,22 +58,17 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">nombre</label>
+									<label for="validationCustom01" class="form-label">Nombre</label>
 									<input type="text" class="form-control" id="nombre" placeholder="nombre" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label"> sector</label>
+									<label for="validationCustom01" class="form-label">Sector</label>
 									<input type="text" class="form-control" id="sector" placeholder="sector" value="" required>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">delivery</label>
-									<input type="text" class="form-control" id="id_delivery" placeholder="delivery" value="" required>
-								</div>
-							</div>
+					
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -108,12 +103,7 @@
 									<input type="text" class="form-control" id="sectoragg" placeholder="sector" value="" required>
 								</div>
 							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">delivery</label>
-									<input type="text" class="form-control" id="id_deliveryagg" placeholder="delivery" value="" required>
-								</div>
-							</div>
+					
 						</div>
 					</div>
 					<div class="modal-footer">

@@ -31,7 +31,7 @@ if(isset($_POST['op'])){
 switch ($op) {
 	case 'registrar':
 		$n_jefe_zona  = new jefe_zona();
-		$resultado = $n_jefe_zona  -> registrar_jefe_zona('',$id_delivery,$nombre,$sector,'');
+		$resultado = $n_jefe_zona  -> registrar_jefe_zona($nombre,$sector);
 		echo $resultado;
 	break;
 	case 'buscar':
@@ -49,7 +49,7 @@ switch ($op) {
 		$key['id']=$key['id_jefe_zona'];
 		?>
 		<tr>
-			<td><?= $key['id_jefe_zona']; ?></td>
+			<td><?= $key['id']; ?></td>
 			<td><?= $key['nombre']; ?></td>
 			<td><?= $key['sector']; ?></td>
 			<td><?php include '../view/static/bt_estado.php';  ?></td>
@@ -60,7 +60,7 @@ switch ($op) {
 						<i class="mdi mdi-chevron-down"></i>
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_jefe_zona']."','".$key['nombre']."','".$key[' sector']."'"; ?>)">Modificar</a>
+							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['nombre']."','".$key[' sector']."'"; ?>)">Modificar</a>
 							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_jefe_zona']; ?>)">Eliminar</a>
 						</div>
 					</div>
@@ -95,7 +95,7 @@ switch ($op) {
 	break;
 	case 'modificar':
 		$n_jefe_zona  = new jefe_zona();
-		$resultado = $n_jefe_zona  -> modificar_jefe_zona($id,$id_delivery,$nombre,$sector);
+		$resultado = $n_jefe_zona  -> modificar_jefe_zona($id,$nombre,$sector);
 		echo 1;
 	break;
 	case 'rango':

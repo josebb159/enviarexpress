@@ -58,10 +58,13 @@ switch ($op) {
 			}else if($key['status_orden_envio']=="4"){
 				$status_envio="Cancelado";
 			}
+			$data_list = ",'".$key['nombre_cliente']."','".$key['nombre_repartidor']."'";
 		$key['id']=$key['id_orden'];
 		?>
 		<tr>
 			<td><?= $key['id_orden']; ?></td>
+			<td><?= $key['nombre_cliente']; ?></td>
+			<td><?= $key['nombre_repartidor']; ?></td>
 			<td><?= $key['descripcion']; ?></td>
 			<td><?= $status_envio; ?></td>
 			<td><?= $key['metodo_pago']; ?></td>
@@ -74,7 +77,7 @@ switch ($op) {
 						<i class="mdi mdi-chevron-down"></i>
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-														<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#vista_motal"  onclick="ver_lista(<?php echo $key['id_orden']; ?>)">Ver listado compra</a>
+														<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#vista_motal"  onclick="ver_lista(<?php echo $key['id_orden'].$data_list; ?>)">Ver listado compra</a>
 							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_orden']; ?>)">Cancelar</a>
 						</div>
 					</div>

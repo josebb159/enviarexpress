@@ -11,11 +11,12 @@ class jefe_zona {
 	}
 
 
-	public function registrar_jefe_zona($id='204',$id_delivery,$nombre,$sector,$estado){
+	public function registrar_jefe_zona($nombre,$sector){
 	$estado_defaul = 1;
-	$sql = "INSERT INTO `jefe_zona`(`estado`,`nombre`,` sector`,`id_delivery`) VALUES (:estado,:nombre,: sector,:id_delivery)";
+	$sql = "INSERT INTO `jefe_zona`(`estado`,`nombre`, `sector`) VALUES (:estado,:nombre,:sector)";
+
 	$reg = $this->conexion->prepare($sql);
-	$reg->execute(array(':estado' => $estado_defaul,':nombre' => $nombre,': sector' => $sector,':id_delivery' => $id_delivery));
+	$reg->execute(array(':estado' => $estado_defaul,':nombre' => $nombre,':sector' => $sector));
 	return 1;
 	}
 	public function buscar_jefe_zona(){$sql = "SELECT  * FROM jefe_zona ";
@@ -35,10 +36,10 @@ class jefe_zona {
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id));
 	}
-	public function modificar_jefe_zona($id, $estado,$id_delivery,$nombre,$sector){
+	public function modificar_jefe_zona($id,$nombre,$sector){
 	$sql = "UPDATE `jefe_zona` SET `estado`=:estado ,`nombre`=:nombre,` sector`=: sector,`id_delivery`=:id_delivery WHERE id_jefe_zona=:id";
 	$reg = $this->conexion->prepare($sql);
-	$reg->execute(array(':id' => $id, ':estado' => $estado,':nombre' => $nombre,': sector' => $sector,':id_delivery' => $id_delivery));
+	$reg->execute(array(':id' => $id, ':nombre' => $nombre,': sector' => $sector,':id_delivery' => $id_delivery));
 	}
 	public function buscar_json_jefe_zona($id){$sql = "SELECT  * FROM rol where id=".$id."";
 	$reg = $this->conexion->prepare($sql);

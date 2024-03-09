@@ -27,6 +27,9 @@
 						<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 							<thead>
 								<th>ID</th>
+								<th>Cliente</th>
+								<th>Repartidor</th>
+								<th>Estado envio</th>
 								<th>Descripcion</th>
 								<th>Estado envio</th>
 								<th>Metodo de pago</th>
@@ -52,9 +55,19 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title mt-0" id="myModalLabel">Lista de compra <label id="id_orden_list"></label></h5>
+					<h5 class="modal-title mt-0" id="myModalLabel">Lista de compra #<label id="id_orden_list"></label></h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+				<table class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+					<tr>
+						<td><b>Cliente</b></td>
+						<td><b>Repartidor</b></td>
+					</tr>
+					<tr>
+						<td><label id="cliente"></label></td>
+						<td><label id="repartidor"></label></td>
+					</tr>
+				</table>
 				
 
 				<table id="datatable-buttons2" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">

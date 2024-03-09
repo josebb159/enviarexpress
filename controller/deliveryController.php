@@ -1,8 +1,22 @@
 <?php
 include '../model/delivery.php';
 include '../model/notificacion_correo.php';
+include '../model/usuario.php';
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
+}
+
+
+if(isset($_POST['correo'])){
+	$correo =  $_POST['correo'];
+}
+
+if(isset($_POST['contrasena'])){
+	$contrasena =  $_POST['contrasena'];
+}
+
+if(isset($_POST['id_usuario'])){
+	$id_usuario =  $_POST['id_usuario'];
 }
 
 if(isset($_POST['id_usuario'])){
@@ -21,37 +35,37 @@ if(isset($_POST['cedula'])){
 
 if(isset($_POST['foto_cedula'])){
 	$foto_cedula =  $_POST['foto_cedula'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $foto_cedula)) { die('error foto_cedula');}
+
 }
 
 if(isset($_POST['foto_licencia'])){
 	$foto_licencia =  $_POST['foto_licencia'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $foto_licencia)) { die('error foto_licencia');}
+
 }
 
 if(isset($_POST['foto_soat'])){
 	$foto_soat =  $_POST['foto_soat'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $foto_soat)) { die('error foto_soat');}
+
 }
 
 if(isset($_POST['foto_tecnomecanica'])){
 	$foto_tecnomecanica =  $_POST['foto_tecnomecanica'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $foto_tecnomecanica)) { die('error foto_tecnomecanica');}
+
 }
 
 if(isset($_POST['foto_tarjeta'])){
 	$foto_tarjeta =  $_POST['foto_tarjeta'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $foto_tarjeta)) { die('error foto_tarjeta');}
+
 }
 
 if(isset($_POST['propiedad'])){
 	$propiedad =  $_POST['propiedad'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $propiedad)) { die('error propiedad');}
+
 }
 
 if(isset($_POST['foto_facial'])){
 	$foto_facial =  $_POST['foto_facial'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $foto_facial)) { die('error foto_facial');}
+
 }
 
 if(isset($_POST['direccion'])){
@@ -79,9 +93,72 @@ if(isset($_POST['op'])){
 }
 
 switch ($op) {
+
+	case 'update_imagen':
+		$foto_cedula = generarNombreAleatorio(20);
+		$foto_licencia = generarNombreAleatorio(20);
+		$foto_soat = generarNombreAleatorio(20);
+		$foto_tecnomecanica = generarNombreAleatorio(20);
+		$foto_tarjeta = generarNombreAleatorio(20);
+		$propieda = generarNombreAleatorio(20);
+		$foto_faciala = generarNombreAleatorio(20);
+
+		$foto_cedulaagg = $_FILES['foto_cedulaagg']['tmp_name'];
+		$foto_licenciaagg = $_FILES['foto_licenciaagg']['tmp_name'];
+		$foto_soatagg = $_FILES['foto_soatagg']['tmp_name'];
+		$foto_tecnomecanicaagg = $_FILES['foto_tecnomecanicaagg']['tmp_name'];
+		$foto_tarjetaagg = $_FILES['foto_tarjetaagg']['tmp_name'];
+		$propiedadagg = $_FILES['propiedadagg']['tmp_name'];
+		$foto_facialagg = $_FILES['foto_facialagg']['tmp_name'];
+
+
+
+		$destinofoto_cedula = '../assets/upload/delivery/' . $foto_cedula.".jpg";
+		$destinofoto_licencia = '../assets/upload/delivery/' . $foto_licencia.".jpg";
+		$destinofoto_soat = '../assets/upload/delivery/' . $foto_soat.".jpg";
+		$destinofoto_tecnomecanica = '../assets/upload/delivery/' . $foto_tecnomecanica.".jpg";
+		$destinofoto_tarjeta = '../assets/upload/delivery/' . $foto_tarjeta.".jpg";
+		$destinopropiedada = '../assets/upload/delivery/' . $propieda.".jpg";
+		$destinofoto_faciala = '../assets/upload/delivery/' . $foto_faciala.".jpg";
+
+		if (move_uploaded_file($foto_cedulaagg, $destinofoto_cedula)) {
+			move_uploaded_file($foto_licenciaagg, $destinofoto_licencia);
+			move_uploaded_file($foto_soatagg, $destinofoto_soat);
+			move_uploaded_file($foto_tecnomecanicaagg, $destinofoto_tecnomecanica);
+			move_uploaded_file($foto_tarjetaagg, $destinofoto_tarjeta);
+			move_uploaded_file($propiedadagg, $destinopropiedada);
+			move_uploaded_file($foto_facialagg, $destinofoto_faciala);
+
+
+			// La imagen se ha guardado correctamente
+			// Puedes realizar otras operaciones aquí, como guardar los datos en una base de datos
+			// o realizar alguna otra tarea adicional
+	
+			echo json_encode(array('status' => 'success', 'message' => 
+			'Imagen guardada correctamente', 
+			'foto_cedula' => $foto_cedula.".jpg",
+			'foto_licencia' => $foto_licencia.".jpg",
+			'foto_soat' => $foto_soat.".jpg",
+			'foto_tecnomecanica' => $foto_tecnomecanica.".jpg",
+			'foto_tarjeta' => $foto_tarjeta.".jpg",
+			'propieda' => $propieda.".jpg",
+			'foto_faciala' => $foto_faciala.".jpg"));
+			// Envía una respuesta a Ajax indicando que todo ha ido bien
+		///	echo json_encode(array('status' => 'success', 'message' => 'Imagen guardada correctamente'));
+		} else {
+			// Ocurrió un error al guardar la imagen
+			//echo json_encode(array('status' => 'error', 'message' => 'Error al guardar la imagen'));
+		}
+			
+
+	break;
 	case 'registrar':
 		$n_delivery  = new delivery();
-		$resultado = $n_delivery  -> registrar_delivery('',$id_usuario,$nombre,$cedula,$foto_cedula,$foto_licencia,$foto_soat,$foto_tecnomecanica,$foto_tarjeta,$propiedad,$foto_facial,$direccion,$numero,$numero_emergencia,'');
+		$n_usuario  = new usuario();
+     
+		$id_user = $n_usuario -> registrar_usuario_delivery(3, $nombre,  $contrasena, $correo, $numero,"");
+		
+		$resultado = $n_delivery  -> registrar_delivery('',$id_user,$nombre,$cedula,$foto_cedula,$foto_licencia,$foto_soat,$foto_tecnomecanica,$foto_tarjeta,$propiedad,$foto_facial,$direccion,$numero,$numero_emergencia,'');
 		echo $resultado;
 	break;
 	case 'buscar':
@@ -96,19 +173,19 @@ switch ($op) {
 			}else{
 				$st = '';
 			}
-		$key['id']=$key['id_categoria'];
+		
 		?>
 		<tr>
-			<td><?= $key['id_delivery']; ?></td>
+			<td><?= $key['id']; ?></td>
 			<td><?= $key['nombre']; ?></td>
 			<td><?= $key['cedula']; ?></td>
-			<td><?= $key['foto_cedula']; ?></td>
-			<td><?= $key['foto_licencia']; ?></td>
-			<td><?= $key['foto_soat']; ?></td>
-			<td><?= $key['foto_tecnomecanica']; ?></td>
-			<td><?= $key['foto_tarjeta']; ?></td>
-			<td><?= $key['propiedad']; ?></td>
-			<td><?= $key['foto_facial']; ?></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_cedula']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_cedula']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_licencia']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_licencia']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_soat']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_soat']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_tecnomecanica']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_tecnomecanica']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_tarjeta']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_tarjeta']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['propiedad']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['propiedad']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_facial']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_facial']; ?>')"></td>
 			<td><?= $key['direccion']; ?></td>
 			<td><?= $key['numero']; ?></td>
 			<td><?= $key['numero_emergencia']; ?></td>
@@ -120,8 +197,8 @@ switch ($op) {
 						<i class="mdi mdi-chevron-down"></i>
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_delivery']."','".$key['nombre']."','".$key['cedula']."','".$key['foto_cedula']."','".$key['foto_licencia']."','".$key['foto_soat']."','".$key['foto_tecnomecanica']."','".$key['foto_tarjeta']."','".$key['propiedad']."','".$key['foto_facial']."','".$key['direccion']."','".$key['numero']."','".$key['numero_emergencia']."'"; ?>)">Modificar</a>
-							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_delivery']; ?>)">Eliminar</a>
+							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id']."','".$key['nombre']."','".$key['cedula']."','".$key['foto_cedula']."','".$key['foto_licencia']."','".$key['foto_soat']."','".$key['foto_tecnomecanica']."','".$key['foto_tarjeta']."','".$key['propiedad']."','".$key['foto_facial']."','".$key['direccion']."','".$key['numero']."','".$key['numero_emergencia']."'"; ?>)">Modificar</a>
+							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id']; ?>)">Eliminar</a>
 						</div>
 					</div>
 			</td>
@@ -165,3 +242,15 @@ switch ($op) {
 	default:
 	break;
 }
+
+function generarNombreAleatorio($longitud) {
+	$caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$nombreAleatorio = '';
+ 
+	for ($i = 0; $i < $longitud; $i++) {
+		$indice = rand(0, strlen($caracteres) - 1);
+		$nombreAleatorio .= $caracteres[$indice];
+	}
+ 
+	return $nombreAleatorio;
+ }

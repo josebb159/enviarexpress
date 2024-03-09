@@ -49,9 +49,7 @@ class mandado {
 	$results = $reg->fetchAll(PDO::FETCH_ASSOC);
 	return json_encode($results);
 	}
-	public function () {
-		// Código del método aquí
-	}
+
 
 }
 ?>

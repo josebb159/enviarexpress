@@ -34,7 +34,13 @@ if(isset($_GET['view'])){
                         <li>
                             <a href="home.php?view=usuarios" class=" waves-effect <?php if($valor=="usuarios"){ echo "active mm-active"; } ?>">
                                 <i class="ri-user-fill"></i>
-                                <span>Usuarios</span>
+                                <span>Usuarios sistema</span>
+                            </a>
+                        </li>
+						<li>
+                            <a href="home.php?view=usuarios_cliente" class=" waves-effect <?php if($valor=="usuarios"){ echo "active mm-active"; } ?>">
+                                <i class="ri-user-fill"></i>
+                                <span>Usuarios cliente</span>
                             </a>
                         </li>
 
@@ -140,13 +146,13 @@ if(isset($_GET['view'])){
 	<li>
 		 <a href="home.php?view=notificacion_correo" class=" waves-effect <?php if($valor=="notificacion_correo"){ echo "active mm-active"; } ?>">
 			<i class="fas fa-fw fa-wrench"></i>
-			<span>notificacion_correo</span>
+			<span>Notificación correo</span>
 		</a>
 	</li>
 	<li>
 		 <a href="home.php?view=monedero" class=" waves-effect <?php if($valor=="monedero"){ echo "active mm-active"; } ?>">
 			<i class="fas fa-fw fa-wrench"></i>
-			<span>monedero</span>
+			<span>Monedero</span>
 		</a>
 	</li>
 <!--construir-->

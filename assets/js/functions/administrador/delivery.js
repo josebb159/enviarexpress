@@ -2,19 +2,72 @@ $(document).ready(function(){
 	ver_registros();
 });
 
-function registrar(){
+function updata_imagen(){
+
+	var formData = new FormData();
+		var foto_cedulaagg = document.getElementById('foto_cedulaagg');
+		var foto_licenciaagg = document.getElementById('foto_licenciaagg');
+		var foto_soatagg = document.getElementById('foto_soatagg');
+		var foto_tecnomecanicaagg = document.getElementById('foto_tecnomecanicaagg');
+		var foto_tarjetaagg = document.getElementById('foto_tarjetaagg');
+		var propiedadagg = document.getElementById('propiedadagg');
+		var foto_facialagg = document.getElementById('foto_facialagg');
+
+
+
+
+		formData.append('foto_cedulaagg', foto_cedulaagg.files[0]);
+		formData.append('foto_licenciaagg', foto_licenciaagg.files[0]);
+		formData.append('foto_soatagg', foto_soatagg.files[0]);
+		formData.append('foto_tecnomecanicaagg', foto_tecnomecanicaagg.files[0]);
+		formData.append('foto_tarjetaagg', foto_tarjetaagg.files[0]);
+		formData.append('propiedadagg', propiedadagg.files[0]);
+		formData.append('foto_facialagg', foto_facialagg.files[0]);
+		formData.append('op', 'update_imagen');
+	 
+		// Enviar la solicitud Ajax utilizando la función fetch
+		fetch('../controller/deliveryController.php', {
+			method: 'POST',
+			body: formData
+		})
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(data) {
+			// Manejar la respuesta del servidor
+			console.log(data);
+			var foto_cedula = data.foto_cedula;
+			var foto_licencia = data.foto_licencia;
+			var foto_soat = data.foto_soat;
+			var foto_tecnomecanica = data.foto_tecnomecanica;
+			var propieda = data.propieda;
+			var foto_faciala = data.foto_faciala;
+			var foto_tarjeta = data.foto_tarjeta;
+
+			registrar(foto_cedula, foto_licencia,foto_soat, foto_tecnomecanica,propieda, foto_faciala,foto_tarjeta);
+			// Hacer algo con la respuesta, como mostrar un mensaje de éxito o error
+		})
+		.catch(function(error) {
+			// Manejar cualquier error de la solicitud
+			console.error('Error:', error);
+		});
+	
+	} 
+
+function registrar(foto_cedula, foto_licencia,foto_soat, foto_tecnomecanica,propieda, foto_faciala,foto_tarjeta){
 	var result = function_ajax({
 		'op':'registrar',
-		'id_usuario': $("#id_usuarioagg").val(),
 		'nombre': $("#nombreagg").val(),
 		'cedula': $("#cedulaagg").val(),
-		'foto_cedula': $("#foto_cedulaagg").val(),
-		'foto_licencia': $("#foto_licenciaagg").val(),
-		'foto_soat': $("#foto_soatagg").val(),
-		'foto_tecnomecanica': $("#foto_tecnomecanicaagg").val(),
-		'foto_tarjeta': $("#foto_tarjetaagg").val(),
-		'propiedad': $("#propiedadagg").val(),
-		'foto_facial': $("#foto_facialagg").val(),
+		'correo': $("#correoagg").val(),
+		'contrasena': $("#contrasenaagg").val(),
+		'foto_cedula': foto_cedula,
+		'foto_licencia': foto_licencia,
+		'foto_soat': foto_soat,
+		'foto_tecnomecanica': foto_tecnomecanica,
+		'foto_tarjeta': foto_tarjeta,
+		'propiedad': propieda,
+		'foto_facial': foto_faciala,
 		'direccion': $("#direccionagg").val(),
 		'numero': $("#numeroagg").val(),
 		'numero_emergencia': $("#numero_emergenciaagg").val(),
@@ -24,6 +77,8 @@ function registrar(){
 		alert_success();
 		ver_registros();
 		$("#nombreagg").val("");
+		$("#correoagg").val("");
+		$("#contrasenaagg").val("");
 		$("#cedulaagg").val("");
 		$("#foto_cedulaagg").val("");
 		$("#foto_licenciaagg").val("");
@@ -35,7 +90,7 @@ function registrar(){
 		$("#direccionagg").val("");
 		$("#numeroagg").val("");
 		$("#numero_emergenciaagg").val("");
-		$("#id_usuarioagg").val("");
+	
 	}
 	}).catch(function(error) {console.log('Error:', error);});
 }
@@ -200,7 +255,7 @@ $('#sa-warning').click(function () {
 
 $("#form_1").on('submit', function(evt){
 	evt.preventDefault();  
-	registrar();
+	updata_imagen();
 });
 
 $("#form_2").on('submit', function(evt){
