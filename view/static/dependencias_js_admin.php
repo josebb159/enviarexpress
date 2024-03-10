@@ -72,6 +72,10 @@ if(isset($_GET['view'])){
 	if($_GET['view']=="monedero"){
 		echo "<script src='../assets/js/functions/administrador/monedero.js'></script>";
 	}
+	if($_GET['view']=="logs_api"){
+		echo "<script src='../assets/js/functions/administrador/logs.js'></script>";
+	}
+	
 	
 /*construir*/
     

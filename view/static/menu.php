@@ -155,6 +155,12 @@ if(isset($_GET['view'])){
 			<span>Monedero</span>
 		</a>
 	</li>
+	<li>
+		 <a href="home.php?view=logs_api" class=" waves-effect <?php if($valor=="logs_api"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Logs API</span>
+		</a>
+	</li>
 <!--construir-->
 
                     </ul>

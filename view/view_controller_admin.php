@@ -68,6 +68,10 @@ if(isset($_GET['view'])){
 	elseif($_GET['view']=="monedero"){
 		include 'dinamic/administrador/monedero.php';
 	}
+	elseif($_GET['view']=="logs_api"){
+		include 'dinamic/administrador/logs.php';
+	}
+	
 /*construir*/
 
     elseif($_GET['view']=="logout"){
