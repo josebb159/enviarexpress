@@ -7,8 +7,9 @@ if(isset($_GET['data'])){
 }else{
    die();
 }
-
-
+$n_logs  = new api();
+$json_data = json_encode($_POST);
+ $n_logs -> register_logs($data, $json_data );
 
 
  switch ($data) {

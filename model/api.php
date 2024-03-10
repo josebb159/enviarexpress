@@ -85,6 +85,21 @@ class api{
     }
 
 
+    public function register_logs($method, $data ){
+   
+        $conexion = new Conexion();
+ 
+        $sql = "INSERT INTO `logs`(`method`, `data`) VALUES (:method,:data)";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute(array(':method' => $method,':data' => $data));
+     
+
+    
+    }
+
+
+
     public function registrar_usuario($uid, $nombre,  $correo, $contrasena, $telefono, $fecha ){
    
         $conexion = new Conexion();
