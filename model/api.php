@@ -56,6 +56,25 @@ class api{
         }
                         
     }
+
+    public function exist_user($email){
+
+        $conexion = new Conexion();
+        $sql = "SELECT  * FROM usuarios where  email='".$email."'";
+        $reg = $conexion->prepare($sql);
+
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+      
+        if ($consulta) {
+           echo 1;
+          
+        }else{
+            echo  0;
+        }
+                        
+    }
+
     public function save_fmc($uid,$fmc){
 
         $conexion = new Conexion();
@@ -82,6 +101,17 @@ class api{
    
 
                         
+    }
+
+    public function register_user_email($uid, $email, $name){
+   
+        $conexion = new Conexion();
+        $sql = "INSERT INTO `usuarios`(`uid`, `id_rol`,`nombre`, `email`, `estado`) VALUES (:uid,:id_rol,:nombre,:email,:estado)";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute(array(':uid' => $uid,':id_rol' => "4",':nombre' => $name,':email' => $email,':estado' => "1"));
+
+    
     }
 
 

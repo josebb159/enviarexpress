@@ -199,9 +199,19 @@ $json_data = json_encode($_POST);
          
       break;
       case 'update_uid':
-       
          $n_api  = new api();
-         $resultado = $n_api -> update_uid($_POST['uid'],$_POST['email']);
+         if($_POST['name']==""){
+            $resultado = $n_api -> update_uid($_POST['uid'],$_POST['email']);
+         }else{
+           $exist= $n_api ->exist_user($_POST['email']);
+           if($exist==1){
+             $n_api -> update_uid($_POST['uid'],$_POST['email']);  
+           }else{
+            $resultado = $n_api -> register_user_email($_POST['uid'],$_POST['email'],$_POST['name']);
+
+           }
+         }
+        
 
          
       break;
