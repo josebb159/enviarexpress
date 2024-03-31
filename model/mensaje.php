@@ -70,7 +70,7 @@ class mensaje {
             //$deviceToken = 'elV9L-kYQc61fnZmKI4PMC:APA91bGUtHQ6G1lXqIeyqdw1PF1mZ6pNYKcyQyIsYe5tLbL7FgEZEgDpN1naYXQw5eo51oRov9irL0iP44ZxBrIw9aKHG5t4eimQYBoMb2hrROZiQB5o7BB-s6THVxY9Zse0x1FtKbub'; // El token de registro del dispositivo
 			$deviceTokens=[];
 			foreach( $consulta as $user){
-				$deviceTokens[] = "e3gYrEBDQ8O40lj3uoh8tX:APA91bFtdpSoTxPtK-PYZGodR0YbmUZ5Z37qCLuE8tITEY5FJ8l4UoV9LYp_b87Ywqy4Ei2rJPfjuD_28yGTL4n7-MehHgZLMzXApIQmw-zCjEzrk6K65Idw0kt2UigaQbJyWb6ONiBO"; //$user['token_fcm'];
+				$deviceTokens[] =  $user['token_fcm'];
 			}
 			
 			$message = array(

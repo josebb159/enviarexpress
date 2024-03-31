@@ -77,6 +77,9 @@ if(isset($_GET['view'])){
 	}
 	
 	
+	if($_GET['view']=="publicidad"){
+		echo "<script src='../assets/js/functions/administrador/publicidad.js'></script>";
+	}
 /*construir*/
     
     

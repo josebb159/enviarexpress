@@ -72,6 +72,12 @@ if(isset($_GET['view'])){
 		include 'dinamic/administrador/logs.php';
 	}
 	
+	elseif($_GET['view']=="publicidad"){
+		include 'dinamic/administrador/publicidad.php';
+	}
+	elseif($_GET['view']=="report"){
+		include 'dinamic/administrador/report.php';
+	}
 /*construir*/
 
     elseif($_GET['view']=="logout"){

@@ -161,6 +161,18 @@ if(isset($_GET['view'])){
 			<span>Logs API</span>
 		</a>
 	</li>
+	<li>
+		 <a href="home.php?view=publicidad" class=" waves-effect <?php if($valor=="publicidad"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Publicidad</span>
+		</a>
+	</li>
+	<li>
+		 <a href="home.php?view=report" class=" waves-effect <?php if($valor=="report"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Reportes</span>
+		</a>
+	</li>
 <!--construir-->
 
                     </ul>
