@@ -101,7 +101,6 @@ class mensaje {
 
             // Enviar la petición
             $result = curl_exec($ch);
-			var_dump($result);
             // Verificar el resultado
             if ($result === false) {
                 echo 'Error al enviar la notificación: ' . curl_error($ch);
