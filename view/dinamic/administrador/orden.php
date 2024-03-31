@@ -29,8 +29,8 @@
 								<th>ID</th>
 								<th>Cliente</th>
 								<th>Repartidor</th>
-								<th>Estado envio</th>
 								<th>Descripcion</th>
+								<th>Estado envio</th>
 								<th>Estado envio</th>
 								<th>Metodo de pago</th>
 								<th>Valor</th>
