@@ -27,18 +27,18 @@
 						<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 							<thead>
 								<th>ID</th>
-								<th>nombre</th>
-								<th>cedula</th>
-								<th>foto_cedula</th>
-								<th>foto_licencia</th>
-								<th>foto_soat</th>
-								<th>foto_tecnomecanica</th>
-								<th>foto_tarjeta</th>
-								<th>propiedad</th>
-								<th>foto_facial</th>
-								<th>direccion</th>
-								<th>numero</th>
-								<th>numero_emergencia</th>
+								<th>Nombre</th>
+								<th>Cedula</th>
+								<th>Foto Cedula</th>
+								<th>Foto Licencia</th>
+								<th>Foto Soat</th>
+								<th>Foto Tecnomecanica</th>
+								<th>Foto Tarjeta</th>
+								<th>Propiedad</th>
+								<th>Foto Facial</th>
+								<th>Direccion</th>
+								<th>Número</th>
+								<th>Numero Emergencia</th>
 								<th>Estado</th>
 								<th>Opciones</th>
 							<thead>
