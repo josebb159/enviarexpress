@@ -31,7 +31,6 @@
 								<th>Repartidor</th>
 								<th>Descripcion</th>
 								<th>Estado envio</th>
-								<th>Estado envio</th>
 								<th>Metodo de pago</th>
 								<th>Valor</th>
 								<th>Estado</th>
