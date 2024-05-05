@@ -1,10 +1,13 @@
 <?php
-include '../model/producto.php';
-include '../model/notificacion_correo.php';
 session_start();
 
 print_r($_SESSION);
 		die();
+
+
+include '../model/producto.php';
+include '../model/notificacion_correo.php';
+
 		
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
