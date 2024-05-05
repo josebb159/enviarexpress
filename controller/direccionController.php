@@ -1,4 +1,5 @@
 <?php
+ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/direccion.php';
 include '../model/notificacion_correo.php';
 if(isset($_POST['id'])){

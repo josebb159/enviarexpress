@@ -1,4 +1,5 @@
 <?php
+ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/horario_atencion.php';
 include '../model/notificacion_correo.php';
 session_start();
