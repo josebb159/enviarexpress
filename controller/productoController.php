@@ -2,7 +2,7 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/producto.php';
 include '../model/notificacion_correo.php';
-
+session_start();
 		
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
