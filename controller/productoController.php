@@ -76,9 +76,7 @@ switch ($op) {
 	case 'registrar_de_tienda':
 		// Guardar la imagen en la ubicación deseada con un nombre aleatorio de 20 caracteres
 		
-
-		die($_SESSION['id_tienda']);
-		
+		session_start();
 		
 		$n_producto  = new producto();
 		$resultado = $n_producto  -> registrar_producto('',$_SESSION['id_tienda'],$nombre,$descripcion,$cantidad,$imagen,'',$valor);
