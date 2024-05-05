@@ -2,6 +2,10 @@
 include '../model/producto.php';
 include '../model/notificacion_correo.php';
 session_start();
+
+print_r($_SESSION);
+		die();
+		
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
 }
@@ -75,9 +79,7 @@ switch ($op) {
 	break;
 	case 'registrar_de_tienda':
 		// Guardar la imagen en la ubicación deseada con un nombre aleatorio de 20 caracteres
-		
-		print_r($_SESSION);
-		die();
+
 		
 		$n_producto  = new producto();
 		$resultado = $n_producto  -> registrar_producto('',$_SESSION['id_tienda'],$nombre,$descripcion,$cantidad,$imagen,'',$valor);
