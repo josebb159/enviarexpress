@@ -30,7 +30,7 @@ class producto {
 	}else{
 		return 0;
 	} }
-	public function buscar_producto_tienda($id){$sql = "SELECT  * FROM producto,comercios where producto.id_comercios=comercios.id_comercios and comercios.id_user='".$id."'";
+	public function buscar_producto_tienda($id){$sql = "SELECT  producto.* FROM producto,comercios where producto.id_comercios=comercios.id_comercios and comercios.id_user='".$id."'";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();
 		$consulta =$reg->fetchAll();
