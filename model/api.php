@@ -1367,7 +1367,7 @@ public function obtener_domiciliario($uid){
         
         $result = curl_exec($ch);
         curl_close($ch);
-        echo $result;
+     
         $response = json_decode($result, true);
         if(isset($response['localId'])){
             return $response['localId'];
