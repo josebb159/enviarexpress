@@ -131,10 +131,32 @@ class api{
 
 
     public function registrar_usuario($uid, $nombre,  $correo, $contrasena, $telefono, $fecha ){
-   
+
         $conexion = new Conexion();
         $estado_defaul = 1;
         $rol = 1;
+        $nuevaFecha = date("Y-m-d", strtotime($fecha));
+    
+        $sql = "INSERT INTO `usuarios`(`uid`,`id_rol`, `nombre`, `email`, `telefono`,  `contrasena`,`fecha`, `estado`) VALUES (:uid,:rol,:nombre,:correo,:telefono,:contrasena,:fecha,:estado)";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute(array(':rol' => $rol,':uid' => $uid, ':nombre' => $nombre, ':correo' => $correo, ':telefono' => $telefono, ':fecha' => $nuevaFecha,  ':contrasena' => $contrasena, ':estado' => $estado_defaul));
+     
+        return 1;
+    
+    }
+
+
+    public function registrar_usuario_only( $nombre,  $correo, $contrasena, $telefono, $fecha ){
+
+        $uid =  register_user_firebase($correo, $contrasena);
+        if($uid==1 || $uid==2){
+            return $uid;
+        }
+   
+        $conexion = new Conexion();
+        $estado_defaul = 1;
+        $rol = 4;
         $nuevaFecha = date("Y-m-d", strtotime($fecha));
     
         $sql = "INSERT INTO `usuarios`(`uid`,`id_rol`, `nombre`, `email`, `telefono`,  `contrasena`,`fecha`, `estado`) VALUES (:uid,:rol,:nombre,:correo,:telefono,:contrasena,:fecha,:estado)";
@@ -1321,6 +1343,44 @@ public function obtener_domiciliario($uid){
                          
      }
 
+
+     public  function register_user_firebase($email, $pass ){
+        $serverKey = 'AIzaSyC555XnHjO6tUnOrGe6K7ZiocoIdnZLH50';
+        $url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='.$serverKey;
+        
+        $data = array(
+            'email' => $email,
+            'password' => $pass,
+            'returnSecureToken' => true
+        );
+        
+        $data_string = json_encode($data);
+        
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data_string)
+        ));
+        
+        $result = curl_exec($ch);
+        curl_close($ch);
+        echo $result;
+        $response = json_decode($result, true);
+        if(isset($response['localId'])){
+            return $response['localId'];
+        }else{
+            if( $response['error']['message']=="WEAK_PASSWORD : Password should be at least 6 characters"){
+                return 1;
+            }elseif( $response['error']['message']=="INVALID_EMAIL"){
+                return 2;
+            }
+            
+        }
+       
+     }
 
 
      public function send_notification_status($status){

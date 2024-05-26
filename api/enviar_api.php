@@ -326,9 +326,14 @@ $json_data = json_encode($_POST);
          
       break;
       case 'entregado_orden':
- 
          $n_api  = new api();
          $resultado = $n_api -> entregado_orden($_POST['uid'],$_POST['id_orden']);
+         echo $resultado;
+         
+      break;
+      case 'registrar_usuario_only':
+         $n_api  = new api();
+         $resultado = $n_api -> registrar_usuario_only($_POST['nombre'],  $_POST['correo'], $_POST['contrasena'], $_POST['telefono'], $_POST['fecha']);
          echo $resultado;
          
       break;

@@ -4,7 +4,67 @@ $(document).ready(function(){
 	ver_propietarios();
 });
 
-function updata_imagen(){
+function redimensionarImagen(file, maxWidth, maxHeight, callback) {
+    var img = new Image();
+
+    img.onload = function() {
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+
+        if (img.width > maxWidth || img.height > maxHeight) {
+            var ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+            canvas.width = img.width * ratio;
+            canvas.height = img.height * ratio;
+        } else {
+            canvas.width = img.width;
+            canvas.height = img.height;
+        }
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(function(blob) {
+            callback(blob);
+        }, file.type);
+    };
+
+    img.src = URL.createObjectURL(file);
+}
+
+function updata_imagen() {
+    var formData = new FormData();
+    var imagenInput = document.getElementById('imagenagg');
+    var file = imagenInput.files[0];
+
+    // Redimensionar la imagen antes de enviarla por AJAX
+    redimensionarImagen(file, 800, 600, function(blob) {
+        formData.append('imagen', blob);
+        formData.append('op', 'update_imagen');
+
+        // Enviar la solicitud Ajax utilizando la función fetch
+        fetch('../controller/comerciosController.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            // Manejar la respuesta del servidor
+            console.log(data);
+            var nombreImagen = data.nombreImagen;
+            registrar(nombreImagen);
+            // Hacer algo con la respuesta, como mostrar un mensaje de éxito o error
+        })
+        .catch(function(error) {
+            // Manejar cualquier error de la solicitud
+            console.error('Error:', error);
+        });
+    });
+}
+
+
+
+function updata_imagensadasd(){
 	
 	var formData = new FormData();
 		var imagenInput = document.getElementById('logoagg');
