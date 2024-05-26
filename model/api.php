@@ -149,7 +149,7 @@ class api{
 
     public function registrar_usuario_only( $nombre,  $correo, $contrasena, $telefono, $fecha ){
 
-        $uid =  register_user_firebase($correo, $contrasena);
+        $uid =  $this->register_user_firebase($correo, $contrasena);
         if($uid==1 || $uid==2){
             return $uid;
         }
