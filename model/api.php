@@ -164,7 +164,7 @@ class api{
     
         $reg->execute(array(':rol' => $rol,':uid' => $uid, ':nombre' => $nombre, ':correo' => $correo, ':telefono' => $telefono, ':fecha' => $nuevaFecha,  ':contrasena' => $contrasena, ':estado' => $estado_defaul));
      
-        return 1;
+        return 3;
     
     }
 
