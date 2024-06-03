@@ -32,7 +32,7 @@ function redimensionarImagen(file, maxWidth, maxHeight, callback) {
 
 function updata_imagen() {
     var formData = new FormData();
-    var imagenInput = document.getElementById('imagenagg');
+    var imagenInput = document.getElementById('logoagg');
     var file = imagenInput.files[0];
 
     // Redimensionar la imagen antes de enviarla por AJAX
@@ -170,7 +170,12 @@ function registrar(logo){
 		'telefono': $("#telefonoagg").val(),
 		'descripcion': $("#descripcionagg").val(),
 		'propietario': $("#propietaryagg").val(),
+		'tipo_pago': $("#tipo_pagoagg").val(),
 		'porcentaje': $("#porcentajeagg").val(),
+		'nombreusu': $("#nombreusagg").val(),
+		'correo': $("#correoagg").val(),
+		'contrasena': $("#contrasenaagg").val(),
+		'telefono': $("#telefonoagg").val(),
 		'estado':'1'
 }	,'../controller/comerciosController.php').then(function(result){
 	if(result=="1"){

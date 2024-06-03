@@ -28,9 +28,13 @@
 							<thead>
 								<th>ID</th>
 								<th>descripcion</th>
-								<th>cantidad</th>
+							
 								<th>valor</th>
 								<th>Estado</th>
+								<th>Cliente</th>
+								<th>Repartidor</th>
+								<th>Metodo de pago</th>
+								<th>activo</th>
 								<th>Opciones</th>
 							<thead>
 							<tbody id="datos">
@@ -53,6 +57,8 @@
 					<h5 class="modal-title mt-0" id="myModalLabel">Modificar orden</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+				
+
 				<form class="needs-validation" id="form_2">
 					<input type="hidden" value="" id="id_orden">
 					<div class="modal-body">
@@ -63,7 +69,7 @@
 									<input type="text" class="form-control" id="descripcion" placeholder="descripcion" value="" required>
 								</div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6" style="display: none;">
 								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">cantidad</label>
 									<input type="text" class="form-control" id="cantidad" placeholder="cantidad" value="" required>
@@ -94,8 +100,37 @@
 					<h5 class="modal-title mt-0" id="myModalLabel">Agregar orden</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+			
 				<form class="needs-validation" id="form_1">
 					<div class="modal-body">
+					<div class="modal-header">
+						<h6 class="modal-title mt-0" id="myModalLabel">Datos Cliente</h6>
+					</div>
+					<div class="row">
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Nombre cliente</label>
+									<input type="text" class="form-control" id="clienteagg" placeholder="nombre" value="" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Teléfono</label>
+									<input type="text" class="form-control" id="telefonoagg" placeholder="nombre" value="" required>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="mb-12">
+									<label for="validationCustom01" class="form-label">Dirección</label>
+									<textarea class="form-control" name="direccionagg" id="direccionagg" cols="1" rows="1"></textarea>
+								</div>
+							</div>
+					</div>
+					<hr>
+					<div class="modal-header">
+						<h6 class="modal-title mt-0" id="myModalLabel">Datos de la compra</h6>
+					</div>
+				
 						<div class="row">
 							<div class="col-md-6">
 								<div class="mb-6">
@@ -105,8 +140,23 @@
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Factura</label>
+									<input type="file" name="imagenagg" id="imagenagg">
+								</div>
+							</div>
+							<div class="col-md-6" style="display: none;">
+								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">cantidad</label>
-									<input type="text" class="form-control" id="cantidadagg" placeholder="cantidad" value="" required>
+									<input type="text" class="form-control" id="cantidadagg" placeholder="cantidad" value="1" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Tipo de pago</label>
+									<select class="form-control" name="tipo_pagoaagg" id="tipo_pagoaagg">
+										<option value="1">Tarjeta</option>
+										<option value="2">Efectivo</option>
+									</select>
 								</div>
 							</div>
 							<div class="col-md-6">

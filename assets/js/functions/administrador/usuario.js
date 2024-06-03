@@ -7,7 +7,7 @@ $(document).ready(function(){
  
 
 function updata_imagen(){
-	alert('w');
+
 	var formData = new FormData();
 		var imagenInput = document.getElementById('imagenagg');
 		formData.append('imagen', imagenInput.files[0]);

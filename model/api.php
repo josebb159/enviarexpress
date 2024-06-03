@@ -433,18 +433,23 @@ class api{
          $conexion = new Conexion();
       
  
-         $sql1 = "SELECT mandado.id_mandado as orden, direccion.latitude as latitude, direccion.longitude as longitude , 'mandado' as tipo from mandado,direccion WHERE mandado.id_entrega=direccion.id_direccion and mandado.estado=1;";
-         $sql2 = "SELECT lista_orden.id_orden as orden, comercios.latitude as latitude, comercios.longitude as longitude, 'orden' as tipo FROM `lista_orden` LEFT JOIN orden on orden.id_orden=lista_orden.id_orden LEFT JOIN producto on producto.id_producto=lista_orden.id_producto LEFT JOIN comercios on comercios.id_comercios=producto.id_comercios WHERE orden.status_orden_envio=1 GROUP BY lista_orden.id_orden;";
+         $sql1 = "SELECT mandado.id_mandado as orden, direccion.latitude as latitude, direccion.longitude as longitude , 'mandado' as tipo, 'N' as external  FROM mandado,direccion WHERE mandado.id_entrega=direccion.id_direccion and mandado.estado=1;";
+         $sql2 = "SELECT lista_orden.id_orden as orden, comercios.latitude as latitude, comercios.longitude as longitude, 'orden' as tipo ,  'N' as external  FROM `lista_orden` LEFT JOIN orden on orden.id_orden=lista_orden.id_orden LEFT JOIN producto on producto.id_producto=lista_orden.id_producto LEFT JOIN comercios on comercios.id_comercios=producto.id_comercios WHERE orden.status_orden_envio=1 GROUP BY lista_orden.id_orden;";
+         $sql3 = "SELECT orden.id_orden as orden, comercios.latitude as latitude, comercios.longitude as longitude, 'orden_external' as tipo, 'N' as external FROM orden LEFT JOIN comercios on comercios.id_user=orden.id_tienda and userexternal='Y' WHERE orden.status_orden_envio=1 GROUP BY orden.id_orden;";
         $reg1 = $conexion->prepare($sql1);
         $reg2 = $conexion->prepare($sql2);
+        $reg3 = $conexion->prepare($sql3);
  
          $reg1->execute();
          $reg2->execute();
+         $reg3->execute();
 
          $consulta1 =$reg1->fetchAll();
          $consulta2 =$reg2->fetchAll();
+         $consulta3 =$reg3->fetchAll();
          
          $resultado = array_merge($consulta1, $consulta2);
+         $resultado = array_merge($resultado, $consulta3);
        
          if ($resultado) {
           
@@ -452,7 +457,7 @@ class api{
              //echo json_encode($consulta);
            
          }else{
-             return http_response_code(404);
+             return  0; //http_response_code(404);
          }
                          
      }

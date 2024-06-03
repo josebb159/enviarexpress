@@ -54,6 +54,30 @@ if(isset($_POST['porcentaje'])){
 	$porcentaje =  $_POST['porcentaje'];
 }
 
+if(isset($_POST['tipo_pago'])){
+	$tipo_pago =  $_POST['tipo_pago'];
+}
+
+if(isset($_POST['nombreusu'])){
+	$nombreusu =  $_POST['nombreusu'];
+}
+
+
+if(isset($_POST['correo'])){
+	$correo =  $_POST['correo'];
+}
+
+
+if(isset($_POST['telefono'])){
+	$telefono =  $_POST['telefono'];
+}
+
+
+if(isset($_POST['contrasena'])){
+	$contrasena =  $_POST['contrasena'];
+}
+
+
 
 
 if(isset($_POST['estado'])){
@@ -90,7 +114,9 @@ switch ($op) {
 
 	
 		$n_comercios  = new comercios();
-		$resultado = $n_comercios  -> registrar_comercios('',$nombre,$logo,$direccion,$latitude,$longitude,$telefono,$descripcion,'', $id_category, $propietario, $porcentaje );
+
+		$id_user = $n_comercios -> registrar_usuario("4", $nombreusu,  $contrasena,$correo, $telefono,"");
+		$resultado = $n_comercios  -> registrar_comercios('',$nombre,$logo,$direccion,$latitude,$longitude,$telefono,$descripcion,'', $id_category, $id_user, $porcentaje,$tipo_pago );
 		
 		
 		

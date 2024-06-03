@@ -19,6 +19,38 @@ class orden {
 	$reg->execute(array(':estado' => $estado_defaul,':descripcion' => $descripcion,':cantidad' => $cantidad,':valor' => $valor));
 	return 1;
 	}
+	public function registrar_orden_tienda($id='204',$descripcion,$cantidad,$valor, $tienda,$usuario,$img){
+		$estado_defaul = 1;
+		$userexternal="Y";
+		$sql = "INSERT INTO `orden`(`estado`,`descripcion`,`valor`,`userexternal`,`id_tienda`,`img`,`id_user_external`) VALUES (:estado,:descripcion,:valor,:userexternal, :id_tienda, :img, :id_user_external)";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute(array(
+			':estado' => $estado_defaul,
+			':descripcion' => $descripcion,
+			':valor' => $valor,
+			':userexternal' => $userexternal,
+			':id_tienda' => $tienda,
+			':img' => $img,
+			':id_user_external' => $usuario
+		));
+		return 1;
+	}
+	public function registrar_temporal_user($nombre, $telefono, $direccion){
+		$sql = "INSERT INTO `temporaluser`(`nombre`,`telefono`,`direccion`) VALUES (:nombre,:telefono,:direccion)";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute(array(':nombre' => $nombre,':telefono' => $telefono,':direccion' => $direccion));
+		return $this->conexion->lastInsertId();
+	}
+	
+	public function buscar_orden_tienda($id_tienda){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente_tienda, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden` where id_tienda=". $id_tienda. ";";;
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute();
+		$consulta =$reg->fetchAll();
+		if ($consulta) {
+			return $consulta;
+		}else{
+			return 0;
+		} }
 	public function buscar_orden(){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden`;";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();

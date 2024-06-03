@@ -2,9 +2,42 @@ $(document).ready(function(){
 	ver_registros();
 });
 
-function registrar(){
+
+function updata_imagen(){
+	var formData = new FormData();
+		var imagenInput = document.getElementById('imagenagg');
+		formData.append('imagen', imagenInput.files[0]);
+		formData.append('op', 'update_imagen');
+	 
+		// Enviar la solicitud Ajax utilizando la función fetch
+		fetch('../controller/ordenController.php', {
+			method: 'POST',
+			body: formData
+		})
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(data) {
+			// Manejar la respuesta del servidor
+			console.log(data);
+			var nombreImagen = data.nombreImagen;
+			registrar(nombreImagen);
+			// Hacer algo con la respuesta, como mostrar un mensaje de éxito o error
+		})
+		.catch(function(error) {
+			// Manejar cualquier error de la solicitud
+			console.error('Error:', error);
+		});
+	
+	} 
+
+function registrar(img){
 	var result = function_ajax({
-		'op':'registrar',
+		'op':'registrar_orden',
+		'img' : img,
+		'cliente': $("#clienteagg").val(),
+		'telefono': $("#telefonoagg").val(),
+		'direccion': $("#direccionagg").val(),
 		'descripcion': $("#descripcionagg").val(),
 		'cantidad': $("#cantidadagg").val(),
 		'valor': $("#valoragg").val(),
@@ -24,7 +57,7 @@ function ver_registros(){
 	var table = $('#datatable-buttons').DataTable();
 	table.destroy();
 	var result = function_ajax({
-		'op':'buscar'
+		'op':'buscar_orden_tienda'
 }	,'../controller/ordenController.php').then(function(result){
 	$("#datos").html(result);
 	$('#datatable-buttons').DataTable( {
@@ -151,7 +184,7 @@ $('#sa-warning').click(function () {
 
 $("#form_1").on('submit', function(evt){
 	evt.preventDefault();  
-	registrar();
+	updata_imagen();
 });
 
 $("#form_2").on('submit', function(evt){

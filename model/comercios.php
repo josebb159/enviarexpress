@@ -16,11 +16,11 @@ class comercios {
 	}
 
  
-	public function registrar_comercios($id='204',$nombre,$logo,$direccion,$latitude,$longitude,$telefono,$descripcion,$estado,$category, $propietario, $porcentaje){
+	public function registrar_comercios($id='204',$nombre,$logo,$direccion,$latitude,$longitude,$telefono,$descripcion,$estado,$category, $propietario, $porcentaje,$tipo_pago){
 	$estado_defaul = 1;
-	$sql = "INSERT INTO `comercios`(`estado`,`nombre`,`logo`,`direccion`,`latitude`,`longitude`,`telefono`,`descripcion`,`id_category`, `id_user`,`porcentaje` ) VALUES (:estado,:nombre,:logo,:direccion,:latitude,:longitude,:telefono,:descripcion, :category, :propietario, :porcentaje)";
+	$sql = "INSERT INTO `comercios`(`estado`,`nombre`,`logo`,`direccion`,`latitude`,`longitude`,`telefono`,`descripcion`,`id_category`, `id_user`,`porcentaje`,`tipo_pago` ) VALUES (:estado,:nombre,:logo,:direccion,:latitude,:longitude,:telefono,:descripcion, :category, :propietario, :porcentaje,:tipo_pago)";
 	$reg = $this->conexion->prepare($sql);
-	$reg->execute(array(':estado' => $estado_defaul,':nombre' => $nombre,':logo' => $logo,':direccion' => $direccion,':latitude' => $latitude,':longitude' => $longitude,':telefono' => $telefono,':descripcion' => $descripcion,':category' => $category, ':propietario' => $propietario, ':porcentaje' => $porcentaje));
+	$reg->execute(array(':estado' => $estado_defaul,':nombre' => $nombre,':logo' => $logo,':direccion' => $direccion,':latitude' => $latitude,':longitude' => $longitude,':telefono' => $telefono,':descripcion' => $descripcion,':category' => $category, ':propietario' => $propietario, ':porcentaje' => $porcentaje, ':tipo_pago' => $tipo_pago));
 	return 1;
 	}
 	public function buscar_comercios(){
@@ -33,6 +33,21 @@ class comercios {
 	}else{
 		return 0;
 	} }
+	public function registrar_usuario($rol =4, $nombre,  $contrasena,$correo,$telefono,$img ){
+   
+        $conexion = new Conexion();
+        $estado_defaul = 1;
+   
+            $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,   `contrasena`, `estado`, `email`,`telefono`,`img`) VALUES (:rol,:nombre,:contrasena,:estado,:correo,:telefono,:img)";
+            $reg = $conexion->prepare($sql);
+    
+            $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,   ':contrasena' => $contrasena, ':estado' => $estado_defaul, ':correo' => $correo, ':telefono' => $telefono,':img' => $img));
+			return $conexion->lastInsertId();
+    
+     
+        return 1;
+    
+    }
 	public function buscar_select_propietarios(){$sql = "SELECT id,nombre FROM usuarios WHERE id_rol=2 and id NOT IN (SELECT id_user FROM comercios);";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();

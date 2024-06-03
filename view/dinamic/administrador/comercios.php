@@ -193,10 +193,50 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title mt-0" id="myModalLabel">Agregar comercios</h5>
+					<h6 class="modal-title mt-0" id="myModalLabel">Agregar comercios</h6>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<form class="needs-validation" id="form_1">
+					<div class="modal-header">
+						<h6 class="modal-title mt-0" id="myModalLabel">Datos usuario</h6>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Nombre usuario</label>
+									<input type="text" class="form-control" id="nombreusagg" placeholder="Nombre" value="" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Correo</label>
+									<input type="text" class="form-control" id="correoagg" placeholder="Correo" value="" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Contraseña</label>
+									<input type="text" class="form-control" id="contrasenaagg" placeholder="Contraseña" value="" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Telèfono</label>
+									<input type="text" class="form-control" id="telefonoagg" placeholder="Telèfono" value="" required>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr>
+					<div class="modal-header">
+						<h6 class="modal-title mt-0" id="myModalLabel">Datos tienda</h6>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+
+			
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-6">
@@ -237,8 +277,17 @@
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">Porcetaje adicional</label>
-									<input type="number" class="form-control" id="porcentajeagg" placeholder="Porcentaje" value="" required>
+									<label for="validationCustom01" class="form-label">Tipo de Pago</label>
+									<select class="form-control" name="tipo_pagoagg" id="tipo_pagoagg">
+										<option value="1">Tarifa fija</option>
+										<option value="2">Porcentaje</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Valor</label>
+									<input type="number" class="form-control" id="porcentajeagg" placeholder="Valor" value="" required>
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -258,7 +307,7 @@
                                 
                                     </div>
                                 </div>
-								<div class="col-md-6">
+								<div class="col-md-6" style="display: none;">
                                 <div class="mb-6">
                                         <label for="validationCustom02" class="form-label">Propietario</label>
                                        

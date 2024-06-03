@@ -52,19 +52,10 @@ if(isset($_POST['correo'])){
 		$destinoImagen = '../assets/upload/user/' . $nombreImagen.".jpg";
 
 		if (move_uploaded_file($archivoImagen, $destinoImagen)) {
-			// La imagen se ha guardado correctamente
-			// Puedes realizar otras operaciones aquí, como guardar los datos en una base de datos
-			// o realizar alguna otra tarea adicional
-	
 			echo json_encode(array('status' => 'success', 'message' => 'Imagen guardada correctamente', 'nombreImagen' => $nombreImagen.".jpg"));
-			// Envía una respuesta a Ajax indicando que todo ha ido bien
-		///	echo json_encode(array('status' => 'success', 'message' => 'Imagen guardada correctamente'));
 		} else {
-			// Ocurrió un error al guardar la imagen
-			//echo json_encode(array('status' => 'error', 'message' => 'Error al guardar la imagen'));
-		}
-			
 
+		}
 	break;
      case 'login':
        $n_usuario  = new usuario();
