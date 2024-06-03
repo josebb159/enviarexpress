@@ -138,6 +138,12 @@ $json_data = json_encode($_POST);
          echo $resultado;
          
       break;
+      case 'get_orden_from_map_external':
+         $n_api  = new api();
+         $resultado = $n_api -> get_orden_from_map_external($_GET['id']);
+         echo $resultado;
+         
+      break;
 
 
       case 'get_user_delivery':

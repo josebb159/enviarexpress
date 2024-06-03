@@ -511,7 +511,30 @@ class api{
                          
      }
  
-
+     public function get_orden_from_map_external($id){
+        //tipo= 1 entrega, 2 recogida
+         $conexion = new Conexion();
+      
+ 
+         $sql = "SELECT orden.id_orden, orden.id_user_external as id_cliente, (SELECT temporaluser.direccion from temporaluser WHERE orden.id_user_external=temporaluser.id) as direccion, orden.metodo_pago, orden.valor, (SELECT temporaluser.nombre from temporaluser WHERE orden.id_user_external=temporaluser.id) as nombre, comercios.nombre as empresa , comercios.id_comercios from orden LEFT JOIN comercios ON orden.id_tienda=comercios.id_user where orden.id_orden=".$id." and orden.status_orden_envio=1 GROUP BY id_orden;";
+       // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+         $reg = $conexion->prepare($sql);
+ 
+         $reg->execute();
+         $consulta =$reg->fetchAll();
+         
+       
+         if ($consulta) {
+          
+             echo json_encode($consulta);
+             //echo json_encode($consulta);
+           
+         }else{
+             return http_response_code(404);
+         }
+                         
+     }
+ 
  
 
      public function get_orden_pending($uid){
