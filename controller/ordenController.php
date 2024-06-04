@@ -35,7 +35,6 @@ if(isset($_POST['cliente'])){
 
 if(isset($_POST['img'])){
 	$img =  $_POST['img'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $valor)) { die('error valor');}
 }
 
 if(isset($_POST['telefono'])){
