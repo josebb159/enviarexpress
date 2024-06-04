@@ -44,13 +44,13 @@ function registrar(img){
 		'valor': $("#valoragg").val(),
 		'estado':'1'
 }	,'../controller/ordenController.php').then(function(result){
-	if(result=="1"){
+
 		alert_success();
 		ver_registros();
 		$("#descripcionagg").val("");
 		$("#cantidadagg").val("");
 		$("#valoragg").val("");
-	}
+
 	}).catch(function(error) {console.log('Error:', error);});
 }
 
