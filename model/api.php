@@ -1303,7 +1303,64 @@ public function obtener_domiciliario($uid){
             //echo json_encode($consulta);
           
         }else{
-            return http_response_code(404);
+            $sql2 = "SELECT orden.*, 
+            0 as distancia, 
+            (select temporaluser.telefono from temporaluser where temporaluser.id=orden.id_user_external) as tele_direccion, 
+            0 as latitude_direccion, 
+            0 as longitude_direccion, 
+            (select temporaluser.nombre from temporaluser where temporaluser.id=orden.id_user_external) as cliente 
+            FROM orden, usuarios WHERE 
+            usuarios.id=orden.id_domiciliario 
+            and orden.status_orden_envio<5 and usuarios.uid='".$uid."';";
+          // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+            $reg2 = $conexion->prepare($sql2);
+    
+            $reg2->execute();
+            $consulta2 =$reg2->fetchAll();
+            
+          
+            if ($consulta2) {
+             
+                echo json_encode($consulta2);
+                //echo json_encode($consulta);
+              
+            }else{
+                return 0;
+                //return http_response_code(404);
+            }
+        }
+                        
+    }
+
+    public function is_in_order_whith_direction_external($uid){
+     
+        $conexion = new Conexion();
+     
+
+        $sql = "SELECT orden.*, 
+        0 as distancia, 
+        (select temporaluser.telefono from temporaluser where temporaluser.id=orden.id_user_external) as tele_direccion, 
+        0 as latitude_direccion, 
+        0 as longitude_direccion, 
+        (select temporaluser.nombre from temporaluser where temporaluser.id=orden.id_user_external) as cliente 
+        FROM orden, usuarios WHERE 
+        usuarios.id=orden.id_domiciliario 
+        and orden.status_orden_envio<5 and usuarios.uid='".$uid."';";
+      // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+        $reg = $conexion->prepare($sql);
+
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+        
+      
+        if ($consulta) {
+         
+            echo json_encode($consulta);
+            //echo json_encode($consulta);
+          
+        }else{
+            return 0;
+            //return http_response_code(404);
         }
                         
     }

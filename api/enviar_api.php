@@ -300,6 +300,14 @@ $json_data = json_encode($_POST);
          echo $resultado;
          
       break;
+      
+      case 'is_in_order_whith_direction_external':
+
+         $n_api  = new api();
+         $resultado = $n_api -> is_in_order_whith_direction_external($_POST['uid']);
+         echo $resultado;
+         
+      break;
 
 
       
