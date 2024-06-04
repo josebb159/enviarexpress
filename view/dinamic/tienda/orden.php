@@ -154,8 +154,8 @@
 								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">Tipo de pago</label>
 									<select class="form-control" name="tipo_pagoaagg" id="tipo_pagoaagg">
-										<option value="1">Tarjeta</option>
-										<option value="2">Efectivo</option>
+										<option value="Tarjeta">Tarjeta</option>
+										<option value="Efectivo">Efectivo</option>
 									</select>
 								</div>
 							</div>
