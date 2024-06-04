@@ -19,10 +19,10 @@ class orden {
 	$reg->execute(array(':estado' => $estado_defaul,':descripcion' => $descripcion,':cantidad' => $cantidad,':valor' => $valor));
 	return 1;
 	}
-	public function registrar_orden_tienda($id='204',$descripcion,$cantidad,$valor, $tienda,$usuario,$img){
+	public function registrar_orden_tienda($id='204',$descripcion,$cantidad,$valor, $tienda,$usuario,$img, $tipo_pago){
 		$estado_defaul = 1;
 		$userexternal="Y";
-		$sql = "INSERT INTO `orden`(`estado`,`descripcion`,`valor`,`userexternal`,`id_tienda`,`img`,`id_user_external`) VALUES (:estado,:descripcion,:valor,:userexternal, :id_tienda, :img, :id_user_external)";
+		$sql = "INSERT INTO `orden`(`estado`,`descripcion`,`valor`,`userexternal`,`id_tienda`,`img`,`id_user_external`, `metodo_pago`) VALUES (:estado,:descripcion,:valor,:userexternal, :id_tienda, :img, :id_user_external, :tipo_pago)";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute(array(
 			':estado' => $estado_defaul,
@@ -31,7 +31,8 @@ class orden {
 			':userexternal' => $userexternal,
 			':id_tienda' => $tienda,
 			':img' => $img,
-			':id_user_external' => $usuario
+			':id_user_external' => $usuario,
+			':tipo_pago' => $tipo_pago
 		));
 		return 1;
 	}

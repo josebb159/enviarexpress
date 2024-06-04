@@ -9,9 +9,14 @@ if(isset($_POST['id'])){
 
 if(isset($_POST['descripcion'])){
 	$descripcion =  $_POST['descripcion'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $descripcion)) { die('error descripcion');}
+
 }
 
+
+if(isset($_POST['tipo_pago'])){
+	$tipo_pago =  $_POST['tipo_pago'];
+
+}
 
 if(isset($_POST['cantidad'])){
 	$cantidad =  $_POST['cantidad'];
@@ -80,7 +85,7 @@ switch ($op) {
 	case 'registrar_orden':
 		$n_orden  = new orden();
 		$id_usuario =  $n_orden  ->registrar_temporal_user($cliente, $telefono, $direccion);
-		$resultado = $n_orden  -> registrar_orden_tienda('',$descripcion,$cantidad,$valor,$_SESSION['id_usuario'],$id_usuario ,$img );
+		$resultado = $n_orden  -> registrar_orden_tienda('',$descripcion,$cantidad,$valor,$_SESSION['id_usuario'],$id_usuario ,$img,$tipo_pago );
 		//echo $resultado;
 	break;
 	case 'buscar':

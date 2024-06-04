@@ -35,6 +35,7 @@ function registrar(img){
 	var result = function_ajax({
 		'op':'registrar_orden',
 		'img' : img,
+		'tipo_pago': $("#tipo_pagoaagg").val(),
 		'cliente': $("#clienteagg").val(),
 		'telefono': $("#telefonoagg").val(),
 		'direccion': $("#direccionagg").val(),
