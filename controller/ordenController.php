@@ -153,10 +153,12 @@ switch ($op) {
 			if($key['status_orden_envio']=="1"){
 				$status_envio="En espera de Domiciliario";
 			}else if($key['status_orden_envio']=="2"){
-				$status_envio="En camino";
+				$status_envio="Aceptado por repartidor";
 			}else if($key['status_orden_envio']=="3"){
-				$status_envio="Entregado";
+				$status_envio="En camino";
 			}else if($key['status_orden_envio']=="4"){
+				$status_envio="Entregado";
+			}else if($key['status_orden_envio']=="5"){
 				$status_envio="Cancelado";
 			}
 			$data_list = ",'".$key['nombre_cliente']."','".$key['nombre_repartidor']."'";
