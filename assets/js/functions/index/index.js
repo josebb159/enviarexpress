@@ -15,8 +15,10 @@ function login(){
           
             if(response=="1"){
                 window.location.href = "view/home.php"; 
+            }else if(response=="2"){
+                alert("Usuario no permitido en la plataforma");
             }else{
-                alert("usuario incorrecto");
+                alert("Usuario incorrecto");
             }
    
            

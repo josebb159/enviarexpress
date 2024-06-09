@@ -165,6 +165,10 @@ class usuario {
                     }
 
                 }
+
+                if($key['id_rol']==3){
+                return 2;
+                }
     
             }
             

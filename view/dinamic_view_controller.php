@@ -15,9 +15,9 @@ if($rol=="Usuario Nivel 1"){
     
     include 'view_controller_user_2.php';
 
-    }elseif($rol=="Usuario Nivel 3"){
+}elseif($rol=="enrutador"){
 
-    include 'view_controller_user_3.php';
+    include 'view_controller_enrutador.php';
 
 }elseif($rol=="tienda"){
 

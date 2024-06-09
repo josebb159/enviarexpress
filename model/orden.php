@@ -52,6 +52,15 @@ class orden {
 		}else{
 			return 0;
 		} }
+		public function buscar_orden_tienda_general(){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente_tienda, (SELECT nombre FROM comercios WHERE orden.id_tienda = comercios.id_user limit 1) as tienda, (SELECT telefono FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as telefono, (SELECT direccion FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as direccion, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden` WHERE userexternal='Y';";
+			$reg = $this->conexion->prepare($sql);
+			$reg->execute();
+			$consulta =$reg->fetchAll();
+			if ($consulta) {
+				return $consulta;
+			}else{
+				return 0;
+			} }
 	public function buscar_orden(){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden`;";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();
@@ -80,6 +89,20 @@ class orden {
 	$results = $reg->fetchAll(PDO::FETCH_ASSOC);
 	return json_encode($results);
 	}
+	public function buscar_domiciliarios_disponibles(){$sql = "SELECT u.id, u.nombre, u.id_rol
+		FROM usuarios u
+		LEFT JOIN rutas r ON u.id = r.id_usuario AND r.estado = 2
+		WHERE u.id_rol=3 and r.id_rutas IS NULL OR r.estado = 2 and 
+		u.id_rol=3;";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute();
+			$consulta =$reg->fetchAll();
+			if ($consulta) {
+				return $consulta;
+			}else{
+				return 0;
+			}
+		}
 	public function rango() {
 		// C�digo del m�todo aqu�
 	}

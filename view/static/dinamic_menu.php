@@ -14,9 +14,9 @@ if($rol=="Usuario Nivel 1"){
     
     include 'menu_usuario2.php';
 
-}elseif($rol=="Usuario Nivel 3"){
+}elseif($rol=="enrutador"){
 
-    include 'menu_usuario3.php';
+    include 'menu_enrutador.php';
 
 }elseif($rol=="tienda"){
 

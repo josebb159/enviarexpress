@@ -12,8 +12,8 @@ if($rol=="administrador"){
 
 }elseif($rol=="tienda"){
     include 'dependencias_js_tienda.php';
-}elseif($rol=="Usuario Nivel 2"){
-    include 'dependencias_js_usuario2.php';
+}elseif($rol=="enrutador"){
+    include 'dependencias_js_enrutador.php';
 }elseif($rol=="Usuario Nivel 3"){
     include 'dependencias_js_usuario3.php';
 }elseif($rol=="Usuario Nivel 4"){
