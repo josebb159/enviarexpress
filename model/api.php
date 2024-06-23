@@ -138,8 +138,8 @@ class api{
 
         // Consulta SQL para actualizar la tabla usuarios
         $sql = "UPDATE usuarios 
-                SET latitude = :latitude, 
-                    longitude = :longitude, 
+                SET latitud = :latitude, 
+                    longitud = :longitude, 
                     lastlocation = :lastlocation 
                 WHERE uid = :uid";
     
