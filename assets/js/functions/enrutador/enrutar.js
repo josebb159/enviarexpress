@@ -49,6 +49,27 @@ function ver_registros(){
 }
 
 
+function buscar_domiciliarios_disponibles_gps(){
+
+	var result = function_ajax({
+		'op':'buscar_domiciliarios_disponibles_gps'
+}	,'../controller/ordenController.php').then(function(response){
+	
+	var dataArray = JSON.parse(response);
+    
+    // Iterar sobre el array
+    dataArray.forEach(function(domiciliario) {
+		if(domiciliario.latitud !=null && domiciliario.longitud != null){
+			agregarMarcador(domiciliario.latitud, domiciliario.longitud);
+		}
+    
+    });
+
+	}).catch(function(error) {console.log('Error:', error);});
+}
+
+
+
 
 function buscar_domiciliarios_disponibles(){
 

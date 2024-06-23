@@ -129,6 +129,41 @@ class api{
     }
 
 
+    public function set_location($uid, $latitude,  $longitude){
+
+        $conexion = new Conexion();
+        $estado_defaul = 1;
+        $rol = 1;
+        $lastlocation = date("Y-m-d H:i:s"); // Obtener la fecha y hora actuales en el formato adecuado
+
+        // Consulta SQL para actualizar la tabla usuarios
+        $sql = "UPDATE usuarios 
+                SET latitude = :latitude, 
+                    longitude = :longitude, 
+                    lastlocation = :lastlocation 
+                WHERE uid = :uid";
+    
+        $reg = $conexion->prepare($sql);
+    
+        // Asignar los valores a los parámetros de la consulta
+        $reg->bindParam(':latitude', $latitude);
+        $reg->bindParam(':longitude', $longitude);
+        $reg->bindParam(':lastlocation', $lastlocation);
+        $reg->bindParam(':uid', $uid);
+    
+        // Ejecutar la consulta y verificar si fue exitosa
+        if ($reg->execute()) {
+            return 1;
+        } else {
+            return 0;
+        }
+     
+        return 1;
+    
+    }
+
+
+
 
     public function registrar_usuario($uid, $nombre,  $correo, $contrasena, $telefono, $fecha ){
 

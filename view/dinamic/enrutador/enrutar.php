@@ -5,6 +5,42 @@
 
 <!-- Responsive datatable examples -->
 <link href="../assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<style>   #map {
+            height: 400px;
+            width: 100%;
+        }
+		.modal-dialog {
+            max-width: 800px;
+        }
+		#map2 {
+            height: 400px;
+            width: 100%;
+        }
+		.modal-dialog {
+            max-width: 800px;
+        }
+
+
+		#preview-image {
+            max-width: 100px !important;
+            max-height: 100px !important;
+	
+        }
+		#image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px; /* Establece la altura deseada del contenedor */
+            border: 1px solid #ccc; /* Para visualizar el contenedor */
+        }
+
+		#preview-image2 {
+            max-width: 100px !important;
+            max-height: 100px !important;
+	
+        }</style>
 <style>
         #preview-image {
             max-width: 100px;
@@ -178,9 +214,6 @@
                                       <form class="needs-validation" id="form_1">
                                       <div class="modal-body">
                                       
-                                                      
-
-                                                        
 
                                                           <div class="row">
                                                               <div class="col-md-12">
@@ -198,7 +231,8 @@
                                                           </div>
                                                       
                                                       
-                                                      
+                                                          <br><br><br><br>
+                                                          <div id="map"></div>
                                                          
                                                      
                                           
@@ -215,7 +249,7 @@
                           </div><!-- /.modal -->
                       </div>
 
-
+                      <div id="map2" style="display: none;"></div>
 
 <?php 
 $aditionals_js='
@@ -246,6 +280,8 @@ $aditionals_js='
 
 ?>
 
+
+
 <script>
     function openModal(imageUrl) {
       var modalImage = document.getElementById("modalImage");
@@ -253,4 +289,65 @@ $aditionals_js='
       
       $('#imageModal').modal('show');
     }
-  </script>
+ 
+
+
+
+function miFuncion() {
+	setTimeout(function() {
+    map.invalidateSize();
+
+    buscar_domiciliarios_disponibles_gps();
+  }, 10);
+
+  
+        }
+
+
+
+function renderizemap(){
+	setTimeout(miFuncion, 2000);
+
+}
+
+
+
+
+    function openModal(imageUrl) {
+      var modalImage = document.getElementById("modalImage");
+      modalImage.src = imageUrl;
+      
+      $('#imageModal').modal('show');
+    }
+
+        // Inicializar el mapa de Leaflet
+        var map = L.map('map').setView([7.8939, -72.5079], 13); // Establece la ubicación inicial en Cúcuta, Colombia
+
+        // Agrega la capa de mapa de Leaflet (puedes cambiar el proveedor de mapas si lo deseas)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Agrega un marcador en el mapa al hacer clic en una ubicación
+
+        var markersGroup = L.layerGroup().addTo(map);
+        var customIcon = L.icon({
+            iconUrl: '../assets/images/moto.png',
+            iconSize: [32, 32], // Tamaño del icono
+            iconAnchor: [16, 32] // Posición del icono
+        });
+
+function agregarMarcador(latitud, longitud) {
+
+    var newMarker = L.marker([latitud, longitud], { icon: customIcon });
+    markersGroup.addLayer(newMarker);
+}
+
+
+function clearmarker(){
+    markersGroup.clearLayers();
+}
+
+
+    </script>

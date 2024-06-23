@@ -20,6 +20,13 @@ $json_data = json_encode($_POST);
          echo $resultado;
          
       break;
+      case 'set_location':
+ 
+         $n_api  = new api();
+         $resultado = $n_api -> set_location($_POST['uid'],$_POST['latitud'],$_POST['longitud']);
+         echo $resultado;
+         
+      break;
       case 'Login_no_uid':
 
          $n_api  = new api();

@@ -177,7 +177,7 @@ switch ($op) {
 			<td><?= $status_envio; ?></td>
 		
 			<td>
-				<button type="button"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
+				<button type="button" onclick="renderizemap()"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
 			</td>
 		</tr>
 		<?php
@@ -267,6 +267,16 @@ switch ($op) {
 			<option value="<?php echo $key['id']; ?>"><?php echo $key['nombre']; ?></option>;
 		<?php
 		}
+	break;
+	case 'buscar_domiciliarios_disponibles':
+		$n_orden  = new orden();
+		$resultado = $n_orden  -> buscar_domiciliarios_disponibles();
+		echo $resultado;
+	break;
+	case 'buscar_domiciliarios_disponibles_gps':
+		$n_orden  = new orden();
+		$resultado = $n_orden  -> buscar_domiciliarios_disponibles_gps();
+		echo $resultado;
 	break;
 	case 'buscar_json':
 		$n_orden  = new orden();
