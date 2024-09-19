@@ -147,7 +147,7 @@ switch ($op) {
 	break;
 	case 'buscar_orden_tienda_general':
 		$n_orden  = new orden();
-		$resultado = $n_orden  -> buscar_orden_tienda_general();
+		$resultado = $n_orden  -> buscar_orden_tienda_general($_SESSION['id_comercio_asociate']);
 		if($resultado==0){
 			exit();
 		}

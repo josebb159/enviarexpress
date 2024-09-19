@@ -158,6 +158,7 @@ class usuario {
             
                             $_SESSION['nombre_tienda'] =  $key['nombre'];
                             $_SESSION['id_tienda'] =  $key['id_comercios'];
+                            $_SESSION['id_comercio_asociate'] =  $key['id_comercio_asociate'];
                 
                         }
                         

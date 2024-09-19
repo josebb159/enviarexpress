@@ -52,7 +52,7 @@ class orden {
 		}else{
 			return 0;
 		} }
-		public function buscar_orden_tienda_general(){$sql = "SELECT
+		public function buscar_orden_tienda_general($id_tienda){$sql = "SELECT
     *,
     (
     SELECT
@@ -133,6 +133,10 @@ FROM
     `orden`
 WHERE
     userexternal = 'Y';";
+
+	if(!empty($id_tienda)){$sql .= " AND id_tienda = ". $id_tienda. " ";}
+
+	
 			$reg = $this->conexion->prepare($sql);
 			$reg->execute();
 			$consulta =$reg->fetchAll();
