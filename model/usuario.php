@@ -143,6 +143,7 @@ class usuario {
                 $_SESSION['nombre'] =  $key['nombre'];
            
                 $_SESSION['id_usuario'] =  $key['id'];
+                $_SESSION['id_comercio_asociate'] =  $key['id_comercio_asociate'];
                 $this->rol = $key['id_rol'];
 
                 if($key['id_rol']==2){
@@ -158,7 +159,7 @@ class usuario {
             
                             $_SESSION['nombre_tienda'] =  $key['nombre'];
                             $_SESSION['id_tienda'] =  $key['id_comercios'];
-                            $_SESSION['id_comercio_asociate'] =  $key['id_comercio_asociate'];
+                      
                 
                         }
                         

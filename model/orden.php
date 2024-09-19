@@ -132,11 +132,11 @@ class orden {
 FROM
     `orden`
 WHERE
-    userexternal = 'Y';";
+    userexternal = 'Y' and status_orden_envio = 1 ";
 
 	if(!empty($id_tienda)){$sql .= " AND id_tienda = ". $id_tienda. " ";}
-
 	
+
 			$reg = $this->conexion->prepare($sql);
 			$reg->execute();
 			$consulta =$reg->fetchAll();
