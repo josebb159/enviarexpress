@@ -213,6 +213,26 @@
                                       </div>
                                       <form class="needs-validation" id="form_1">
                                       <div class="modal-body">
+                                      <input type="hidden" id="id" name="id">
+                                      <input type="hidden" id="latitud" name="latitud">
+                                      <input type="hidden" id="longitud" name="longitud">
+                                      <input type="hidden" id="nombre" name="nombre">
+                                      <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="mb-6">
+                                                <label for="validationCustom01" class="form-label">Dirección</label>
+                                                <input type="text" class="form-control" id="direccion" placeholder="nombre" value=""  readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-6">
+                                                <label for="validationCustom01" class="form-label">Teléfono</label>
+                                                <input type="text" class="form-control" id="telefono" placeholder="nombre" value=""  readonly>
+                                            </div>
+                                        </div>
+                                      </div>
+
                                       
 
                                                           <div class="row">
@@ -220,7 +240,7 @@
                                                                   <div class="mb-12">
                                                                       <label for="validationCustom02" class="form-label">Domiciliarios disponibles</label>
                                                                      
-                                                                      <select name="" class="form-control" id="rolagg">
+                                                                      <select name="" class="form-control" id="rolagg" onchange="buscar_domiciliarios_disponibles_gps()">
 
 
                                                                       </select>
@@ -338,11 +358,24 @@ function renderizemap(){
             iconAnchor: [16, 32] // Posición del icono
         });
 
-function agregarMarcador(latitud, longitud) {
+        var customIconTienda = L.icon({
+            iconUrl: '../assets/images/tienda.png',
+            iconSize: [32, 32], // Tamaño del icono
+            iconAnchor: [16, 32] // Posición del icono
+        });
 
-    var newMarker = L.marker([latitud, longitud], { icon: customIcon });
+function agregarMarcador(latitud, longitud, nombre) {
+
+    var newMarker = L.marker([latitud, longitud], { icon: customIcon }).bindPopup(nombre);;
     markersGroup.addLayer(newMarker);
 }
+
+function agregarMarcadorTienda(latitud, longitud, nombre) {
+
+var newMarker = L.marker([latitud, longitud], { icon: customIconTienda }).bindPopup(nombre);;
+markersGroup.addLayer(newMarker);
+}
+
 
 
 function clearmarker(){

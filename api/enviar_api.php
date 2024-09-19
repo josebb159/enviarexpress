@@ -401,6 +401,20 @@ $json_data = json_encode($_POST);
          
       break;
 
+      case 'registrar_orden_enrutador':
+         $n_api  = new api();
+
+         $id_tienda= $_POST['id_tienda'];
+         $id_domiciliario= $_POST['id_domiciliario'];
+         $id_enrutador= $_POST['id_enrutador']; //$_POST[''];
+         $orden=$_POST['orden'];
+         
+
+         $resultado = $n_api -> registrar_orden_enrutador($id_tienda,  $id_domiciliario, $id_enrutador, $orden);
+         echo $resultado;
+         
+      break;
+
 
          # code...
          break;

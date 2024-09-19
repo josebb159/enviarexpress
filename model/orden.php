@@ -52,7 +52,87 @@ class orden {
 		}else{
 			return 0;
 		} }
-		public function buscar_orden_tienda_general(){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente_tienda, (SELECT nombre FROM comercios WHERE orden.id_tienda = comercios.id_user limit 1) as tienda, (SELECT telefono FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as telefono, (SELECT direccion FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as direccion, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden` WHERE userexternal='Y';";
+		public function buscar_orden_tienda_general(){$sql = "SELECT
+    *,
+    (
+    SELECT
+        nombre
+    FROM
+        usuarios
+    WHERE
+        orden.id_cliente = usuarios.id
+) AS nombre_cliente,
+
+    (
+    SELECT
+        latitude
+    FROM
+        comercios
+    WHERE
+        orden.id_tienda = comercios.id_user
+) AS latitude_empre,
+
+    (
+    SELECT
+        longitude
+    FROM
+        comercios
+    WHERE
+        orden.id_tienda = comercios.id_user
+) AS longitude_empre,
+
+   (SELECT
+        nombre
+    FROM
+        comercios
+    WHERE
+        orden.id_tienda = comercios.id_user
+) AS nombre_empre,
+
+(
+    SELECT
+        nombre
+    FROM
+        temporaluser
+    WHERE
+        orden.id_user_external = temporaluser.id
+) AS nombre_cliente_tienda,
+(
+    SELECT
+        nombre
+    FROM
+        comercios
+    WHERE
+        orden.id_tienda = comercios.id_user
+    LIMIT 1
+) AS tienda,(
+    SELECT
+        telefono
+    FROM
+        temporaluser
+    WHERE
+        orden.id_user_external = temporaluser.id
+) AS telefono,
+(
+    SELECT
+        direccion
+    FROM
+        temporaluser
+    WHERE
+        orden.id_user_external = temporaluser.id
+) AS direccion,
+(
+    SELECT
+        nombre
+    FROM
+        usuarios
+    WHERE
+        orden.id_domiciliario = usuarios.id
+) AS nombre_repartidor
+FROM
+    `orden`
+WHERE
+    userexternal = 'Y';";
 			$reg = $this->conexion->prepare($sql);
 			$reg->execute();
 			$consulta =$reg->fetchAll();
@@ -74,6 +154,10 @@ class orden {
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id, ':estado' => $estado));
 	}
+	public function enrutar($id, $id_domiciliario, $id_enrutador){$sql = "UPDATE `orden` SET id_domiciliario=:id_domiciliario, id_enrutador=:id_enrutador WHERE id_orden=:id";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute(array(':id' => $id, ':id_domiciliario' => $id_domiciliario, ':id_enrutador' => $id_enrutador));
+	}
 	public function eliminar_orden($id){$sql = "DELETE FROM `orden`  WHERE id_orden=:id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id));
@@ -94,6 +178,7 @@ class orden {
 		LEFT JOIN rutas r ON u.id = r.id_usuario AND r.estado = 2
 		WHERE u.id_rol=3 and r.id_rutas IS NULL OR r.estado = 2 and 
 		u.id_rol=3;";
+
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();
 			$consulta =$reg->fetchAll();
@@ -104,12 +189,22 @@ class orden {
 			}
 		}
 	
-	public function buscar_domiciliarios_disponibles_gps(){$sql = "SELECT u.latitud, u.longitud, u.id, u.nombre, u.id_rol
+	public function buscar_domiciliarios_disponibles_gps($id){$sql = "SELECT u.latitud, u.longitud, u.id, u.nombre, u.id_rol
 			FROM usuarios u
 			LEFT JOIN rutas r ON u.id = r.id_usuario AND r.estado = 2
-			WHERE u.id_rol=3 and r.id_rutas IS NULL OR r.estado = 2 and 
-			u.id_rol=3;";
-			
+			WHERE"; 
+			if($id && $id!=""){
+				$sql= $sql."  u.id=$id and ";
+			}
+
+			$sql= $sql." u.id_rol=3 and r.id_rutas IS NULL OR r.estado = 2 and 
+			u.id_rol=3";
+			if($id && $id!=""){
+				$sql= $sql." and u.id=$id";
+			}
+
+	
+	
 			$reg = $this->conexion->prepare($sql);
 			$reg->execute();
 			$results = $reg->fetchAll(PDO::FETCH_ASSOC);

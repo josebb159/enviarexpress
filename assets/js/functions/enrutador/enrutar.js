@@ -8,15 +8,13 @@ $(document).ready(function(){
 
 function Asignar(nombreImagen){
 	var result = function_ajax({
-		'op':'registrar',
-		'nombre': $("#nombreagg").val(),
-		'correo': $("#correoagg").val(),
-		'telefono': $("#telefonoagg").val(),
-		'contrasena': $("#contrasenaagg").val(),
-		'image':nombreImagen,
-		'rol': $("#rolagg").val(),
+		'op':'asignar',
+		'id': $("#id").val(),
+		'telefono': $("#telefono").val(),
+		'direccion': $("#direccion").val(),
+		'domiciliario': $("#rolagg").val(),
 		'estado':'1'
-}	,'../controller/usuarioController.php').then(function(result){
+}	,'../controller/ordenController.php').then(function(result){
 	if(result=="1"){
 	
 		alert_success();
@@ -50,23 +48,27 @@ function ver_registros(){
 
 
 function buscar_domiciliarios_disponibles_gps(){
-
+	var id = $("#rolagg").val();
 	var result = function_ajax({
-		'op':'buscar_domiciliarios_disponibles_gps'
+		'op':'buscar_domiciliarios_disponibles_gps',
+		'id' : id
 }	,'../controller/ordenController.php').then(function(response){
 	
 	var dataArray = JSON.parse(response);
-    
+	clearmarker();
+	agregarMarcadorTienda($("#latitud").val(), $("#longitud").val(),  $("#nombre").val());
     // Iterar sobre el array
     dataArray.forEach(function(domiciliario) {
 		if(domiciliario.latitud !=null && domiciliario.longitud != null){
-			agregarMarcador(domiciliario.latitud, domiciliario.longitud);
+			agregarMarcador(domiciliario.latitud, domiciliario.longitud,  domiciliario.nombre);
 		}
     
     });
-
+	
 	}).catch(function(error) {console.log('Error:', error);});
 }
+
+
 
 
 
@@ -82,6 +84,14 @@ function buscar_domiciliarios_disponibles(){
 	}).catch(function(error) {console.log('Error:', error);});
 }
 
+function showdata(id, direccion, telefono, latitud, longitud, nombre){
+	$("#id").val(id);
+	$("#direccion").val(direccion);
+	$("#telefono").val(telefono);
+	$("#latitud").val(latitud);
+	$("#longitud").val(longitud);
+	$("#nombre").val(nombre);
+}
 
 
 function cambiar_estado(id, estado){
@@ -200,7 +210,7 @@ $('#sa-warning').click(function () {
 
 $("#form_1").on('submit', function(evt){
 	evt.preventDefault();  
-	updata_imagen();
+	Asignar();
 });
 
 $("#form_2").on('submit', function(evt){

@@ -39,13 +39,13 @@ if(isset($_POST['img'])){
 
 if(isset($_POST['telefono'])){
 	$telefono =  $_POST['telefono'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $valor)) { die('error valor');}
+
 }
 
 
 if(isset($_POST['direccion'])){
 	$direccion =  $_POST['direccion'];
-	if (!preg_match('/^[a-zA-Z0-9\s]{0,100}$/', $valor)) { die('error valor');}
+
 }
 
 
@@ -140,6 +140,11 @@ switch ($op) {
 		}
 		
 	break;
+	case 'asignar':
+
+		$n_orden  = new orden();
+		$resultado = $n_orden  -> enrutar($id, $_POST['domiciliario'], $_SESSION['id_usuario']);
+	break;
 	case 'buscar_orden_tienda_general':
 		$n_orden  = new orden();
 		$resultado = $n_orden  -> buscar_orden_tienda_general();
@@ -177,7 +182,7 @@ switch ($op) {
 			<td><?= $status_envio; ?></td>
 		
 			<td>
-				<button type="button" onclick="renderizemap()"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
+				<button type="button" onclick="renderizemap(); showdata('<?php echo $key['id']; ?>','<?php echo $key['direccion']; ?>','<?php echo $key['telefono']; ?>','<?php echo $key['latitude_empre']; ?>','<?php echo $key['longitude_empre']; ?>','<?php echo $key['nombre_empre']; ?>')"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
 			</td>
 		</tr>
 		<?php
@@ -262,6 +267,10 @@ switch ($op) {
 	case 'buscar_domiciliarios_disponibles':
 		$n_orden  = new orden();
 		$resultado = $n_orden  -> buscar_domiciliarios_disponibles();
+		?>
+		<option value="">Seleccione</option>;
+		<?php
+
 		foreach ($resultado as $key) {
 		?>
 			<option value="<?php echo $key['id']; ?>"><?php echo $key['nombre']; ?></option>;
@@ -275,9 +284,10 @@ switch ($op) {
 	break;
 	case 'buscar_domiciliarios_disponibles_gps':
 		$n_orden  = new orden();
-		$resultado = $n_orden  -> buscar_domiciliarios_disponibles_gps();
+		$resultado = $n_orden  -> buscar_domiciliarios_disponibles_gps($id);
 		echo $resultado;
 	break;
+
 	case 'buscar_json':
 		$n_orden  = new orden();
 		$resultado = $n_orden  -> buscar_json_orden($id);

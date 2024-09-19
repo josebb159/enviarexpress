@@ -129,6 +129,20 @@ class api{
     }
 
 
+    public function registrar_orden_enrutador($method, $data ){
+   
+        $conexion = new Conexion();
+ 
+        $sql = "INSERT INTO `logs`(`method`, `data`) VALUES (:method,:data)";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute(array(':method' => $method,':data' => $data));
+     
+
+    
+    }
+
+
     public function set_location($uid, $latitude,  $longitude){
 
         $conexion = new Conexion();
