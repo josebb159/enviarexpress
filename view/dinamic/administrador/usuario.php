@@ -190,6 +190,20 @@
                                                               </div>
                                                             
                                                           </div>
+                                                          <div class="row">
+                                                              <div class="col-md-12">
+                                                                  <div class="mb-12">
+                                                                      <label for="validationCustom02" class="form-label" style="display:none">Tienda</label>
+                                                                     
+                                                                      <select name="" class="form-control" id="tienda">
+                                                                                  
+
+                                                                      </select>
+                                                              
+                                                                  </div>
+                                                              </div>
+                                                            
+                                                          </div>
                                                       
                                                       
                                                       
@@ -290,7 +304,7 @@
                                                                   <div class="mb-12">
                                                                       <label for="validationCustom02" class="form-label">Rol</label>
                                                                      
-                                                                      <select name="" class="form-control" id="rolagg">
+                                                                      <select name="" class="form-control" id="rolagg" onchange="is_enrutador(this.value)">
 
 
                                                                       </select>
@@ -301,6 +315,20 @@
                                                           </div>
                                                       
                                                       
+                                                          <div class="row" id="tienda_data" style="display:none">
+                                                              <div class="col-md-12">
+                                                                  <div class="mb-12">
+                                                                      <label for="validationCustom02" class="form-label">Tienda</label>
+                                                                     
+                                                                      <select name="" class="form-control" id="tiendaagg">
+                                                                                  
+
+                                                                      </select>
+                                                              
+                                                                  </div>
+                                                              </div>
+                                                            
+                                                          </div>
                                                       
                                                          
                                                      

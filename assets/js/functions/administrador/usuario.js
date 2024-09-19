@@ -2,8 +2,17 @@ $(document).ready(function(){
 
 	ver_registros();
 	ver_roles();
-
+	ver_comercios();
 });
+
+
+function is_enrutador(value){
+	if(value==5){
+		$("#tienda_data").show();
+	}else{
+		$("#tienda_data").hide();
+	}
+}
  
 
 function updata_imagen(){
@@ -76,6 +85,7 @@ function registrar(nombreImagen){
 		'correo': $("#correoagg").val(),
 		'telefono': $("#telefonoagg").val(),
 		'contrasena': $("#contrasenaagg").val(),
+		'id_comercio_asociate': $("#tiendaagg").val(),
 		'image':nombreImagen,
 		'rol': $("#rolagg").val(),
 		'estado':'1'
@@ -123,6 +133,21 @@ function ver_roles(){
 
 	}).catch(function(error) {console.log('Error:', error);});
 }
+
+
+
+function ver_comercios(){
+
+	var result = function_ajax({
+		'op':'buscar_select_from_user'
+}	,'../controller/comerciosController.php').then(function(result){
+	$("#tienda").html(result);
+	$("#tiendaagg").html(result);
+
+	}).catch(function(error) {console.log('Error:', error);});
+}
+
+
 
 
 

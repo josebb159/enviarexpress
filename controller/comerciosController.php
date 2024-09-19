@@ -186,6 +186,19 @@ switch ($op) {
 		<?php
 		}
 	break;
+	case 'buscar_select_from_user':
+		$n_comercios  = new comercios();
+		$resultado = $n_comercios  -> buscar_comercios();
+
+		?>
+			<option value="">Seleccione</option>;
+		<?php 
+		foreach ($resultado as $key) {
+		?>
+			<option value="<?php echo $key['id_comercios']; ?>"><?php echo $key['descripcion']; ?></option>;
+		<?php
+		}
+	break;
 	case 'buscar_select_propietarios':
 		$n_comercios  = new comercios();
 		$resultado = $n_comercios  -> buscar_select_propietarios();

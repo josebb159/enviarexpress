@@ -37,6 +37,12 @@ if(isset($_POST['correo'])){
    $image =  $_POST['image'];
 }
 
+if(isset($_POST['id_comercio_asociate'])){
+   $id_comercio_asociate =  $_POST['id_comercio_asociate'];
+}else{
+      $id_comercio_asociate =  "";
+}
+
 
  if(isset($_POST['op'])){
     $op =  $_POST['op'];
@@ -72,7 +78,7 @@ if(isset($_POST['correo'])){
          case 'registrar':
             $n_usuario  = new usuario();
      
-             $resultado = $n_usuario -> registrar_usuario($rol, $nombre,  $contrasena,$correo, $telefono,$image);
+             $resultado = $n_usuario -> registrar_usuario($rol, $nombre,  $contrasena,$correo, $telefono,$image, $id_comercio_asociate);
            
               echo $resultado;
      

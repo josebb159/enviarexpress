@@ -18,7 +18,7 @@ class usuario {
     public $rol; 
 
 
-    public function registrar_usuario($rol, $nombre,  $contrasena,$correo,$telefono,$img ){
+    public function registrar_usuario($rol, $nombre,  $contrasena,$correo,$telefono,$img , $id_comercio_asociate){
    
         $conexion = new Conexion();
         $estado_defaul = 1;
@@ -26,16 +26,16 @@ class usuario {
         if($rol==3){
             $bytesAleatorios = random_bytes(24 / 2);
             $uid = bin2hex($bytesAleatorios);
-            $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,   `contrasena`, `estado`, `email`,`telefono`,`img`, `uid`) VALUES (:rol,:nombre,:contrasena,:estado,:correo,:telefono,:img, :uid)";
+            $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,   `contrasena`, `estado`, `email`,`telefono`,`img`, `uid`, `id_comercio_asociate`) VALUES (:rol,:nombre,:contrasena,:estado,:correo,:telefono,:img, :uid, :id_comercio_asociate)";
        
             $reg = $conexion->prepare($sql);
     
-            $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,   ':contrasena' => $contrasena, ':estado' => $estado_defaul, ':correo' => $correo, ':telefono' => $telefono,':img' => $img,':uid' => $uid));
+            $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,   ':contrasena' => $contrasena, ':estado' => $estado_defaul, ':correo' => $correo, ':telefono' => $telefono,':img' => $img,':uid' => $uid, ':id_comercio_asociate' => $id_comercio_asociate));
         }else{
-            $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,   `contrasena`, `estado`, `email`,`telefono`,`img`) VALUES (:rol,:nombre,:contrasena,:estado,:correo,:telefono,:img)";
+            $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,   `contrasena`, `estado`, `email`,`telefono`,`img`, `id_comercio_asociate`) VALUES (:rol,:nombre,:contrasena,:estado,:correo,:telefono,:img, :id_comercio_asociate)";
             $reg = $conexion->prepare($sql);
     
-            $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,   ':contrasena' => $contrasena, ':estado' => $estado_defaul, ':correo' => $correo, ':telefono' => $telefono,':img' => $img));
+            $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,   ':contrasena' => $contrasena, ':estado' => $estado_defaul, ':correo' => $correo, ':telefono' => $telefono,':img' => $img, ':id_comercio_asociate' => $id_comercio_asociate));
         }
 
     
