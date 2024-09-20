@@ -148,17 +148,17 @@ class usuario {
 
                 if($key['id_rol']==2){
 
-                    $sql = "SELECT  * FROM comercios where id_user='".$_SESSION['id_usuario']."' ";
-                    $reg = $conexion->prepare($sql);
+                    $sql2 = "SELECT  * FROM comercios where id_user='".$_SESSION['id_usuario']."' ";
+                    $reg2 = $conexion->prepare($sql2);
             
-                    $reg->execute();
-                    $consulta =$reg->fetchAll();
+                    $reg2->execute();
+                    $consulta2 =$reg2->fetchAll();
                   
-                    if ($consulta) {
-                        foreach ($consulta as $key) {
+                    if ($consulta2) {
+                        foreach ($consulta2 as $key2) {
             
-                            $_SESSION['nombre_tienda'] =  $key['nombre'];
-                            $_SESSION['id_tienda'] =  $key['id_comercios'];
+                            $_SESSION['nombre_tienda'] =  $key2['nombre'];
+                            $_SESSION['id_tienda'] =  $key2['id_comercios'];
                       
                 
                         }
