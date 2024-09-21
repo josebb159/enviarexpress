@@ -189,6 +189,94 @@ switch ($op) {
 		}
 		
 	break;
+	case 'buscar_orden_tienda_general_asignados':
+		$n_orden  = new orden();
+		$resultado = $n_orden  -> buscar_orden_tienda_general_asignados($_SESSION['id_comercio_asociate']);
+		if($resultado==0){
+			exit();
+		}
+		foreach ($resultado as $key) {
+			if($key['estado']=='1'){
+				$st = 'checked';
+			}else{
+				$st = '';
+			}
+
+			$status_envio="";
+			if($key['status_orden_envio']=="1"){
+				$status_envio="En espera de Domiciliario";
+			}else if($key['status_orden_envio']=="2"){
+				$status_envio="Aceptado por repartidor";
+			}else if($key['status_orden_envio']=="3"){
+				$status_envio="En camino";
+			}else if($key['status_orden_envio']=="4"){
+				$status_envio="Entregado";
+			}else if($key['status_orden_envio']=="5"){
+				$status_envio="Cancelado";
+			}
+			$data_list = ",'".$key['nombre_cliente']."','".$key['nombre_repartidor']."'";
+		$key['id']=$key['id_orden'];
+		?>
+		<tr>
+			<td><?= $key['id_orden']; ?></td>
+			<td><?= $key['nombre_cliente']; ?></td>
+			<td><?= $key['direccion']; ?></td>
+			<td><?= $key['telefono']; ?></td>
+			<td><?= $key['tienda']; ?></td>
+			<td><?= $status_envio; ?></td>
+		
+			<td>
+				<button type="button" onclick="renderizemap(); showdata('<?php echo $key['id']; ?>','<?php echo $key['direccion']; ?>','<?php echo $key['telefono']; ?>','<?php echo $key['latitude_empre']; ?>','<?php echo $key['longitude_empre']; ?>','<?php echo $key['nombre_empre']; ?>')"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
+			</td>
+		</tr>
+		<?php
+		}
+		
+	break;
+	case 'buscar_orden_tienda_general_culminado':
+		$n_orden  = new orden();
+		$resultado = $n_orden  -> buscar_orden_tienda_general_culminado($_SESSION['id_comercio_asociate']);
+		if($resultado==0){
+			exit();
+		}
+		foreach ($resultado as $key) {
+			if($key['estado']=='1'){
+				$st = 'checked';
+			}else{
+				$st = '';
+			}
+
+			$status_envio="";
+			if($key['status_orden_envio']=="1"){
+				$status_envio="En espera de Domiciliario";
+			}else if($key['status_orden_envio']=="2"){
+				$status_envio="Aceptado por repartidor";
+			}else if($key['status_orden_envio']=="3"){
+				$status_envio="En camino";
+			}else if($key['status_orden_envio']=="4"){
+				$status_envio="Entregado";
+			}else if($key['status_orden_envio']=="5"){
+				$status_envio="Cancelado";
+			}
+			$data_list = ",'".$key['nombre_cliente']."','".$key['nombre_repartidor']."'";
+		$key['id']=$key['id_orden'];
+		?>
+		<tr>
+			<td><?= $key['id_orden']; ?></td>
+			<td><?= $key['nombre_cliente']; ?></td>
+			<td><?= $key['direccion']; ?></td>
+			<td><?= $key['telefono']; ?></td>
+			<td><?= $key['tienda']; ?></td>
+			<td><?= $status_envio; ?></td>
+		
+			<td>
+				<button type="button" onclick="renderizemap(); showdata('<?php echo $key['id']; ?>','<?php echo $key['direccion']; ?>','<?php echo $key['telefono']; ?>','<?php echo $key['latitude_empre']; ?>','<?php echo $key['longitude_empre']; ?>','<?php echo $key['nombre_empre']; ?>')"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
+			</td>
+		</tr>
+		<?php
+		}
+		
+	break;
 	case 'buscar_orden_tienda':
 		$n_orden  = new orden();
 		$resultado = $n_orden  -> buscar_orden_tienda($_SESSION['id_usuario']);

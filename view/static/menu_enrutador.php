@@ -44,6 +44,35 @@ if(isset($_GET['view'])){
 		</a>
 	</li>
 
+    <li>
+		 <a href="home.php?view=asginados" class=" waves-effect <?php if($valor=="asginados"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Delivery asignados</span>
+		</a>
+	</li>
+
+    <li>
+		 <a href="home.php?view=pedidos_culminados" class=" waves-effect <?php if($valor=="pedidos_culminados"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Pedidos culminados</span>
+		</a>
+	</li>
+
+
+    <li>
+		 <a href="home.php?view=comercio" class=" waves-effect <?php if($valor=="comercio"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>Comercio</span>
+		</a>
+	</li>
+
+
+
+
+
+
+
+
 
 
 

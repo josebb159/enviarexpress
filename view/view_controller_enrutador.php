@@ -82,6 +82,15 @@ if(isset($_GET['view'])){
 	elseif($_GET['view']=="report"){
 		include 'dinamic/enrutador/report.php';
 	}
+	elseif($_GET['view']=="asginados"){
+		include 'dinamic/enrutador/asginados.php';
+	}
+	elseif($_GET['view']=="pedidos_culminados"){
+		include 'dinamic/enrutador/pedidos_culminados.php';
+	}
+	elseif($_GET['view']=="comercio"){
+		include 'dinamic/enrutador/comercio.php';
+	}
 /*construir*/
 
     elseif($_GET['view']=="logout"){

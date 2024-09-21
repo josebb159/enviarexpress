@@ -28,6 +28,7 @@ function redimensionarImagen(file, maxWidth, maxHeight, callback) {
     img.src = URL.createObjectURL(file);
 }
 
+
 function updata_imagen() {
     var formData = new FormData();
     var imagenInput = document.getElementById('imagenagg');
@@ -48,7 +49,7 @@ function updata_imagen() {
         })
         .then(function(data) {
             // Manejar la respuesta del servidor
-            console.log(data);
+            console.log(data);		
             var nombreImagen = data.nombreImagen;
             registrar(nombreImagen);
             // Hacer algo con la respuesta, como mostrar un mensaje de éxito o error

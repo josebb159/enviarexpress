@@ -2,6 +2,7 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/comercios.php';
 include '../model/notificacion_correo.php';
+session_start();
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
 }
@@ -163,6 +164,32 @@ switch ($op) {
 						</div>
 					</div>
 			</td>
+		</tr>
+		<?php
+		}
+	break;
+	case 'buscar_from_enrutador':
+		$n_comercios  = new comercios();
+		$resultado = $n_comercios  -> buscar_comercios_from_id($_SESSION['id_comercio_asociate']);
+
+		if($resultado==0){
+			exit();
+		}
+		foreach ($resultado as $key) {
+			if($key['estado']=='1'){
+				$st = 'checked';
+			}else{
+				$st = '';
+			}
+
+
+		$key['id']=$key['id_comercios'];
+		?>
+		<tr>
+			<td><?= $key['id_comercios']; ?></td>
+			<td><?= $key['nombre']; ?></td>
+			<td><?= $key['telefono']; ?></td>
+			<td><?= $key['direccion']; ?></td>
 		</tr>
 		<?php
 		}

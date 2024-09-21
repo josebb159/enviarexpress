@@ -145,6 +145,193 @@ WHERE
 			}else{
 				return 0;
 			} }
+			public function buscar_orden_tienda_general_asignados($id_tienda){$sql = "SELECT
+				*,
+				(
+				SELECT
+					nombre
+				FROM
+					usuarios
+				WHERE
+					orden.id_cliente = usuarios.id
+			) AS nombre_cliente,
+			
+				(
+				SELECT
+					latitude
+				FROM
+					comercios
+				WHERE
+					orden.id_tienda = comercios.id_user
+			) AS latitude_empre,
+			
+				(
+				SELECT
+					longitude
+				FROM
+					comercios
+				WHERE
+					orden.id_tienda = comercios.id_user
+			) AS longitude_empre,
+			
+			   (SELECT
+					nombre
+				FROM
+					comercios
+				WHERE
+					orden.id_tienda = comercios.id_user
+			) AS nombre_empre,
+			
+			(
+				SELECT
+					nombre
+				FROM
+					temporaluser
+				WHERE
+					orden.id_user_external = temporaluser.id
+			) AS nombre_cliente_tienda,
+			(
+				SELECT
+					nombre
+				FROM
+					comercios
+				WHERE
+					orden.id_tienda = comercios.id_user
+				LIMIT 1
+			) AS tienda,(
+				SELECT
+					telefono
+				FROM
+					temporaluser
+				WHERE
+					orden.id_user_external = temporaluser.id
+			) AS telefono,
+			(
+				SELECT
+					direccion
+				FROM
+					temporaluser
+				WHERE
+					orden.id_user_external = temporaluser.id
+			) AS direccion,
+			(
+				SELECT
+					nombre
+				FROM
+					usuarios
+				WHERE
+					orden.id_domiciliario = usuarios.id
+			) AS nombre_repartidor
+			FROM
+				`orden`
+			WHERE
+				userexternal = 'Y' and status_orden_envio = 2 ";
+			
+				if(!empty($id_tienda)){$sql .= " AND id_tienda = ". $id_tienda. " ";}
+				
+			
+						$reg = $this->conexion->prepare($sql);
+						$reg->execute();
+						$consulta =$reg->fetchAll();
+						if ($consulta) {
+							return $consulta;
+						}else{
+							return 0;
+						} }
+
+		public function buscar_orden_tienda_general_culminado($id_tienda){$sql = "SELECT
+			*,
+			(
+			SELECT
+				nombre
+			FROM
+				usuarios
+			WHERE
+				orden.id_cliente = usuarios.id
+		) AS nombre_cliente,
+		
+			(
+			SELECT
+				latitude
+			FROM
+				comercios
+			WHERE
+				orden.id_tienda = comercios.id_user
+		) AS latitude_empre,
+		
+			(
+			SELECT
+				longitude
+			FROM
+				comercios
+			WHERE
+				orden.id_tienda = comercios.id_user
+		) AS longitude_empre,
+		
+		   (SELECT
+				nombre
+			FROM
+				comercios
+			WHERE
+				orden.id_tienda = comercios.id_user
+		) AS nombre_empre,
+		
+		(
+			SELECT
+				nombre
+			FROM
+				temporaluser
+			WHERE
+				orden.id_user_external = temporaluser.id
+		) AS nombre_cliente_tienda,
+		(
+			SELECT
+				nombre
+			FROM
+				comercios
+			WHERE
+				orden.id_tienda = comercios.id_user
+			LIMIT 1
+		) AS tienda,(
+			SELECT
+				telefono
+			FROM
+				temporaluser
+			WHERE
+				orden.id_user_external = temporaluser.id
+		) AS telefono,
+		(
+			SELECT
+				direccion
+			FROM
+				temporaluser
+			WHERE
+				orden.id_user_external = temporaluser.id
+		) AS direccion,
+		(
+			SELECT
+				nombre
+			FROM
+				usuarios
+			WHERE
+				orden.id_domiciliario = usuarios.id
+		) AS nombre_repartidor
+		FROM
+			`orden`
+		WHERE
+			userexternal = 'Y' and status_orden_envio = 3 ";
+		
+			if(!empty($id_tienda)){$sql .= " AND id_tienda = ". $id_tienda. " ";}
+							
+	
+	$reg = $this->conexion->prepare($sql);
+	$reg->execute();
+	$consulta =$reg->fetchAll();
+	if ($consulta) {
+		return $consulta;
+	}else{
+		return 0;
+	} }
 	public function buscar_orden(){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden`;";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();

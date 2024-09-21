@@ -83,6 +83,21 @@ if(isset($_GET['view'])){
 	if($_GET['view']=="publicidad"){
 		echo "<script src='../assets/js/functions/enrutador/publicidad.js'></script>";
 	}
+
+
+	if($_GET['view']=="asginados"){
+		echo "<script src='../assets/js/functions/enrutador/asginados.js'></script>";
+	}
+
+	if($_GET['view']=="pedidos_culminados"){
+		echo "<script src='../assets/js/functions/enrutador/pedidos_culminados.js'></script>";
+	}
+
+	if($_GET['view']=="comercio"){
+		echo "<script src='../assets/js/functions/enrutador/comercio.js'></script>";
+	}
+
+
 /*construir*/
     
     

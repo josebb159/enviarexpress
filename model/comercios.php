@@ -33,6 +33,16 @@ class comercios {
 	}else{
 		return 0;
 	} }
+	public function buscar_comercios_from_id($id){
+		$sql = "SELECT  *, (select usuarios.nombre from usuarios where usuarios.id=comercios.id_user) as user FROM comercios WHERE id_user = $id";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute();
+		$consulta =$reg->fetchAll();
+		if ($consulta) {
+			return $consulta;
+		}else{
+			return 0;
+		} }
 	public function registrar_usuario($rol =4, $nombre,  $contrasena,$correo,$telefono,$img ){
    
         $conexion = new Conexion();
