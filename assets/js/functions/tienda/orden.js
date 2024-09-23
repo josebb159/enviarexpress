@@ -42,6 +42,8 @@ function registrar(img){
 		'descripcion': $("#descripcionagg").val(),
 		'cantidad': $("#cantidadagg").val(),
 		'valor': $("#valoragg").val(),
+		'ordenExternal': $("#ordenagg").val(),
+		'tiempo': $("#tiempoagg").val(),
 		'estado':'1'
 }	,'../controller/ordenController.php').then(function(result){
 

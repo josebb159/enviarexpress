@@ -2,6 +2,8 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 session_start(); 
 include "static/seguridad_sesion.php";
+
+include "../model/orden.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,6 +187,19 @@ include "static/seguridad_sesion.php";
                                 </div>
                             </div>
                             <div data-simplebar style="max-height: 230px;">
+
+                                <?php
+
+$n_orden  = new orden();
+
+	
+$resultado = $n_orden  -> buscar_orden_tienda_general($_SESSION['id_comercio_asociate']);
+
+foreach ($resultado as $key) {
+
+
+                                ?>
+                            
                                 <a href="" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="avatar-xs me-3">
@@ -193,57 +208,15 @@ include "static/seguridad_sesion.php";
                                             </span>
                                         </div>
                                         <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Your order is placed</h6>
+                                            <h6 class="mt-0 mb-1">Tienes una nueva orden</h6>
                                             <div class="font-size-12 text-muted">
-                                                <p class="mb-1">If several languages coalesce the grammar</p>
+                                                <p class="mb-1">Realizada por la tienta: <?= $key['tienda']; ?></p>
                                                 <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex">
-                                        <img src="../assets/images/users/avatar-3.jpg"
-                                            class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">James Lemire</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">It will seem like simplified English.</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex">
-                                        <div class="avatar-xs me-3">
-                                            <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                <i class="ri-checkbox-circle-line"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">If several languages coalesce the grammar</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex">
-                                        <img src="../assets/images/users/avatar-4.jpg"
-                                            class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Salena Layfield</h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
+<?php } ?>                             
                             </div>
                             <div class="p-2 border-top">
                                 <div class="d-grid">

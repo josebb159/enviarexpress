@@ -948,6 +948,35 @@ class api{
     }
 
 
+    public function entregado_orden_img($uid,$id_orden, $img){
+
+        $conexion = new Conexion();
+
+        $sql = "SELECT * FROM usuarios where  uid='".$uid."' ;";
+      // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+        $reg = $conexion->prepare($sql);
+
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+        
+      
+        if ($consulta) {
+           
+          
+           $sql2 = "UPDATE orden SET  img=".$img."  where  id_orden='".$id_orden."' ;";
+           // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+             $reg2 = $conexion->prepare($sql2);
+             $reg2->execute();
+             $reg2->fetchAll();
+
+            //echo json_encode($consulta);
+          
+        }else{
+            return http_response_code(404);
+        }
+                        
+    }
+
 
     public function registrar_mandado($id_cliente,  $descripcion,  $direccion, $telefono, $id_recogida,$id_entrega, $tipo_servicio,  $metodo_pago, $distancia,  $valor, $total)  {
    

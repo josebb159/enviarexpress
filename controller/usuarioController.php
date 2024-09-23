@@ -64,6 +64,7 @@ if(isset($_POST['id_comercio_asociate'])){
 		}
 	break;
      case 'login':
+     
        $n_usuario  = new usuario();
 
 

@@ -135,11 +135,11 @@ class usuario {
 
         $reg->execute();
         $consulta =$reg->fetchAll();
-        
+    
       
         if ($consulta) {
             foreach ($consulta as $key) {
-        
+         
                 $_SESSION['nombre'] =  $key['nombre'];
            
                 $_SESSION['id_usuario'] =  $key['id'];

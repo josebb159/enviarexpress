@@ -23,18 +23,19 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">orden</h4>
+						<h4 class="card-title">Orden</h4>
 						<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 							<thead>
 								<th>ID</th>
-								<th>descripcion</th>
+								<th>Número de orden</th>
+								<th>Descripción</th>
 							
-								<th>valor</th>
+								<th>Valor</th>
 								<th>Estado</th>
 								<th>Cliente</th>
 								<th>Repartidor</th>
 								<th>Metodo de pago</th>
-								<th>activo</th>
+								<th>Activo</th>
 								<th>Opciones</th>
 							<thead>
 							<tbody id="datos">
@@ -132,6 +133,28 @@
 					</div>
 				
 						<div class="row">
+						<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Número de orden</label>
+									<input type="text" class="form-control" id="ordenagg" placeholder="descripcion" value="Número de orden" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Tiempo de espera</label>
+									<select class="form-control" id="tiempoagg">
+										<option value="0">Seleccione</option>	
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+										<option value="20">20</option>
+										<option value="25">25</option>
+										<option value="30">30</option>
+										<option value="35">35</option>
+										<option value="40">40</option>
+									</select>
+								</div>
+							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">descripcion</label>

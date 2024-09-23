@@ -48,6 +48,16 @@ if(isset($_POST['direccion'])){
 
 }
 
+if(isset($_POST['ordenExternal'])){
+	$ordenExternal =  $_POST['ordenExternal'];
+
+}
+
+
+if(isset($_POST['tiempo'])){
+	$tiempo =  $_POST['tiempo'];
+
+}
 
 
 if(isset($_POST['estado'])){
@@ -84,7 +94,7 @@ switch ($op) {
 	case 'registrar_orden':
 		$n_orden  = new orden();
 		$id_usuario =  $n_orden  ->registrar_temporal_user($cliente, $telefono, $direccion);
-		$resultado = $n_orden  -> registrar_orden_tienda('',$descripcion,$cantidad,$valor,$_SESSION['id_usuario'],$id_usuario ,$img,$tipo_pago );
+		$resultado = $n_orden  -> registrar_orden_tienda('',$descripcion,$cantidad,$valor,$_SESSION['id_usuario'],$id_usuario ,$img,$tipo_pago, $ordenExternal, $tiempo );
 		//echo $resultado;
 	break;
 	case 'buscar':
@@ -147,6 +157,8 @@ switch ($op) {
 	break;
 	case 'buscar_orden_tienda_general':
 		$n_orden  = new orden();
+
+	
 		$resultado = $n_orden  -> buscar_orden_tienda_general($_SESSION['id_comercio_asociate']);
 		if($resultado==0){
 			exit();
@@ -157,6 +169,26 @@ switch ($op) {
 			}else{
 				$st = '';
 			}
+
+
+			$date = $key['fecha_registro'];
+
+			// Convertir la cadena a un objeto DateTime
+			$dateTime = new DateTime($date);
+			
+			// Sumarle 5 minutos
+			$dateTime->modify('+'.$key['tiempo'].' minutes');
+			
+			// Obtener la fecha actual
+			$currentDateTime = new DateTime();
+			
+			// Comparar si es mayor o menor
+			if ($dateTime < $currentDateTime) {
+			//Your order is placed	echo "La fecha es mayor que la fecha actual.";
+			} else {
+			//	continue; 
+			}
+	
 
 			$status_envio="";
 			if($key['status_orden_envio']=="1"){
@@ -175,7 +207,7 @@ switch ($op) {
 		?>
 		<tr>
 			<td><?= $key['id_orden']; ?></td>
-			<td><?= $key['nombre_cliente']; ?></td>
+			<td>  <?= $key['nombre_cliente']; ?></td>
 			<td><?= $key['direccion']; ?></td>
 			<td><?= $key['telefono']; ?></td>
 			<td><?= $key['tienda']; ?></td>
@@ -307,6 +339,7 @@ switch ($op) {
 		?>
 		<tr>
 			<td><?= $key['id_orden']; ?></td>
+			<td><?= $key['orden_external']; ?></td>
 			<td><?= $key['descripcion']; ?></td>
 			<td><?= $key['valor']; ?></td>
 			<td><?= $status_envio; ?></td>

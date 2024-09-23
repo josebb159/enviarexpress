@@ -348,8 +348,30 @@ $json_data = json_encode($_POST);
       break;
       case 'entregado_orden':
          $n_api  = new api();
-         $resultado = $n_api -> entregado_orden($_POST['uid'],$_POST['id_orden']);
-         echo $resultado;
+       //  $resultado = $n_api -> entregado_orden($_POST['uid'],$_POST['id_orden']);
+       //  echo $resultado;
+         
+      break;
+      case 'entregado_orden_img':
+         $n_api  = new api();
+
+       
+         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+            // Obtiene la ruta temporal del archivo
+            $ruta_temporal = $_FILES['imagen']['tmp_name'];
+    
+            // Define la ruta de destino para guardar la imagen
+            $ruta_destino = '../assets/upload/evidencia/' . basename($_FILES['imagen']['name']);
+    
+            // Mueve la imagen a la ruta de destino
+            if (move_uploaded_file($ruta_temporal, $ruta_destino)) {
+                   $resultado = $n_api -> entregado_orden_img($_POST['uid'],$_POST['id_orden'],$ruta_destino );
+            } else {
+                echo "Error al subir la imagen.";
+            }
+        } else {
+            echo "No se ha subido ninguna imagen.";
+        }
          
       break;
       case 'registrar_usuario_only':
