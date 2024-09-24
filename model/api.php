@@ -963,7 +963,7 @@ class api{
         if ($consulta) {
            
           
-           $sql2 = "UPDATE orden SET  img='".$img."'  where  id_orden='".$id_orden."' ;";
+           $sql2 = "UPDATE orden SET  evidencia_img='".$img."'  where  id_orden='".$id_orden."' ;";
            // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
              $reg2 = $conexion->prepare($sql2);
              $reg2->execute();
