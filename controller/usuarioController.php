@@ -69,10 +69,11 @@ if(isset($_POST['id_comercio_asociate'])){
 
 
         $resultado = $n_usuario -> login( $correo, $contrasena);
+        
          if($resultado ==TRUE){
             $n_usuario -> obtener_rol();
          } 
-         echo $resultado;
+        // echo $resultado;
 
         
          break;

@@ -356,9 +356,9 @@ $json_data = json_encode($_POST);
          $n_api  = new api();
 
        
-         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+         if (isset($_FILES['file'])) {
             // Obtiene la ruta temporal del archivo
-            $ruta_temporal = $_FILES['imagen']['tmp_name'];
+            $ruta_temporal = $_FILES['file']['tmp_name'];
     
             // Define la ruta de destino para guardar la imagen
             $ruta_destino = '../assets/upload/evidencia/' . basename($_FILES['imagen']['name']);
