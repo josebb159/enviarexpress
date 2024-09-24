@@ -28,6 +28,7 @@
 							<thead>
 								<tr>
                                     <th>ID</th>
+									<th>Factura</th>
                                     <th>Nombre</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th> 
