@@ -296,6 +296,7 @@ switch ($op) {
 		?>
 		<tr>
 			<td><?= $key['id_orden']; ?></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/evidencia/<?= $key['evidencia_img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/evidencia/<?= $key['evidencia_img']; ?>')"></td>
 			<td><?= $key['nombre_cliente']; ?></td>
 			<td><?= $key['direccion']; ?></td>
 			<td><?= $key['telefono']; ?></td>
