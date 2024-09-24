@@ -3,7 +3,27 @@
 <link href="../assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="../assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="../assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<style>
+        #preview-image {
+            max-width: 100px;
+            max-height: 100px;
+	
+        }
+		#image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px; /* Establece la altura deseada del contenedor */
+            border: 1px solid #ccc; /* Para visualizar el contenedor */
+        }
 
+        
+		#preview-image2 {
+            max-width: 100px;
+            max-height: 100px;
+	
+        }
+    </style>
 <div class="page-content">
 	<div class="container-fluid">
 		<div class="row">
