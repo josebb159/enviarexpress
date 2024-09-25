@@ -43,9 +43,33 @@ class api{
 
         $reg->execute();
         $consulta =$reg->fetchAll();
+
+        
         
       
         if ($consulta) {
+
+            foreach ($consulta as $key) {
+                if($key['uid']==""){
+                $uid= substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
+
+                $sql = "UPDATE usuarios SET uid='".$uid."' where  email='".$email."' ";
+                $_SESSION['uid'] =  $uid;
+                $reg = $conexion->prepare($sql);
+                $reg->execute();
+
+                $sql = "SELECT  * FROM usuarios where  email='".$email."'  and contrasena='".$password."' and estado=1";
+                // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
+          
+                  $reg = $conexion->prepare($sql);
+          
+                  $reg->execute();
+                  $consulta =$reg->fetchAll();
+
+                }
+
+            }
+            
             echo json_encode($consulta);
 
     
