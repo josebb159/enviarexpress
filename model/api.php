@@ -1391,7 +1391,7 @@ public function obtener_domiciliario($uid){
         $conexion = new Conexion();
      
 
-        $sql = "SELECT orden.*, 0 as distancia, direccion.telefono as tele_direccion, direccion.latitude as latitude_direccion, direccion.longitude as longitude_direccion, (select usuarios.nombre from usuarios where usuarios.id=orden.id_cliente) as cliente FROM orden, usuarios,direccion WHERE usuarios.id=orden.id_domiciliario and direccion.id_direccion=orden.id_entrega and orden.status_orden_envio<5 and usuarios.uid='".$uid."'";
+        $sql = "SELECT orden.*, 0 as distancia, direccion.telefono as tele_direccion, direccion.latitude as latitude_direccion, direccion.longitude as longitude_direccion, (select usuarios.nombre from usuarios where usuarios.id=orden.id_cliente) as cliente FROM orden left join direccion on direccion.id_direccion=orden.id_entrega left join usuarios on usuarios.id=orden.id_domiciliario where orden.status_orden_envio<5 and usuarios.uid='".$uid."'";
       // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
         $reg = $conexion->prepare($sql);
 
