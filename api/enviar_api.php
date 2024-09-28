@@ -20,6 +20,14 @@ $json_data = json_encode($_POST);
          echo $resultado;
          
       break;
+      case 'get_asignados':
+ 
+         $n_api  = new api();
+         $resultado = $n_api -> ordenes_asignadas($_POST['uid']);
+         echo $resultado;
+         
+      break;
+
       case 'set_location':
  
          $n_api  = new api();
