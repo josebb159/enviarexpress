@@ -1658,6 +1658,19 @@ public function obtener_domiciliario($uid){
      }
 
 
+     public function recoger_pedido($id_orden){
+
+        $conexion = new Conexion();
+     
+
+        $sql = "UPDATE orden SET recodigo='1' where  id_orden='".$id_orden."' ";
+        $reg = $conexion->prepare($sql);
+
+        $reg->execute();
+   
+
+                        
+    }
 
 
 

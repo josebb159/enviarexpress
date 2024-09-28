@@ -27,6 +27,13 @@ $json_data = json_encode($_POST);
          echo $resultado;
          
       break;
+      case 'recoger_pedido':
+         header('Content-Type: application/json');
+         $n_api  = new api();
+         $resultado = $n_api -> recoger_pedido($_POST['uid']);
+         echo $resultado;
+         
+      break;
 
       case 'set_location':
  
