@@ -1665,9 +1665,9 @@ public function obtener_domiciliario($uid){
 
         $sql = "UPDATE orden SET recodigo='1' where  id_orden='".$id_orden."' ";
         $reg = $conexion->prepare($sql);
-
+        echo $sql;
         $reg->execute();
-   
+        
 
                         
     }
