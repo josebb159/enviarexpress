@@ -21,7 +21,7 @@ $json_data = json_encode($_POST);
          
       break;
       case 'get_asignados':
- 
+         header('Content-Type: application/json');
          $n_api  = new api();
          $resultado = $n_api -> ordenes_asignadas($_POST['uid']);
          echo $resultado;
