@@ -1411,14 +1411,7 @@ public function obtener_domiciliario($uid){
     public function recoger_list($uid){
      
         $conexion = new Conexion();
-        $sql = "SELECT orden.* , (
-    SELECT
-        direccion
-    FROM
-        temporaluser
-    WHERE
-        orden.id_user_external = temporaluser.id
-) AS direccion, (SELECT comercios.nombre from comercios WHERE comercios.id_user=orden.id_tienda) as tienda,  0 as distancia, direccion.telefono as tele_direccion, (SELECT comercios.latitude from comercios WHERE comercios.id_user=orden.id_tienda)  as latitude, (SELECT comercios.longitude from comercios WHERE comercios.id_user=orden.id_tienda) as longitude, (select usuarios.nombre from usuarios where usuarios.id=orden.id_cliente) as cliente FROM orden left join direccion on direccion.id_direccion=orden.id_entrega left join usuarios on usuarios.id=orden.id_domiciliario where orden.status_orden_envio<5 and usuarios.uid='".$uid."' and orden.recogido=1";
+        $sql = "SELECT orden.* , (SELECT comercios.nombre from comercios WHERE comercios.id_user=orden.id_tienda) as tienda,  0 as distancia, direccion.telefono as tele_direccion, (SELECT comercios.latitude from comercios WHERE comercios.id_user=orden.id_tienda)  as latitude, (SELECT comercios.longitude from comercios WHERE comercios.id_user=orden.id_tienda) as longitude, (select usuarios.nombre from usuarios where usuarios.id=orden.id_cliente) as cliente FROM orden left join direccion on direccion.id_direccion=orden.id_entrega left join usuarios on usuarios.id=orden.id_domiciliario where orden.status_orden_envio<5 and usuarios.uid='".$uid."' and orden.recogido=1";
       // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
         $reg = $conexion->prepare($sql);
 
