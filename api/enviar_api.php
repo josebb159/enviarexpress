@@ -37,7 +37,7 @@ $json_data = json_encode($_POST);
          $numero = 1;
          foreach ($id_orden as $orden) {
             var_dump($orden);
-            $resultado = $n_api -> orden_list($orden, $numero);
+            $resultado = $n_api -> orden_list($orden['id'], $numero);
             $numero++;
          }
          
