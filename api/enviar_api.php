@@ -27,6 +27,22 @@ $json_data = json_encode($_POST);
          echo $resultado;
          
       break;
+      case 'orden_list':
+       
+         $n_api  = new api();
+
+         $id_orden = json_decode($_POST['id_orden'], true);
+
+         // Ahora $id_orden es un array asociativo de los objetos JSON que enviaste
+         $numero = 1;
+         foreach ($id_orden as $orden) {
+            $resultado = $n_api -> orden_list($orden, $numero);
+            $numero++;
+         }
+         
+         echo $resultado;
+         
+      break;
       case 'recoger_list':
          header('Content-Type: application/json');
          $n_api  = new api();

@@ -1703,6 +1703,21 @@ public function obtener_domiciliario($uid){
     }
 
 
+    public function orden_list($id_orden, $orden_list){
+
+        $conexion = new Conexion();
+     
+
+        $sql = "UPDATE orden SET orden_list=".$orden_list." where  id_orden='".$id_orden."' ";
+        $reg = $conexion->prepare($sql);
+        echo $sql;
+        $reg->execute();
+        
+
+                        
+    }
+
+
 
 }
 
