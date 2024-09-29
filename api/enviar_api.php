@@ -36,6 +36,7 @@ $json_data = json_encode($_POST);
          // Ahora $id_orden es un array asociativo de los objetos JSON que enviaste
          $numero = 1;
          foreach ($id_orden as $orden) {
+            var_dump($orden);
             $resultado = $n_api -> orden_list($orden, $numero);
             $numero++;
          }
