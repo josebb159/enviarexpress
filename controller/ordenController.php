@@ -153,7 +153,10 @@ switch ($op) {
 	case 'asignar':
 
 		$n_orden  = new orden();
-		$resultado = $n_orden  -> enrutar($id, $_POST['domiciliario'], $_SESSION['id_usuario']);
+
+		var_dump($_POST['domiciliario']);
+		var_dump($_SESSION['id_usuario']);
+		//$resultado = $n_orden  -> enrutar($id, $_POST['domiciliario'], $_SESSION['id_usuario']);
 	break;
 	case 'buscar_orden_tienda_general':
 		$n_orden  = new orden();
