@@ -366,11 +366,8 @@ WHERE
 	$results = $reg->fetchAll(PDO::FETCH_ASSOC);
 	return json_encode($results);
 	}
-	public function buscar_domiciliarios_disponibles(){$sql = "SELECT u.id, u.nombre, u.id_rol
-		FROM usuarios u
-		LEFT JOIN rutas r ON u.id = r.id_usuario AND r.estado = 2
-		WHERE u.id_rol=3 and r.id_rutas IS NULL OR r.estado = 2 and 
-		u.id_rol=3;";
+	public function buscar_domiciliarios_disponibles(){$sql = "SELECT id, nombre,id_rol
+		FROM usuarios where id_rol=3;";
 
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();
