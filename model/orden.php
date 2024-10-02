@@ -380,18 +380,7 @@ WHERE
 		}
 	
 	public function buscar_domiciliarios_disponibles_gps($id){$sql = "SELECT u.latitud, u.longitud, u.id, u.nombre, u.id_rol
-			FROM usuarios u
-			LEFT JOIN rutas r ON u.id = r.id_usuario AND r.estado = 2
-			WHERE"; 
-			if($id && $id!=""){
-				$sql= $sql."  u.id=$id and ";
-			}
-
-			$sql= $sql." u.id_rol=3 and r.id_rutas IS NULL OR r.estado = 2 and 
-			u.id_rol=3";
-			if($id && $id!=""){
-				$sql= $sql." and u.id=$id";
-			}
+			FROM usuarios u"; 
 
 	
 	
