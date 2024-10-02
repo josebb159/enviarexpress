@@ -380,7 +380,7 @@ WHERE
 		}
 	
 	public function buscar_domiciliarios_disponibles_gps($id){$sql = "SELECT u.latitud, u.longitud, u.id, u.nombre, u.id_rol
-			FROM usuarios u"; 
+			FROM usuarios u where u.id_rol=3 and u.id=".$id.";"; 
 
 	
 	
