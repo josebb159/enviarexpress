@@ -350,7 +350,7 @@ WHERE
 	public function enrutar($id, $id_domiciliario, $id_enrutador){
 		$sql = "UPDATE `orden` SET id_domiciliario=:id_domiciliario, status_orden_envio=2 WHERE id_orden=:id";
 		$reg = $this->conexion->prepare($sql);
-		$reg->execute(array(':id' => $id, ':id_domiciliario' => $id_domiciliario, ':id_enrutador' => $id_enrutador));
+		$reg->execute(array(':id' => $id, ':id_domiciliario' => $id_domiciliario));
 	}
 	public function eliminar_orden($id){$sql = "DELETE FROM `orden`  WHERE id_orden=:id";
 	$reg = $this->conexion->prepare($sql);
