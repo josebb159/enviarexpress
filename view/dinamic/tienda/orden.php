@@ -136,7 +136,7 @@
 						<div class="col-md-6">
 								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">Número de orden</label>
-									<input type="text" class="form-control" id="ordenagg" placeholder="descripcion" value="Número de orden" required>
+									<input type="text" class="form-control" id="ordenagg" placeholder="Número de orden" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
