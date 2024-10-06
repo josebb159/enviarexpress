@@ -22,6 +22,10 @@ if($rol=="Usuario Nivel 1"){
 
     include 'menu_tienda.php';
 
+}elseif($rol=="recaudador"){
+
+    include 'menu_recaudador.php';
+
 }elseif($rol=="administrador"){
   
     include 'menu.php';

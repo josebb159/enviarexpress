@@ -27,6 +27,10 @@ if($rol=="Usuario Nivel 1"){
 
     include 'view_controller_admin.php';
 
+}elseif($rol=="recaudador"){
+
+    include 'view_controller_recaudador.php';
+
 }else{}
 
 
