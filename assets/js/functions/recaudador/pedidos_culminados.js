@@ -54,10 +54,10 @@ function recaudar(id){
 		'op':'recaudar',
 		'id': id,
 }	,'../controller/ordenController.php');
-	if(result=="1"){
+	
 		alert_success_recuado();
 		ver_registros();
-	}
+	
 }
 
 function eliminar( id ){
