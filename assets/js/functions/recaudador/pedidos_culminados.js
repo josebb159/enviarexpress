@@ -8,7 +8,7 @@ function ver_registros(){
 	var table = $('#datatable-buttons').DataTable();
 	table.destroy();
 	var result = function_ajax({
-		'op':'buscar_orden_tienda_general_culminado'
+		'op':'buscar_orden_tienda_general_culminado_recaudar'
 }	,'../controller/ordenController.php').then(function(result){
 	$("#datos").html(result);
 	$('#datatable-buttons').DataTable( {
@@ -45,6 +45,17 @@ function cambiar_estado(id, estado){
 }	,'../controller/usuarioController.php');
 	if(result=="1"){
 		alert_success();
+	}
+}
+
+function recaudar(id){
+
+	var result = function_ajax({
+		'op':'recaudar',
+		'id': id,
+}	,'../controller/ordenController.php');
+	if(result=="1"){
+		alert_success_recuado();
 	}
 }
 
@@ -128,6 +139,15 @@ function modificar(img){
 function alert_success(){
 	Swal.fire({
 		title: 'Listo, has agregado un registro!',
+		text: 'Preciona el boton para aceptar!',
+		icon: 'success',
+		confirmButtonColor: '#5664d2'
+	});
+}
+
+function alert_success_recuado(){
+	Swal.fire({
+		title: 'Listo, has recaudado la orden!',
 		text: 'Preciona el boton para aceptar!',
 		icon: 'success',
 		confirmButtonColor: '#5664d2'

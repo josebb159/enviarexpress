@@ -312,6 +312,51 @@ switch ($op) {
 		}
 		
 	break;
+	case 'buscar_orden_tienda_general_culminado_recaudar':
+		$n_orden  = new orden();
+		$resultado = $n_orden  -> buscar_orden_tienda_general_culminado_recaudar($_SESSION['id_comercio_asociate']);
+		if($resultado==0){
+			exit();
+		}
+		foreach ($resultado as $key) {
+			if($key['estado']=='1'){
+				$st = 'checked';
+			}else{
+				$st = '';
+			}
+
+			$status_envio="";
+			if($key['status_orden_envio']=="1"){
+				$status_envio="En espera de Domiciliario";
+			}else if($key['status_orden_envio']=="2"){
+				$status_envio="Aceptado por repartidor";
+			}else if($key['status_orden_envio']=="3"){
+				$status_envio="En camino";
+			}else if($key['status_orden_envio']=="4"){
+				$status_envio="Entregado";
+			}else if($key['status_orden_envio']=="5"){
+				$status_envio="Cancelado";
+			}
+			$data_list = ",'".$key['nombre_cliente']."','".$key['nombre_repartidor']."'";
+		$key['id']=$key['id_orden'];
+		?>
+		<tr>
+			<td><?= $key['id_orden']; ?></td>
+			<td><img class="img-thumbnail preview-image2" src="../assets/upload/evidencia/<?= $key['evidencia_img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/evidencia/<?= $key['evidencia_img']; ?>')"></td>
+			<td><?= $key['valor']; ?></td>
+			<td><?= $key['direccion']; ?></td>
+			<td><?= $key['telefono']; ?></td>
+			<td><?= $key['tienda']; ?></td>
+			<td><?= $status_envio; ?></td>
+		
+			<td>
+				<button type="button" onclick=" recaudar('<?php echo $key['id']; ?>')"  class="btn btn-success waves-effect waves-light" >Recaudar</button>
+			</td>
+		</tr>
+		<?php
+		}
+		
+	break;
 	case 'buscar_orden_tienda':
 		$n_orden  = new orden();
 		$resultado = $n_orden  -> buscar_orden_tienda($_SESSION['id_usuario']);
@@ -372,6 +417,11 @@ switch ($op) {
 	case 'cambiar_estado':
 		$n_orden  = new orden();
 		$resultado = $n_orden  -> cambiar_estado_orden($id, $estado);
+		echo 1;
+	break;
+	case 'recaudar':
+		$n_orden  = new orden();
+		$resultado = $n_orden  -> recaudar($id);
 		echo 1;
 	break;
 	case 'eliminar':

@@ -49,12 +49,12 @@
 								<tr>
                                     <th>ID</th>
 									<th>Evidencia</th>
-                                    <th>Nombre</th>
+                                    <th>Valor</th>
                                     <th>Dirección</th>
                                     <th>Teléfono</th> 
                                     <th>Tienda</th>
                                     <th>Estado</th>
-                                    <th>Enrutar</th>
+                                    <th>Opción</th>
                                 </tr>
 							<thead>
 							<tbody id="datos">
