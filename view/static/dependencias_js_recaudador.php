@@ -3,7 +3,7 @@
 if(isset($_GET['view'])){
 
 	if($_GET['view']=="pedidos_culminados"){
-		echo "<script src='../assets/js/functions/enrutador/pedidos_culminados.js'></script>";
+		echo "<script src='../assets/js/functions/recaudador/pedidos_culminados.js'></script>";
 	}
 
 
@@ -11,7 +11,7 @@ if(isset($_GET['view'])){
     
     
 }else{
-    echo "<script src='../assets/js/functions/enrutador/dashboard.js'></script>";
+    echo "<script src='../assets/js/functions/recaudador/dashboard.js'></script>";
 }
     
     
