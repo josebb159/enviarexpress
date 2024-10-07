@@ -27,6 +27,13 @@ $json_data = json_encode($_POST);
          echo $resultado;
          
       break;
+      case 'get_orden_on_proccess':
+         header('Content-Type: application/json');
+         $n_api  = new api();
+         $resultado = $n_api -> get_orden_on_proccess($_POST['uid']);
+         echo $resultado;
+         
+      break;
       case 'orden_list':
        
          $n_api  = new api();
