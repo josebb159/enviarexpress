@@ -59,7 +59,6 @@
 							<tbody id="datos">
 							</tbody>
 						</table>
-						<button type="button"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Agregar delivery</button>
 					</div>
 				</div>
 			</div>
