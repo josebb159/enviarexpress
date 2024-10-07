@@ -106,7 +106,7 @@ if(isset($_POST['id_comercio_asociate'])){
                    <tr>
                                                <td><?php echo $key['id']; ?></td>
                                                <td><?php echo $key['nombre']; ?></td>
-                                               <td><img class="img-thumbnail preview-image2" src="../assets/upload/user/<?= $key['img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/user/<?= $key['img']; ?>')"></td>
+                                               <td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/user/<?= $key['img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/user/<?= $key['img']; ?>')"></td>
                                      
                                            
                                                <td><?php echo $key['rol']; ?></td>
@@ -155,7 +155,7 @@ if(isset($_POST['id_comercio_asociate'])){
                    <tr>
                                                <td><?php echo $key['id']; ?></td>
                                                <td><?php echo $key['nombre']; ?></td>
-                                               <td><img class="img-thumbnail preview-image2" src="../assets/upload/user/<?= $key['img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/user/<?= $key['img']; ?>')"></td>
+                                               <td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/user/<?= $key['img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/user/<?= $key['img']; ?>')"></td>
                                      
                                            
                                                <td><?php echo $key['rol']; ?></td>

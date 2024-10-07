@@ -180,13 +180,13 @@ switch ($op) {
 			<td><?= $key['id']; ?></td>
 			<td><?= $key['nombre']; ?></td>
 			<td><?= $key['cedula']; ?></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_cedula']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_cedula']; ?>')"></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_licencia']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_licencia']; ?>')"></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_soat']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_soat']; ?>')"></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_tecnomecanica']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_tecnomecanica']; ?>')"></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_tarjeta']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_tarjeta']; ?>')"></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['propiedad']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['propiedad']; ?>')"></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/delivery/<?= $key['foto_facial']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_facial']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/delivery/<?= $key['foto_cedula']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_cedula']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image20" style="max-width: 100px; max-height: 100px;" src="../assets/upload/delivery/<?= $key['foto_licencia']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_licencia']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/delivery/<?= $key['foto_soat']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_soat']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/delivery/<?= $key['foto_tecnomecanica']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_tecnomecanica']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/delivery/<?= $key['foto_tarjeta']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_tarjeta']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/delivery/<?= $key['propiedad']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['propiedad']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/delivery/<?= $key['foto_facial']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/delivery/<?= $key['foto_facial']; ?>')"></td>
 			<td><?= $key['direccion']; ?></td>
 			<td><?= $key['numero']; ?></td>
 			<td><?= $key['numero_emergencia']; ?></td>
