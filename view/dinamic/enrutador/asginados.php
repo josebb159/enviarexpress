@@ -54,7 +54,6 @@
                                     <th>Teléfono</th> 
                                     <th>Tienda</th>
                                     <th>Estado</th>
-                                    <th>Enrutar</th>
                                 </tr>
 							<thead>
 							<tbody id="datos">

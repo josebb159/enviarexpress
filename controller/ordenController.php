@@ -259,9 +259,6 @@ switch ($op) {
 			<td><?= $key['tienda']; ?></td>
 			<td><?= $status_envio; ?></td>
 		
-			<td>
-				<button type="button" onclick="renderizemap(); showdata('<?php echo $key['id']; ?>','<?php echo $key['direccion']; ?>','<?php echo $key['telefono']; ?>','<?php echo $key['latitude_empre']; ?>','<?php echo $key['longitude_empre']; ?>','<?php echo $key['nombre_empre']; ?>')"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
-			</td>
 		</tr>
 		<?php
 		}
@@ -303,10 +300,6 @@ switch ($op) {
 			<td><?= $key['telefono']; ?></td>
 			<td><?= $key['tienda']; ?></td>
 			<td><?= $status_envio; ?></td>
-		
-			<td>
-				<button type="button" onclick="renderizemap(); showdata('<?php echo $key['id']; ?>','<?php echo $key['direccion']; ?>','<?php echo $key['telefono']; ?>','<?php echo $key['latitude_empre']; ?>','<?php echo $key['longitude_empre']; ?>','<?php echo $key['nombre_empre']; ?>')"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar">Enrutar</button>
-			</td>
 		</tr>
 		<?php
 		}
