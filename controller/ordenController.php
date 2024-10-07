@@ -335,7 +335,7 @@ switch ($op) {
 		?>
 		<tr>
 			<td><?= $key['id_orden']; ?></td>
-			<td><img class="img-thumbnail preview-image2" src="../assets/upload/evidencia/<?= $key['evidencia_img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/evidencia/<?= $key['evidencia_img']; ?>')"></td>
+			<td><img class="img-thumbnail preview-image2" style="max-width: 100px; max-height: 100px;" src="../assets/upload/evidencia/<?= $key['evidencia_img']; ?>" alt="Mi imagen" onclick="openModal('../assets/upload/evidencia/<?= $key['evidencia_img']; ?>')"></td>
 			<td><?= $key['valor']; ?></td>
 			<td><?= $key['direccion']; ?></td>
 			<td><?= $key['telefono']; ?></td>
