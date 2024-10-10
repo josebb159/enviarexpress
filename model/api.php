@@ -928,7 +928,7 @@ class api{
            $sql2 = "UPDATE mandado SET  estado=5  where  id_mandado='".$id_mandado."' ;";
            // $sql = "SELECT  * FROM usuarios where usuario='jose' and contrasena='123' and estado=1";
              $reg2 = $conexion->prepare($sql2);
-     
+            echo $sql2;
              $reg2->execute();
              $reg2->fetchAll();
 
