@@ -394,8 +394,8 @@ $json_data = json_encode($_POST);
       break;
       case 'entregado_orden':
          $n_api  = new api();
-       //  $resultado = $n_api -> entregado_orden($_POST['uid'],$_POST['id_orden']);
-       //  echo $resultado;
+         $resultado = $n_api -> entregado_orden($_POST['uid'],$_POST['id_orden']);
+         echo $resultado;
          
       break;
       case 'entregado_orden_img':
