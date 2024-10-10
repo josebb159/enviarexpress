@@ -15,15 +15,11 @@ function Asignar(nombreImagen){
 		'domiciliario': $("#rolagg").val(),
 		'estado':'1'
 }	,'../controller/ordenController.php').then(function(result){
-	if(result=="1"){
+	
 	
 		alert_success();
 		ver_registros();
-		$("#nombreagg").val("");
-		$("#correoagg").val("");
-		$("#telefonoagg").val("");
-		$("#contrasenaagg").val("");
-	}
+	
 	}).catch(function(error) {console.log('Error:', error);});
 }
 
@@ -189,7 +185,7 @@ function modificar(img){
 
 function alert_success(){
 	Swal.fire({
-		title: 'Listo, has agregado un registro!',
+		title: 'Listo, has asignado el domiciliario!',
 		text: 'Preciona el boton para aceptar!',
 		icon: 'success',
 		confirmButtonColor: '#5664d2'
