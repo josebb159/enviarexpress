@@ -2,6 +2,7 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/orden.php';
 include '../model/notificacion_correo.php';
+include '../model/notificacion.php';
 session_start();
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
@@ -93,8 +94,10 @@ switch ($op) {
 	break;
 	case 'registrar_orden':
 		$n_orden  = new orden();
+		$n_notificacion = new notificacion();
 		$id_usuario =  $n_orden  ->registrar_temporal_user($cliente, $telefono, $direccion);
 		$resultado = $n_orden  -> registrar_orden_tienda('',$descripcion,$cantidad,$valor,$_SESSION['id_usuario'],$id_usuario ,$img,$tipo_pago, $ordenExternal, $tiempo );
+		$n_notificacion -> registrar_notificacion("Registro nueva orden", "La orden ".$resultado." fue registrada", false, $_SESSION['id_usuario'], "orden", $resultado);
 		//echo $resultado;
 	break;
 	case 'buscar':
@@ -153,8 +156,9 @@ switch ($op) {
 	case 'asignar':
 
 		$n_orden  = new orden();
-
+		$n_notificacion = new notificacion();
 		$resultado = $n_orden  -> enrutar($id, $_POST['domiciliario'], $_SESSION['id_usuario']);
+		$n_notificacion -> registrar_notificacion("Domiciliario enrutado", "El domiciliario con el id ".$_POST['domiciliario']." fue enrutado", false, $_SESSION['id_usuario'], "orden", $_POST['domiciliario']);
 	break;
 	case 'buscar_orden_tienda_general':
 		$n_orden  = new orden();
@@ -395,8 +399,9 @@ switch ($op) {
 						Acciones
 						<i class="mdi mdi-chevron-down"></i>
 						</button>
+						<!-- esta es la estructura de la funcion ver_lista ver_lista(id_orden,clientever,telefono,direccion,orden,tiempo,descripcion,imagen,cantidad,tipo_pago,valor) -->
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-														<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#vista_motal"  onclick="ver_lista(<?php echo $key['id_orden'].$data_list; ?>)">Ver listado compra</a>
+							<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal_ver"  onclick="ver_lista('<?php echo $key['id_orden']; ?>', '<?php echo $key['nombre_cliente']; ?>', '<?php echo $key['telefono']; ?>', '<?php echo $key['direccion']; ?>',  '<?php echo $key['orden_external']; ?>', '<?php echo $key['tiempo']; ?>', '<?php echo $key['descripcion']; ?>', '<?php echo $key['img']; ?>' , '1', '<?php echo $key['metodo_pago']; ?>', '<?php echo $key['valor']; ?>')">Ver listado compra</a>
 							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_orden']; ?>)">Cancelar</a>
 						</div>
 					</div>
@@ -419,7 +424,9 @@ switch ($op) {
 	break;
 	case 'eliminar':
 		$n_orden  = new orden();
+		$n_notificacion = new notificacion();
 		$resultado = $n_orden  -> eliminar_orden($id);
+		$n_notificacion -> registrar_notificacion("Orden eliminada", "La orden con el id ".$id." fue eliminado", false, $_SESSION['id_usuario'], "orden", $id);
 		echo 1;
 	break;
 	case 'buscar_select':

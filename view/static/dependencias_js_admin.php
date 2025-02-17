@@ -75,7 +75,9 @@ if(isset($_GET['view'])){
 	if($_GET['view']=="logs_api"){
 		echo "<script src='../assets/js/functions/administrador/logs.js'></script>";
 	}
-	
+	if($_GET['view']=="notificaciones"){
+		echo "<script src='../assets/js/functions/administrador/notificaciones.js'></script>";
+	}
 	
 	if($_GET['view']=="publicidad"){
 		echo "<script src='../assets/js/functions/administrador/publicidad.js'></script>";

@@ -71,6 +71,9 @@ if(isset($_GET['view'])){
 	elseif($_GET['view']=="logs_api"){
 		include 'dinamic/administrador/logs.php';
 	}
+	elseif($_GET['view']=="notificaciones"){
+		include 'dinamic/administrador/notificaciones.php';
+	}
 	
 	elseif($_GET['view']=="publicidad"){
 		include 'dinamic/administrador/publicidad.php';

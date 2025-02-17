@@ -36,7 +36,7 @@ class orden {
 			':orden_external' => $orden_external,
 			':tiempo' => $tiempo
 		));
-		return 1;
+		return $this->conexion->lastInsertId();
 	}
 	public function registrar_temporal_user($nombre, $telefono, $direccion){
 		$sql = "INSERT INTO `temporaluser`(`nombre`,`telefono`,`direccion`) VALUES (:nombre,:telefono,:direccion)";
@@ -45,7 +45,7 @@ class orden {
 		return $this->conexion->lastInsertId();
 	}
 	
-	public function buscar_orden_tienda($id_tienda){$sql = "SELECT *, (SELECT nombre FROM usuarios WHERE orden.id_cliente = usuarios.id) as nombre_cliente, (SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente_tienda, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden` where id_tienda=". $id_tienda. ";";;
+	public function buscar_orden_tienda($id_tienda){$sql = "SELECT *, (SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente, (SELECT direccion FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as direccion,(SELECT telefono FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as telefono, (SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente_tienda, (SELECT nombre FROM usuarios WHERE orden.id_domiciliario = usuarios.id) as nombre_repartidor FROM `orden` where id_tienda=". $id_tienda. " and estado != 5";;
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();
 		$consulta =$reg->fetchAll();
@@ -149,14 +149,7 @@ WHERE
 			} }
 			public function buscar_orden_tienda_general_asignados($id_tienda){$sql = "SELECT
 				*,
-				(
-				SELECT
-					nombre
-				FROM
-					usuarios
-				WHERE
-					orden.id_cliente = usuarios.id
-			) AS nombre_cliente,
+				(SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente,
 			
 				(
 				SELECT
@@ -242,14 +235,7 @@ WHERE
 						} }
 						public function buscar_orden_tienda_general_culminado($id_tienda){$sql = "SELECT
 							*,
-							(
-							SELECT
-								nombre
-							FROM
-								usuarios
-							WHERE
-								orden.id_cliente = usuarios.id
-						) AS nombre_cliente,
+							(SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente,
 						
 							(
 							SELECT
@@ -335,14 +321,7 @@ WHERE
 					} }
 		public function buscar_orden_tienda_general_culminado_recaudar($id_tienda){$sql = "SELECT
 			*,
-			(
-			SELECT
-				nombre
-			FROM
-				usuarios
-			WHERE
-				orden.id_cliente = usuarios.id
-		) AS nombre_cliente,
+			(SELECT nombre FROM temporaluser WHERE orden.id_user_external = temporaluser.id) as nombre_cliente,
 		
 			(
 			SELECT
@@ -448,7 +427,7 @@ WHERE
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute(array(':id' => $id, ':id_domiciliario' => $id_domiciliario));
 	}
-	public function eliminar_orden($id){$sql = "DELETE FROM `orden`  WHERE id_orden=:id";
+	public function eliminar_orden($id){$sql = "UPDATE `orden` SET `estado`=5 WHERE id_orden=:id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id));
 	}

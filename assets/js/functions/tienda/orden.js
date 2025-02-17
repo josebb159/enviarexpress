@@ -2,6 +2,30 @@ $(document).ready(function(){
 	ver_registros();
 });
 
+function ampliarImagen() {
+	var rutaImagen = $("#imagen").attr("src");
+	$("#imagenAmpliada").attr("src", rutaImagen);
+	$("#overlay").fadeIn();
+}
+
+function cerrarImagen() {
+	$("#overlay").fadeOut();
+}
+
+document.getElementById('telefonoagg').addEventListener('input', function (e) {
+	let value = e.target.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea número
+
+	// Formatea la entrada en el formato 000-0000-000
+	if (value.length > 3) {
+		value = value.slice(0, 3) + '-' + value.slice(3);
+	}
+	if (value.length > 8) {
+		value = value.slice(0, 8) + '-' + value.slice(8);
+	}
+
+	e.target.value = value.slice(0, 12); // Limita el input al formato 000-0000-000
+});
+
 
 function updata_imagen(){
 	var formData = new FormData();
@@ -114,12 +138,22 @@ function eliminar( id ){
 	});
 }
 
-function cargar_datos(id_orden,descripcion,cantidad,valor){
-	$("#id").val(id_orden);
-	$("#descripcion").val(descripcion);
-	$("#cantidad").val(cantidad);
+function ver_lista(id_orden,clientever,telefono,direccion,orden,tiempo,descripcion,imagen,cantidad,tipo_pago,valor){
+	//$("#id").val(id_orden);
+	var nuevaRuta = "../assets/upload/bill/" + imagen;
+    $("#imagen").attr("src", nuevaRuta);
+	
 	$("#valor").val(valor);
-	$("#id_").val(id_);
+	$("#clientever").val(clientever);
+	$("#telefono").val(telefono);
+	$("#direccion").val(direccion);
+	$("#orden").val(orden);
+	$("#tiempo").val(tiempo);
+	$("#descripcion").val(descripcion);
+	//$("#imagen").val(imagen);
+	$("#cantidad").val(cantidad);
+	$("#tipo_pago").val(tipo_pago);
+	
 }
 
 function modificar(){

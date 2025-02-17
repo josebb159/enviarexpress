@@ -235,6 +235,20 @@ public function eliminar_usuario($id){
 
 }
 
+public function desasignar_domiciliario($id){
+   
+    $conexion = new Conexion();
+    $estado_defaul = 1;
+
+    $sql = "UPDATE `usuarios` SET id_comercio_asociate=0 WHERE id=:id";
+    $reg = $conexion->prepare($sql);
+
+    $reg->execute(array(':id' => $id));
+
+
+}
+
+
 public function modificar_usuario($id,$nombre,$id_rol, $telefono, $correo, $img ){
    
     $conexion = new Conexion();

@@ -18,7 +18,7 @@ $publicidad = new publicidad;
 					
 					<div class="page-title-right">
 						<ol class="breadcrumb m-0">
-							<li class="breadcrumb-item"><a href="javascript: void(0);">Enviar Express</a></li>
+							<li class="breadcrumb-item"><a href="javascript: void(0);"><?php echo NAME_CLIENT; ?></a></li>
 							<li class="breadcrumb-item active">Reportes</li>
 						</ol>
 					</div>

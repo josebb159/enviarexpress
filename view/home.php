@@ -4,6 +4,9 @@ session_start();
 include "static/seguridad_sesion.php";
 
 include "../model/orden.php";
+include "../model/notificacion.php";
+$n_notificacion = new notificacion();
+$list_notificacion = $n_notificacion->buscar_notificaciones();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +24,7 @@ include "../model/orden.php";
     include 'static/requerimientos_meta.php';
     ?>
 
-    <title><?php echo $title ?></title>
+    <title><?php echo NAME_CLIENT; ?></title>
   
     <?php
     // agrega todo el css a la pagina  
@@ -169,58 +172,47 @@ include "../model/orden.php";
                     </div>
 
                     <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item noti-icon waves-effect"
-                            id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="ri-notification-3-line"></i>
                             <span class="noti-dot"></span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                            aria-labelledby="page-header-notifications-dropdown">
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
                             <div class="p-3">
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <h6 class="m-0"> Notifications </h6>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="#!" class="small"> View All</a>
+                                        <a href="home.php?view=notificaciones" class="small"> View All</a>
                                     </div>
                                 </div>
                             </div>
                             <div data-simplebar style="max-height: 230px;">
-
-                                <?php
-
-$n_orden  = new orden();
-
-	
-$resultado = $n_orden  -> buscar_orden_tienda_general($_SESSION['id_comercio_asociate']);
-
-foreach ($resultado as $key) {
-
-
-                                ?>
-                            
+                              
+                         <?php if($list_notificacion){ foreach ($list_notificacion as $key) {
+                             
+                         ?>
                                 <a href="" class="text-reset notification-item">
                                     <div class="d-flex">
                                         <div class="avatar-xs me-3">
-                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                                <i class="ri-shopping-cart-line"></i>
+                                            <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                <i class="ri-checkbox-circle-line"></i>
                                             </span>
                                         </div>
                                         <div class="flex-1">
-                                            <h6 class="mt-0 mb-1">Tienes una nueva orden</h6>
+                                            <h6 class="mt-0 mb-1"><?= $key['nombre'] ?></h6>
                                             <div class="font-size-12 text-muted">
-                                                <p class="mb-1">Realizada por la tienta: <?= $key['tienda']; ?></p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                                                <p class="mb-1"><?= $key['descripcion'] ?></p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i><?= $key['fecha_registro'] ?></p>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
-<?php } ?>                             
-                            </div>
+
+                             <?php }} else { echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No hay notificaciones"; } ?>
                             <div class="p-2 border-top">
                                 <div class="d-grid">
-                                    <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                                    <a class="btn btn-sm btn-link font-size-14 text-center" href="home.php?view=notificaciones">
                                         <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
                                     </a>
                                 </div>
@@ -286,7 +278,7 @@ foreach ($resultado as $key) {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <script>document.write(new Date().getFullYear())</script> © Enviar Express .
+                        <script>document.write(new Date().getFullYear())</script> © <?php echo NAME_CLIENT; ?> .
                     </div>
                     <div class="col-sm-6">
                         <div class="text-sm-end d-none d-sm-block">

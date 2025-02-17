@@ -1,10 +1,14 @@
 <!doctype html>
 <html lang="en">
-
+<?php
+$index =true;
+ include 'view/config_view/info_pag.php';
+   
+?>
     <head>
         
         <meta charset="utf-8" />
-        <title>Enviar Express</title>
+        <title><?php echo NAME_CLIENT; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -71,7 +75,7 @@
 
                                             <div class="mt-5 text-center">
                                                
-                                                <p>© <script>document.write(new Date().getFullYear())</script> Enviar Express</p>
+                                                <p>© <script>document.write(new Date().getFullYear())</script> <?php echo NAME_CLIENT; ?> </p>
                                             </div>
                                         </div>
                                     </div>

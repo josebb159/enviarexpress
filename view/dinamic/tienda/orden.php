@@ -4,6 +4,41 @@
 <link href="../assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <link href="../assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
+<style>
+ #imagen {
+            width: 150px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        /* Fondo oscuro para la imagen ampliada */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+			
+            z-index: 1100; /* Más alto que el modal de Bootstrap */
+        }
+
+        /* Imagen ampliada */
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+			margin: auto;
+			position: relative;
+			left: 30%;
+			
+		
+        }
+    </style>
+
 <div class="page-content">
 	<div class="container-fluid">
 		<div class="row">
@@ -12,7 +47,7 @@
 					<h4 class="mb-sm-0">Lista de orden</h4>
 					<div class="page-title-right">
 						<ol class="breadcrumb m-0">
-							<li class="breadcrumb-item"><a href="javascript: void(0);">Enviar Express</a></li>
+							<li class="breadcrumb-item"><a href="javascript: void(0);"><?php echo NAME_CLIENT; ?></a></li>
 							<li class="breadcrumb-item active">Listado de orden</li>
 						</ol>
 					</div>
@@ -49,7 +84,12 @@
 	</div>
 </div>
 
+   <!-- Contenedor de la imagen ampliada -->
+   <div class="overlay" id="overlay" onclick="cerrarImagen()">
+        <img id="imagenAmpliada" src="" alt="Imagen Ampliada">
+    </div>
 
+<!-- view modal
 <div class="col-sm-6 col-md-4 col-xl-3">
 	<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -93,6 +133,7 @@
 		</div>
 	</div>
 </div>
+ -->
 <div class="col-sm-6 col-md-4 col-xl-3">
 	<div id="modal_agregar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -111,19 +152,19 @@
 							<div class="col-md-6">
 								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">Nombre cliente</label>
-									<input type="text" class="form-control" id="clienteagg" placeholder="nombre" value="" required>
+									<input type="text" class="form-control" maxlength="50" id="clienteagg" placeholder="nombre" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">Teléfono</label>
-									<input type="text" class="form-control" id="telefonoagg" placeholder="nombre" value="" required>
+									<input type="text" class="form-control" id="telefonoagg" placeholder="teléfono" value="" required>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="mb-12">
 									<label for="validationCustom01" class="form-label">Dirección</label>
-									<textarea class="form-control" name="direccionagg" id="direccionagg" cols="1" rows="1"></textarea>
+									<textarea class="form-control" maxlength="256" name="direccionagg" id="direccionagg" cols="1" rows="1"></textarea>
 								</div>
 							</div>
 					</div>
@@ -136,7 +177,7 @@
 						<div class="col-md-6">
 								<div class="mb-6">
 									<label for="validationCustom01" class="form-label">Número de orden</label>
-									<input type="text" class="form-control" id="ordenagg" placeholder="Número de orden" value="" required>
+									<input type="text" class="form-control" maxlength="25" id="ordenagg" placeholder="Número de orden" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -157,8 +198,8 @@
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">descripcion</label>
-									<input type="text" class="form-control" id="descripcionagg" placeholder="descripcion" value="" required>
+									<label for="validationCustom01" class="form-label">Descripción</label>
+									<input type="text" class="form-control" maxlength="50" id="descripcionagg" placeholder="descripcion" value="" required>
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -169,7 +210,7 @@
 							</div>
 							<div class="col-md-6" style="display: none;">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">cantidad</label>
+									<label for="validationCustom01" class="form-label">Cantidad</label>
 									<input type="text" class="form-control" id="cantidadagg" placeholder="cantidad" value="1" required>
 								</div>
 							</div>
@@ -184,8 +225,8 @@
 							</div>
 							<div class="col-md-6">
 								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">valor</label>
-									<input type="text" class="form-control" id="valoragg" placeholder="valor" value="" required>
+									<label for="validationCustom01" class="form-label">Valor</label>
+									<input type="number" class="form-control" id="valoragg" placeholder="valor" value="" required>
 								</div>
 							</div>
 						</div>
@@ -199,6 +240,114 @@
 		</div>
 	</div>
 </div>
+
+<div class="col-sm-6 col-md-4 col-xl-3">
+	<div id="modal_ver" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title mt-0" id="myModalLabel">Ver orden</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+			
+				<form class="needs-validation" id="form_1">
+					<div class="modal-body">
+					<div class="modal-header">
+						<h6 class="modal-title mt-0" id="myModalLabel">Datos Cliente</h6>
+					</div>
+					<div class="row">
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Nombre cliente</label>
+									<input type="text" class="form-control" maxlength="50" id="clientever" placeholder="nombre" value="" disabled>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Teléfono</label>
+									<input type="text" class="form-control" id="telefono" placeholder="teléfono" value=""  disabled>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="mb-12">
+									<label for="validationCustom01" class="form-label">Dirección</label>
+									<textarea class="form-control" maxlength="256" name="direccion" id="direccion" cols="1" rows="1" disabled></textarea>
+								</div>
+							</div>
+					</div>
+					<hr>
+					<div class="modal-header">
+						<h6 class="modal-title mt-0" id="myModalLabel">Datos de la compra</h6>
+					</div>
+				
+						<div class="row">
+						<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Número de orden</label>
+									<input type="text" class="form-control" maxlength="25" id="orden" placeholder="Número de orden" value="" disabled>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Tiempo de espera</label>
+									<select class="form-control" id="tiempo" disabled>
+										<option value="0">Seleccione</option>	
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+										<option value="20">20</option>
+										<option value="25">25</option>
+										<option value="30">30</option>
+										<option value="35">35</option>
+										<option value="40">40</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Descripción</label>
+									<input type="text" class="form-control" maxlength="50" id="descripcion" placeholder="descripcion" value="" disabled>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Factura</label>
+									<img src="" alt="Imagen" onclick="ampliarImagen()" style="width: 200px; height: 200px;" id="imagen">
+								</div>
+							</div>
+							<div class="col-md-6" style="display: none;">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Cantidad</label>
+									<input type="text" class="form-control" id="cantidad" placeholder="cantidad" value="1" disabled>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Tipo de pago</label>
+									<select class="form-control" name="tipo_pago" id="tipo_pago" disabled>
+										<option value="Tarjeta">Tarjeta</option>
+										<option value="Efectivo">Efectivo</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="mb-6">
+									<label for="validationCustom01" class="form-label">Valor</label>
+									<input type="number" class="form-control" id="valor" placeholder="valor" value="" required>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cerrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <?php 
 $aditionals_js='
 <!-- Required datatable js -->

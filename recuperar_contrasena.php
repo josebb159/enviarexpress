@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Enviar Express</title>
+        <title><?php echo NAME_CLIENT; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -60,7 +60,7 @@
 
                                             <div class="mt-5 text-center">
                                                 <p>Tienes una cuenta? <a href="index.php" class="fw-medium text-primary">Ingresar </a> </p>
-                                                <p>© <script>document.write(new Date().getFullYear())</script> Enviar Express, desarrollado por SP producciones</p>
+                                                <p>© <script>document.write(new Date().getFullYear())</script><?php echo NAME_CLIENT; ?></p>
                                             </div>
                                         </div>
 

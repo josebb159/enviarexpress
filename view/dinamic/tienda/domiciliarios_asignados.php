@@ -17,7 +17,7 @@
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Enviar Express</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">E<?php echo NAME_CLIENT; ?></a></li>
                             <li class="breadcrumb-item active">Listado de usuarios</li>
                         </ol>
                     </div>
@@ -40,11 +40,11 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NOMBRE</th>
-                                    <th>IMAGEN</th>
-                                    <th>FECHA Asiganado</th>
-                                    <th>ESTADO</th>
-                                    <th>OPCIONES</th>
+                                    <th>Nombre</th>
+                                    <th>Imagen</th>
+                                    <th>Fecha asignado</th>
+                                    <th>Estado</th>
+                                    <th>Opciones</th>
                                 </tr>
                             </thead>
 

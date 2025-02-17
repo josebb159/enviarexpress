@@ -2,6 +2,7 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/usuario.php';
 include '../model/notificacion_correo.php';
+include '../model/notificacion.php';
 if(isset($_POST['id'])){
    $id =  $_POST['id'];
 }
@@ -192,6 +193,9 @@ if(isset($_POST['id_comercio_asociate'])){
             $n_usuario  = new usuario();
             $resultado = $n_usuario -> buscar_asignado($_SESSION['id_usuario']);
         
+            if($resultado==0){
+               exit();
+            }
    
             foreach ($resultado as $key) {
                if($key['estado']=="1"){
@@ -219,7 +223,7 @@ if(isset($_POST['id_comercio_asociate'])){
                                                          <i class="mdi mdi-chevron-down"></i>
                                                       </button>
                                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-                                                         <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos( '<?php echo $key['id']."','".$key['nombre']."','".$key['rol_id']."','".$key['contrasena']."'"; ?>)">Modificar</a>
+                                                       
                                                          <a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id']; ?>)">Eliminar</a>
                                                       </div>
                                                 </div>
@@ -236,6 +240,15 @@ if(isset($_POST['id_comercio_asociate'])){
            }
                
           break;  
+          case 'desasignar_domiciliario':
+         
+            $n_usuario  = new usuario();
+            $n_notificacion = new notificacion();
+            $resultado = $n_usuario -> desasignar_domiciliario($id);
+            $n_notificacion -> registrar_notificacion("Domiciliario asignado eliminado", "El usuario con el id".$id." fue eliminado de la asignación", false, $_SESSION['id_usuario'], "usuarios", $id);
+           echo 1;
+            
+          break;
           case 'cambiar_estado':
 
             $n_usuario  = new usuario();

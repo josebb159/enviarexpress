@@ -58,14 +58,14 @@ try {
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
     //Recipients
-    $mail->setFrom('system@enviarexpress.com', 'Enviar Express');
+    $mail->setFrom('system@enviarexpress.com', NAME_CLIENT);
 
     //$mail->addAddress('trendconfort.redes@gmail.com');               //Name is optional
 $mail->addAddress($correo);
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Enviar Express Compra';
+    $mail->Subject = NAME_CLIENT.'Enviar Express Compra';
     
     //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
