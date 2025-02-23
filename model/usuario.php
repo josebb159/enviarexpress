@@ -44,6 +44,30 @@ class usuario {
     
     }
 
+
+    public function registro_delivery( $nombre, $correo,$telefono){
+   
+        $conexion = new Conexion();
+        $estado_defaul = 0;
+        $rol = 3;
+        $contrasena = $this->generarCodigoAleatorio();
+        //se condiciona para que el domiciliario se le cree el uid automaticamente en el registro
+       
+            $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,   `contrasena`, `estado`, `email`,`telefono`) VALUES (:rol,:nombre,:contrasena,:estado,:correo,:telefono)";
+       
+            $reg = $conexion->prepare($sql);
+    
+            $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,   ':contrasena' => $contrasena, ':estado' => $estado_defaul, ':correo' => $correo, ':telefono' => $telefono));
+     
+            return $conexion->lastInsertId();
+    
+    }
+
+   public function generarCodigoAleatorio() {
+        return str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+    }
+    
+
     public function registrar_usuario_delivery($rol, $nombre,  $contrasena,$correo,$telefono,$img ){
    
         $conexion = new Conexion();
