@@ -8,7 +8,7 @@ else{
 
 
 $config = new configuracion();
-$data_configs = $config->get_config();
+$data_configs = $config->get_config(); 
 
 foreach($data_configs as $data_config){
     if($data_config['descripcion'] == "nombre"){
