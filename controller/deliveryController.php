@@ -233,13 +233,16 @@ switch ($op) {
 		$destinatario = $user_delivery[0]['email']; 
 
 		$contenido = Correo::generarTemplate('new_delivery', $datos);
-			
+			var_dump($contenido);
+			var_dump($asunto);
+			var_dump($destinatario);
 		
+			/*
 		if ($correo->enviarCorreo($destinatario, $asunto, $contenido)) {
 			echo "Correo enviado con éxito.";
 		} else {
 			echo "Error al enviar el correo.";
-		}
+	}*/
 		
 			
 		echo 1;
