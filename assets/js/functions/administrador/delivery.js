@@ -128,6 +128,31 @@ function cambiar_estado(id, estado){
 	}).catch(function(error) {console.log('Error:', error);});
 }
 
+function validar( id ){
+	Swal.fire({
+		title: "Estas seguro que quiere validar este delivery?",
+		text: "seleccione las siguentes opciones para continuar!",
+		icon: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#1cbb8c",
+		cancelButtonColor: "#ff3d60",
+		confirmButtonText: "Si, deseo validar",
+		cancelButtonText: "Cancelar"
+	}).then(function (result) {
+		if (result.value) {
+			var result = function_ajax({
+				'op':'validar',
+				'id': id
+}			,'../controller/deliveryController.php').then(function(result){
+			if(result=="1"){
+				ver_registros();
+				Swal.fire("Validado!", "El registro fue validado, sera enviado al delivery un correo con sus credenciales.", "success");
+			}
+			}).catch(function(error) {console.log('Error:', error);});
+		}
+	});
+}
+
 function eliminar( id ){
 	Swal.fire({
 		title: "Estas seguro de eliminar este registro?",

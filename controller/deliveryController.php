@@ -3,6 +3,7 @@ ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'
 include '../model/delivery.php';
 include '../model/notificacion_correo.php';
 include '../model/usuario.php';
+include '../model/config_email.php';
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
 }
@@ -190,7 +191,9 @@ switch ($op) {
 			<td><?= $key['direccion']; ?></td>
 			<td><?= $key['numero']; ?></td>
 			<td><?= $key['numero_emergencia']; ?></td>
-			<td><?php include '../view/static/bt_estado.php';  ?></td>
+			<td><?php if($key['estado']=='0'){ 
+				echo '<button type="button" class="btn btn-warning waves-effect waves-light" onclick="validar('.$key['id'].')">Por validad</button>'; 
+				}else{ echo '<button type="button" class="btn btn-success waves-effect waves-light">Validado</button>'; } ?></td>
 			<td>
 				<div class="dropdown">
 					<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -210,6 +213,32 @@ switch ($op) {
 	case 'cambiar_estado':
 		$n_delivery  = new delivery();
 		$resultado = $n_delivery  -> cambiar_estado_delivery($id, $estado);
+		echo 1;
+	break;
+	case 'validar':
+		$n_delivery  = new delivery();
+		$n_email = new Correo();
+		$n_delivery  -> validar_delivery($id);
+		$delivery = $n_delivery  -> buscar_delivery_id($id);
+		$n_delivery  -> validar_usuario_delivery($id);
+		$user_delivery = $n_delivery  -> buscar_usuarios_id($delivery[0]['id_usuario']);
+
+		$datos = [
+			'usuario' => $user_delivery[0]['nombre'],
+			'email' => $user_delivery[0]['email'],
+			'password' => $user_delivery[0]['contrasena'],
+			'link_login' => 'https://enviar-express.com/login'
+		];
+		$asunto= 'Validación de cuenta Enviar Express';
+		$destinatario = $user_delivery[0]['email']; 
+
+		$contenido = Correo::generarTemplate('new_delivery', $datos);
+
+		if ($correo->enviarCorreo($destinatario, $asunto, $contenido)) {
+			echo "Correo enviado con éxito.";
+		} else {
+			echo "Error al enviar el correo.";
+		}
 		echo 1;
 	break;
 	case 'eliminar':

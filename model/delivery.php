@@ -22,7 +22,7 @@ class delivery {
 
 
 	public function registrar_delivery($id='204',$id_usuario,$nombre,$cedula,$foto_cedula,$foto_licencia,$foto_soat,$foto_tecnomecanica,$foto_tarjeta,$propiedad,$foto_facial,$direccion,$numero,$numero_emergencia,$estado){
-	$estado_defaul = 1;
+	$estado_defaul = 0;
 	$sql = "INSERT INTO `delivery`(`estado`,`nombre`,`cedula`,`foto_cedula`,`foto_licencia`,`foto_soat`,`foto_tecnomecanica`,`foto_tarjeta`,`propiedad`,`foto_facial`,`direccion`,`numero`,`numero_emergencia`,`id_usuario`) VALUES (:estado,:nombre,:cedula,:foto_cedula,:foto_licencia,:foto_soat,:foto_tecnomecanica,:foto_tarjeta,:propiedad,:foto_facial,:direccion,:numero,:numero_emergencia,:id_usuario)";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':estado' => $estado_defaul,':nombre' => $nombre,':cedula' => $cedula,':foto_cedula' => $foto_cedula,':foto_licencia' => $foto_licencia,':foto_soat' => $foto_soat,':foto_tecnomecanica' => $foto_tecnomecanica,':foto_tarjeta' => $foto_tarjeta,':propiedad' => $propiedad,':foto_facial' => $foto_facial,':direccion' => $direccion,':numero' => $numero,':numero_emergencia' => $numero_emergencia,':id_usuario' => $id_usuario));
@@ -37,10 +37,46 @@ class delivery {
 	}else{
 		return 0;
 	} }
+	public function buscar_delivery_id($id){$sql = "SELECT  * FROM delivery where id_delivery=".$id."";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute();
+		$consulta =$reg->fetchAll();
+		if ($consulta) {
+			return $consulta;
+		}else{
+			return 0;
+	} }
+	public function buscar_usuarios_id($id){
+   
+        $conexion = new Conexion();
+    
+        $sql = "SELECT usuarios.* FROM usuarios WHERE usuarios.id=".$id."";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+      
+        if ($consulta) {
+    
+            return $consulta;
+    
+        }else{
+            return 0;
+        }
+    }
+
 	public function cambiar_estado_delivery($id, $estado){$sql = "UPDATE `delivery` SET `estado`=:estado WHERE id_delivery=:id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id, ':estado' => $estado));
 	}
+	public function validar_delivery($id){$sql = "UPDATE `delivery` SET `estado`=1 WHERE id_delivery=:id";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute(array(':id' => $id));
+		}
+	public function validar_usuario_delivery($id){$sql = "UPDATE `delivery` SET `estado`=1 WHERE id_delivery=:id";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute(array(':id' => $id));
+		}
 	public function eliminar_delivery($id){$sql = "DELETE FROM `delivery`  WHERE id_delivery=:id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id));
@@ -57,7 +93,7 @@ class delivery {
 	return json_encode($results);
 	}
 	public function calculo() {
-		// Código del método aquí
+		// Cï¿½digo del mï¿½todo aquï¿½
 	}
 
 }
