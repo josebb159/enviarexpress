@@ -144,10 +144,10 @@ function validar( id ){
 				'op':'validar',
 				'id': id
 }			,'../controller/deliveryController.php').then(function(result){
-			if(result=="1"){
+			
 				ver_registros();
 				Swal.fire("Validado!", "El registro fue validado, sera enviado al delivery un correo con sus credenciales.", "success");
-			}
+		
 			}).catch(function(error) {console.log('Error:', error);});
 		}
 	});
