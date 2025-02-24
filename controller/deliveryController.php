@@ -217,7 +217,7 @@ switch ($op) {
 	break;
 	case 'validar':
 		$n_delivery  = new delivery();
-		$n_email = new Correo();
+		$correo  = new Correo();
 		$n_delivery  -> validar_delivery($id);
 		$delivery = $n_delivery  -> buscar_delivery_id($id);
 		$n_delivery  -> validar_usuario_delivery($id);
