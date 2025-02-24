@@ -237,12 +237,12 @@ switch ($op) {
 			var_dump($asunto);
 			var_dump($destinatario);
 		
-			/*
+			
 		if ($correo->enviarCorreo($destinatario, $asunto, $contenido)) {
 			echo "Correo enviado con éxito.";
 		} else {
 			echo "Error al enviar el correo.";
-	}*/
+	}
 		
 			
 		echo 1;

@@ -53,7 +53,7 @@ class Correo {
             $this->mail->SMTPAuth = true;
             $this->mail->Username = $this->config['username'];
             $this->mail->Password = $this->config['password'];
-            $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $this->mail->Port = $this->config['port'];
             $this->mail->setFrom($this->config['from_email'], $this->config['from_name']);
             $this->mail->SMTPDebug = 2;
