@@ -56,7 +56,8 @@ class Correo {
             $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $this->mail->Port = $this->config['port'];
             $this->mail->setFrom($this->config['from_email'], $this->config['from_name']);
-            $this->mail->SMTPDebug = 0;
+            $this->mail->SMTPDebug = 2;
+            $this->mail->Debugoutput = 'html';
         } catch (Exception $e) {
             error_log("Error en configuración SMTP: " . $e->getMessage());
         }
