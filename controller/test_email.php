@@ -29,7 +29,7 @@ function enviarCorreoPrueba() {
         $mail->Port = SMTP_PORT;
 
         // Mostrar depuración detallada (opcional)
-        $mail->SMTPDebug = 0; // Cambia a 2 si necesitas ver detalles de depuración
+        $mail->SMTPDebug = 2; // Cambia a 2 si necesitas ver detalles de depuración
         $mail->Debugoutput = 'html';
 
         // Configuración del remitente y destinatario
