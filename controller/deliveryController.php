@@ -3,7 +3,7 @@ ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'
 include '../model/delivery.php';
 include '../model/notificacion_correo.php';
 include '../model/usuario.php';
-include '../model/config_email.php';
+include '../controller/config_email.php';
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
 }
