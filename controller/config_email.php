@@ -81,7 +81,7 @@ class Correo {
     }
 
     public static function generarTemplate($tipo, $datos) {
-        "../maqueta_email/" . $tipo . ".php";
+      $ruta =  "../maqueta_email/" . $tipo . ".php";
         
     
             include $ruta;
