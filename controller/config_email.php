@@ -33,6 +33,8 @@ class Correo {
             $config[$fila['descripcion']] = $fila['dato'];
         }
 
+        var_dump($config);
+
         return [
             'host' => $config['smtp'] ?? 'smtp.default.com',
             'username' => $config['correo'] ?? 'default@email.com',

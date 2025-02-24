@@ -233,12 +233,13 @@ switch ($op) {
 		$destinatario = $user_delivery[0]['email']; 
 
 		$contenido = Correo::generarTemplate('new_delivery', $datos);
-
+/*
 		if ($correo->enviarCorreo($destinatario, $asunto, $contenido)) {
 			echo "Correo enviado con éxito.";
 		} else {
 			echo "Error al enviar el correo.";
 		}
+			*/
 		echo 1;
 	break;
 	case 'eliminar':
