@@ -37,7 +37,7 @@ class delivery {
 	}else{
 		return 0;
 	} }
-	public function buscar_delivery_id($id){$sql = "SELECT  * FROM delivery where id_delivery=".$id."";
+	public function buscar_delivery_id($id){$sql = "SELECT  * FROM delivery where id=".$id."";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();
 		$consulta =$reg->fetchAll();
@@ -65,19 +65,19 @@ class delivery {
         }
     }
 
-	public function cambiar_estado_delivery($id, $estado){$sql = "UPDATE `delivery` SET `estado`=:estado WHERE id_delivery=:id";
+	public function cambiar_estado_delivery($id, $estado){$sql = "UPDATE `delivery` SET `estado`=:estado WHERE id=:id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id, ':estado' => $estado));
 	}
-	public function validar_delivery($id){$sql = "UPDATE `delivery` SET `estado`=1 WHERE id_delivery=:id";
+	public function validar_delivery($id){$sql = "UPDATE `delivery` SET `estado`=1 WHERE id=:id";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute(array(':id' => $id));
 		}
-	public function validar_usuario_delivery($id){$sql = "UPDATE `delivery` SET `estado`=1 WHERE id_delivery=:id";
+	public function validar_usuario_delivery($id){$sql = "UPDATE `delivery` SET `estado`=1 WHERE id=:id";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute(array(':id' => $id));
 		}
-	public function eliminar_delivery($id){$sql = "DELETE FROM `delivery`  WHERE id_delivery=:id";
+	public function eliminar_delivery($id){$sql = "DELETE FROM `delivery`  WHERE id=:id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id));
 	}
