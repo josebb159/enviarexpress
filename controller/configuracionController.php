@@ -1,6 +1,5 @@
 <?php
 ini_set('session.save_path', realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
-include 'generalErrorController.php';
 include '../model/configuracion.php';
 include '../model/notificacion.php';
 
