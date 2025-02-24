@@ -81,14 +81,11 @@ class Correo {
     }
 
     public static function generarTemplate($tipo, $datos) {
-        $ruta = __DIR__ . "/maqueta_email/" . $tipo . ".php";
+        "../maqueta_email/" . $tipo . ".php";
         
-        if (file_exists($ruta)) {
-            ob_start();
+    
             include $ruta;
             return ob_get_clean();
-        } else {
-            return "<p>Plantilla no encontrada.</p>";
-        }
+      
     }
 }
